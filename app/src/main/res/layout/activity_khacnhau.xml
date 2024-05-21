@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp"
+    tools:context=".giongnhau">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Khac nhau"
+                android:textSize="40sp"></TextView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="1. Cách khai báo:"
+                android:textColor="#F44336"
+                android:textSize="30sp"
+                android:textStyle="bold"></TextView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="-Hàm bắt sự kiện inline: Được khai báo trực tiếp trong mã nguồn Java hoặc Kotlin."
+                android:textSize="30sp"></TextView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="-onClick trong XML: Được khai báo trong tệp layout XML"
+                android:textSize="30sp"></TextView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="2. Cách xử lý sự kiện:"
+                android:textColor="#F44336"
+                android:textSize="30sp"
+                android:textStyle="bold"></TextView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="-Hàm bắt sự kiện inline: Sử dụng lớp View.OnClickListener để xử lý sự kiện. Hàm xử lý sự kiện được định nghĩa trực tiếp trong đoạn mã gắn sự kiện."
+                android:textSize="30sp"></TextView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="-onClick trong XML: Xử lý sự kiện thông qua một phương thức public được định nghĩa trong Activity hoặc Fragment tương ứng."
+                android:textSize="30sp"></TextView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="3. Phạm vi áp dụng"
+                android:textColor="#F44336"
+                android:textSize="30sp"
+                android:textStyle="bold"></TextView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="-Hàm bắt sự kiện inline: Thường linh hoạt hơn và có thể được sử dụng ở bất kỳ đâu trong mã nguồn. Thích hợp cho các xử lý phức tạp hoặc khi cần truy cập nhiều thành phần khác nhau trong Activity hoặc Fragment."
+                android:textSize="30sp"></TextView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="-onClick trong XML: Dễ sử dụng và gọn gàng trong các trường hợp đơn giản. Tuy nhiên, nếu cần xử lý phức tạp hoặc cần truy cập các thành phần khác trong giao diện, phương pháp này có thể trở nên hạn chế."
+                android:textSize="30sp"></TextView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="4. Khả năng tái sử dụng:"
+                android:textColor="#F44336"
+                android:textSize="30sp"
+                android:textStyle="bold"></TextView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="-Hàm bắt sự kiện inline: Có thể tái sử dụng cùng một hàm bắt sự kiện cho nhiều phần tử khác nhau nếu cần."
+                android:textSize="30sp"></TextView>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="-onClick trong XML: Mỗi phần tử chỉ có thể liên kết với một phương thức duy nhất, do đó việc tái sử dụng có thể kém linh hoạt hơn."
+                android:textSize="30sp"></TextView>
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>

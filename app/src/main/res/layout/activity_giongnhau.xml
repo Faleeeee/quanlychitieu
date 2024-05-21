@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp"
+    tools:context=".giongnhau">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Giong nhau"
+        android:textSize="40sp"></TextView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="1. Mục đích: Cả hai phương pháp đều nhằm mục đích bắt và xử lý sự kiện khi người dùng nhấp vào một phần tử giao diện"
+        android:textSize="30sp"></TextView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="2. Gắn kết sự kiện với phần tử: Cả hai đều liên kết một phần tử UI với một hành động cụ thể (method) trong mã Java hoặc Kotlin."
+        android:textSize="30sp"></TextView>
+</LinearLayout>
