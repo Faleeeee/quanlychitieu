@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".XML.ViewGroup">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@drawable/bg">
+        <TextView
+            android:id="@+id/hello_world"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="View Group"
+            android:background="#5B000000"
+            android:textSize="40sp"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:gravity="center"
+            android:padding="20sp"
+            />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Một ViewGroup là một đối tượng vô hình được sử dụng để chứa các đối tượng View và ViewGroup khác để tổ chức và kiểm soát layout của một màn hình. Các đối tượng ViewGroup được sử dụng cho việc tạo ra một hệ thống phân cấp của các đối tượng View (xem bên dưới) do đó bạn có thể tạo các layout phức tạp hơn. Có nghĩa là, bạn càng giữ cho layout đơn giản thì hiệu năng hoạt động của nó càng cao.
+
+"           android:textColor="@color/black"
+            android:textSize="20sp"
+            />
+
+        <TextView
+            android:id="@+id/hello_world_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="View"
+            android:background="#51000000"
+            android:textSize="40sp"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:gravity="center"
+            android:padding="20sp"
+            />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Các đối tượng View được sử dụng một cách đặc biệt cho việc vẽ nội dung lên màn hình của thiết bị Android. Mặc dù bạn có thể nhanh chóng khởi tạo View trong code Java của bạn, nhưng cách dễ nhất để sử dụng chúng là thông qua một tập tin layout XML"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

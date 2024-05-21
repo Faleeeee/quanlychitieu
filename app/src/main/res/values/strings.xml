@@ -1,3 +1,56 @@
 <resources>
-    <string name="app_name">quanlychitieuapp</string>
+    <string name="app_name">giaodien</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="txtusername">Tài khoản</string>
+    <string name="txtpassword">Mật khẩu</string>
+    <string name="txtemail">Email</string>
+    <string name="txtbirthday">Ngày sinh</string>
+    <string name="btnreg">Đăng ký</string>
+
+    <!--Checkbox-->
+    <string name="android">Android</string>
+    <string name="java">Java</string>
+    <string name="php">PHP</string>
+    <string name="python">Python</string>
+    <string name="unity">Unity 3D</string>
+
+    <!--Radio Button-->
+    <string name="information">Thông tin cá nhân</string>
+    <string name="firstname">Họ tên</string>
+    <string name="id">CMND</string>
+    <string name="degree">Bằng cấp</string>
+    <string name="university">Đại học</string>
+    <string name="college">Cao đẳng</string>
+    <string name="college1">Trung cấp</string>
+    <string name="favorate">Sở thích</string>
+    <string name="game">Chơi game</string>
+    <string name="book">Đọc sách</string>
+    <string name="newspaper">Đọc báo</string>
+    <string name="addinformation">Thông tin khác</string>
+    <string name="btninsert">Gởi thông tin</string>
+
+    <!--Image -->
+    <string name="btndemo1">Xem hình 1</string>
+    <string name="btndemo2">Xem hình 2</string>
+
+    <!--    Menu-->
+    <string-array name="languages">
+        <item>Python</item>
+        <item>Java</item>
+        <item>Ruby</item>
+        <item>C++</item>
+    </string-array>
+
+    <string name="time_picker_example">Time Picker Example</string>
+    <string name="time_pick">Pick the time and press save button</string>
+    <string name="time_save">Save</string>
+    <string name="time_selected"></string>
+    <string name="time_current">The Time is:</string>
+    <string name="tendangnhap">Tên đăng nhập</string>
+    <string name="matkhau">Mật khẩu</string>
+    <string name="masinhvien">Mã Sinh Viên</string>
+
+    <string name="login">Sumit</string>
+    <string name="dangnhap">Đăng Nhap</string>
 </resources>

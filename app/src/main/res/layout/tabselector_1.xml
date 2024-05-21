@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/number_a"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nhập a: "
+        android:textSize="30sp"
+        android:textColor="#21F3AA"
+        />
+
+    <EditText
+        android:id="@+id/edt_a"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:hint="Nhập số a"
+        android:ems="10"
+        android:inputType="number" />
+
+    <TextView
+        android:id="@+id/number_b"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nhập b"
+        android:textSize="30sp"
+        android:textColor="#21F3AA"
+        />
+
+    <EditText
+        android:id="@+id/edtb"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Nhập số b"
+        android:inputType="number"
+        android:textSize="30sp"
+        />
+
+    <Button
+        android:id="@+id/btnSum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/color"
+        android:text="+"
+        android:textSize="30sp" />
+
+</LinearLayout>

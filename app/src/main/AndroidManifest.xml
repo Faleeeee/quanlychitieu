@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -10,7 +13,114 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Quanlychitieuapp"
-        tools:targetApi="31" />
+        android:theme="@style/Theme.Giaodien"
+        android:usesCleartextTraffic="true"
+        tools:targetApi="31">
+        <activity
+            android:name=".Advancedcontrols.PictureGallery"
+            android:exported="false" />
+        <activity
+            android:name=".Advancedcontrols.menu"
+            android:exported="false" />
+        <activity
+            android:name=".intent.Result"
+            android:exported="false" />
+        <activity
+            android:name=".intent.GettingResult"
+            android:exported="false" />
+        <activity
+            android:name=".intent.Explicit"
+            android:exported="false" />
+        <activity
+            android:name=".intent.Implicit"
+            android:exported="false" />
+        <activity
+            android:name=".Intent"
+            android:exported="false" />
+        <activity
+            android:name=".Webkit"
+            android:exported="false"></activity>
+        <activity
+            android:name=".Customlayout"
+            android:exported="false" />
+        <activity
+            android:name=".Advancedcontrols.TabSelector"
+            android:exported="false" />
+        <activity
+            android:name=".Advancedcontrols.TimeSelection"
+            android:exported="false" />
+        <activity
+            android:name=".Advancedcontrols.Gridview2"
+            android:exported="false" />
+        <activity
+            android:name=".Advancedcontrols.customAdapterGrid"
+            android:exported="false" />
+        <activity
+            android:name=".Advancedcontrols.Gridview"
+            android:exported="false" />
+        <activity
+            android:name=".Advancedcontrols.textView"
+            android:exported="false" />
+        <activity
+            android:name=".Advancedcontrols.AutoComplete"
+            android:exported="false" />
+        <activity
+            android:name=".Advancedcontrols.Slidingdrawer"
+            android:exported="false" />
+        <activity
+            android:name=".Advancedcontrols.SpinNer"
+            android:exported="false" />
+        <activity
+            android:name=".Advancedcontrols.Listview"
+            android:exported="false" />
+        <activity
+            android:name=".AdvancedControls"
+            android:exported="false" />
+        <activity
+            android:name=".CommonControls.Scrollview"
+            android:exported="false" />
+        <activity
+            android:name=".CommonControls.Imageview"
+            android:exported="false" />
+        <activity
+            android:name=".CommonControls.Radiobutton"
+            android:exported="false" />
+        <activity
+            android:name=".CommonControls.Checkbox"
+            android:exported="false" />
+        <activity
+            android:name=".CommonControls.button"
+            android:exported="false" />
+        <activity
+            android:name=".CommonControls.EditT"
+            android:exported="false" />
+        <activity
+            android:name=".CommonControls.TextView"
+            android:exported="false" />
+        <activity
+            android:name=".CommonCotrols"
+            android:exported="false" />
+        <activity
+            android:name=".XML.ToastAndAlertDialog"
+            android:exported="false" />
+        <activity
+            android:name=".XML.CommonLayout"
+            android:exported="false" />
+        <activity
+            android:name=".XML.ViewGroup"
+            android:exported="false" />
+        <activity
+            android:name=".xml"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
 
 </manifest>
