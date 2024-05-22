@@ -17,6 +17,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".MainActivity2"
+            android:exported="false" />
+        <activity
             android:name=".Advancedcontrols.PictureGallery"
             android:exported="false" />
         <activity
@@ -39,7 +42,7 @@
             android:exported="false" />
         <activity
             android:name=".Webkit"
-            android:exported="false"></activity>
+            android:exported="false" />
         <activity
             android:name=".Customlayout"
             android:exported="false" />
