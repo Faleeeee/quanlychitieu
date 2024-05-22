@@ -79,7 +79,7 @@
             android:layout_centerHorizontal="true"
             android:checked="false"
             android:padding="27dp"
-            android:text="@string/unity"
+            android:text="unity"
             android:textColor="#888"
             android:textSize="20sp"
             android:textStyle="bold|italic" />
