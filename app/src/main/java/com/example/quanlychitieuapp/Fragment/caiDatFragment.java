@@ -1,5 +1,6 @@
 package com.example.quanlychitieuapp.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,8 +8,10 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.example.quanlychitieuapp.R;
+import com.example.quanlychitieuapp.sign_up;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -60,7 +63,20 @@ public class caiDatFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_cai_dat, container, false);
+        View view = inflater.inflate(R.layout.fragment_cai_dat, container, false);
+        // Initialize the button and set the onClick listener
+        Button registerTextView = view.findViewById(R.id.registerTextView);
+        registerTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Action when button is clicked
+                Intent intent = new Intent(getActivity(), com.example.quanlychitieuapp.sign_up.class);
+                startActivity(intent);
+            }
+        });
+
+        return view;
     }
 }
