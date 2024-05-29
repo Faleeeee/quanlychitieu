@@ -9,4 +9,8 @@
     <color name="white">#FFFFFFFF</color>
     <color name="gray">#AAAAAA</color>
     <color name="gray_dam">#555555</color>
+    <color name="gray_nhat">#999999</color>
+    <color name="gray_nhat_hon">#BBBBBB</color>
+    <color name="menu">#14375F</color>
+    <color name="green">#3EC30F</color>
 </resources>
