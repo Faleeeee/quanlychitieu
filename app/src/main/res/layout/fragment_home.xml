@@ -131,7 +131,7 @@
                             android:layout_height="match_parent"
                             android:text="Báo cáo chi tiết"
                             android:textColor="@color/gray"
-                            android:textSize="20sp"></TextView>
+                            android:textSize="20sp" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -205,6 +205,4 @@
 
         </LinearLayout>
     </ScrollView>
-
-
 </RelativeLayout>
