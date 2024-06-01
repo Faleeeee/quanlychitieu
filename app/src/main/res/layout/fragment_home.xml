@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    android:background="#161B27"
+    android:background="@color/black"
     tools:context=".Fragment.homeFragment">
 
     <ScrollView
@@ -50,7 +50,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:text="Tong so du"
+                        android:text="Tổng số dư"
                         android:textColor="@color/gray"
                         android:textSize="20dp"
                         app:layout_constraintStart_toStartOf="parent"
@@ -94,15 +94,16 @@
                         android:layout_weight="1"
                         android:orientation="horizontal">
 
-                        <TextView
+                        <Button
+                            style="@style/ForgotPasswordButton"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginRight="15dp"
                             android:gravity="end"
                             android:text="Xem tất cả"
                             android:textColor="@color/green"
-                            android:textSize="20sp"
-                            android:textStyle="bold"></TextView>
+                            android:textSize="15sp"
+                            android:textStyle="bold"></Button>
                     </LinearLayout>
                 </LinearLayout>
 
@@ -123,12 +124,12 @@
 
                     <LinearLayout
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="1">
 
                         <TextView
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:text="Báo cáo chi tiết"
                             android:textColor="@color/gray"
                             android:textSize="20sp" />
@@ -139,14 +140,15 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1">
 
-                        <TextView
+                        <Button
+                            style="@style/ForgotPasswordButton"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:gravity="end"
                             android:text="Xem báo cáo"
                             android:textColor="@color/green"
-                            android:textSize="20sp"
-                            android:textStyle="bold"></TextView>
+                            android:textSize="15sp"
+                            android:textStyle="bold"></Button>
                     </LinearLayout>
                 </LinearLayout>
 
@@ -186,14 +188,15 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1">
 
-                        <TextView
+                        <Button
+                            style="@style/ForgotPasswordButton"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="end"
                             android:text="Xem báo cáo"
                             android:textColor="@color/green"
-                            android:textSize="20sp"
-                            android:textStyle="bold"></TextView>
+                            android:textSize="15sp"
+                            android:textStyle="bold"></Button>
                     </LinearLayout>
                 </LinearLayout>
 
