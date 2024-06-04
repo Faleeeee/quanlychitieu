@@ -67,12 +67,12 @@ public class caiDatFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_cai_dat, container, false);
         // Initialize the button and set the onClick listener
-        Button registerTextView = view.findViewById(R.id.registerTextView);
-        registerTextView.setOnClickListener(new View.OnClickListener() {
+        Button  dangxuat = view.findViewById(R.id.dangxuat);
+        dangxuat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Action when button is clicked
-                Intent intent = new Intent(getActivity(), com.example.quanlychitieuapp.sign_up.class);
+                Intent intent = new Intent(getActivity(), com.example.quanlychitieuapp.dangnhap.class);
                 startActivity(intent);
             }
         });
