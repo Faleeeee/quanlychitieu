@@ -77,6 +77,7 @@ public class viFragment extends Fragment {
         viewPager.setAdapter(adapter);
 
         tabLayout.setupWithViewPager(viewPager);
+        viewPager.setCurrentItem(2);
 
         return mView;
     }

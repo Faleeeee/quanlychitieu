@@ -14,7 +14,7 @@
         android:title=" "></item>
     <item
         android:id="@+id/thongKe"
-        android:icon="@drawable/home_svgrepo_com"
+        android:icon="@drawable/chart"
         android:title="Thống kê"></item>
     <item
         android:id="@+id/caiDat"
