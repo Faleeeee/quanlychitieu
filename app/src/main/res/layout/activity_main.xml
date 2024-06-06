@@ -10,16 +10,28 @@
 
 
     <!-- Header -->
-    <TextView
-        android:id="@+id/tvHeader"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/vi"
-        android:gravity="center"
-        android:padding="16dp"
-        android:text="Thêm giao dịch"
-        android:textColor="@android:color/white"
-        android:textSize="24sp" />
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Back"></Button>
+
+        <TextView
+            android:id="@+id/tvHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="16dp"
+            android:text="Thêm giao dịch"
+            android:textColor="@android:color/white"
+            android:textSize="24sp" />
+    </LinearLayout>
 
 
     <!-- Amount -->
