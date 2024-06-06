@@ -7,4 +7,13 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="gray">#AAAAAA</color>
+    <color name="gray_dam">#60555555</color>
+    <color name="gray_nhat">#999999</color>
+    <color name="gray_nhat_hon">#BBBBBB</color>
+    <color name="menu">#14375F</color>
+    <color name="green">#3EC30F</color>
+    <color name="green_tienvao">#00FF00</color>
+    <color name="tienra">#CC0000</color>
+    <color name="btn_vi">#203EC30F</color>
 </resources>

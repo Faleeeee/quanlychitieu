@@ -1,10 +1,346 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Header -->
+    <TextView
+        android:id="@+id/tvHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/vi"
+        android:gravity="center"
+        android:padding="16dp"
+        android:text="Thêm giao dịch"
+        android:textColor="@android:color/white"
+        android:textSize="24sp" />
+
+
+    <!-- Amount -->
+    <EditText
+        android:id="@+id/display"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:gravity="left"
+        android:hint="0"
+        android:inputType="numberDecimal"
+        android:padding="16dp"
+        android:textColor="@android:color/white"
+        android:textColorHint="@color/green"
+        android:textSize="24sp" />
+
+
+    <!-- Spinner Category -->
+    <Spinner
+        android:id="@+id/spnCategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@android:drawable/btn_dropdown"
+        android:padding="16dp"
+        android:text="Chọn nhóm" />
+
+    <!-- Description -->
+    <EditText
+        android:id="@+id/etDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+
+        android:hint="Thêm ghi chú"
+        android:inputType="text"
+
+        android:padding="16dp"
+        android:textColor="@android:color/white"
+        android:textColorHint="@color/white" />
+
+    <!-- Date -->
+    <EditText
+        android:id="@+id/etDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:drawableStart="@drawable/baseline_calendar_month_24"
+        android:hint="Hôm nay"
+        android:inputType="date"
+        android:padding="16dp"
+        android:textColor="@android:color/white"
+        android:textColorHint="@color/white" />
+
+    <!-- Spinner Account -->
+    <EditText
+        android:id="@+id/etAccount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:drawableStart="@drawable/baseline_account_balance_wallet_24"
+        android:hint="Tài Khoản"
+        android:inputType="date"
+        android:padding="16dp"
+        android:textColor="@android:color/white"
+        android:textColorHint="@color/white" />
+
+    <!-- Save Button -->
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginTop="20dp"
+        android:background="#60555555"
+        android:padding="16dp"
+        android:text="Lưu"
+        android:textColor="@android:color/white"
+        app:backgroundTint="@null" />
+
+    <!-- Custom Keyboard -->
+    <GridLayout
+        android:id="@+id/customKeyboard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/vi"
+        android:columnCount="4"
+        android:padding="8dp">
+
+        <!--Row 1-->
+        <Button
+            android:id="@+id/btnC"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_columnWeight="1"
+            android:background="@drawable/custom_button"
+            android:onClick="restartBtn"
+            android:text="C"
+            android:textColor="@color/green"
+            android:textStyle="bold"
+            app:backgroundTint="@null" />
+
+        <Button
+            android:id="@+id/btnDivide"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_columnWeight="1"
+            android:background="@drawable/custom_button"
+            android:onClick="divideBtn"
+            android:text="÷"
+            android:textColor="@color/green"
+            app:backgroundTint="@null" />
+
+        <Button
+            android:id="@+id/btnMultiply"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_columnWeight="1"
+            android:background="@drawable/custom_button"
+            android:onClick="multiplyBtn"
+            android:text="×"
+            android:textColor="@color/green"
+            app:backgroundTint="@null" />
+
+        <ImageButton
+            android:id="@+id/btnDelete"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_columnWeight="1"
+            android:background="@drawable/custom_button"
+            android:onClick="deleteBtn"
+            android:scaleType="center"
+            android:src="@drawable/delete" />
+        <!-- Row 1 -->
+        <Button
+            android:id="@+id/btn7"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_columnWeight="1"
+            android:background="@drawable/custom_button"
+            android:onClick="sevenBtn"
+            android:text="7"
+            android:textColor="@color/green"
+            android:textSize="20sp"
+            app:backgroundTint="@null" />
+
+        <Button
+            android:id="@+id/btn8"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_columnWeight="1"
+            android:background="@drawable/custom_button"
+            android:onClick="eightBtn"
+            android:text="8"
+            android:textColor="@color/green"
+            android:textSize="20sp"
+            app:backgroundTint="@null" />
+
+        <Button
+            android:id="@+id/btn9"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_columnWeight="1"
+            android:background="@drawable/custom_button"
+            android:onClick="nineBtn"
+            android:text="9"
+            android:textColor="@color/green"
+            android:textSize="20sp"
+            app:backgroundTint="@null" />
+
+        <Button
+            android:id="@+id/btnSubtract"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:background="@drawable/custom_button"
+            android:onClick="subtractBtn"
+            android:text="-"
+            android:textColor="@color/green"
+            android:textSize="20sp"
+            app:backgroundTint="@null" />
+
+        <!-- Row 2 -->
+        <Button
+            android:id="@+id/btn4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:background="@drawable/custom_button"
+            android:onClick="fourBtn"
+            android:text="4"
+            android:textColor="@color/green"
+            android:textSize="20sp"
+            app:backgroundTint="@null" />
+
+        <Button
+            android:id="@+id/btn5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:background="@drawable/custom_button"
+            android:onClick="fiveBtn"
+            android:text="5"
+            android:textColor="@color/green"
+            android:textSize="20sp"
+            app:backgroundTint="@null" />
+
+        <Button
+            android:id="@+id/btn6"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:background="@drawable/custom_button"
+            android:onClick="sixBtn"
+            android:text="6"
+            android:textColor="@color/green"
+            android:textSize="20sp"
+            app:backgroundTint="@null" />
+
+        <Button
+            android:id="@+id/btnAdd"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:background="@drawable/custom_button"
+            android:onClick="addBtn"
+            android:text="+"
+            android:textColor="@color/green"
+            android:textSize="20sp"
+            app:backgroundTint="@null" />
+
+        <!-- Row 3 -->
+        <Button
+            android:id="@+id/btn1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:background="@drawable/custom_button"
+            android:onClick="oneBtn"
+            android:text="1"
+            android:textColor="@color/green"
+            android:textSize="20sp"
+            app:backgroundTint="@null" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:background="@drawable/custom_button"
+            android:onClick="twoBtn"
+            android:text="2"
+            android:textColor="@color/green"
+            android:textSize="20sp"
+            app:backgroundTint="@null" />
+
+        <Button
+            android:id="@+id/btn3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:background="@drawable/custom_button"
+            android:onClick="threeBtn"
+            android:text="3"
+            android:textColor="@color/green"
+            android:textSize="20sp"
+            app:backgroundTint="@null" />
+
+        <Button
+            android:id="@+id/btnEquals"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_row="2"
+            android:layout_rowSpan="2"
+            android:layout_rowWeight="2"
+            android:layout_columnWeight="1"
+            android:background="@drawable/custom_button"
+            android:onClick="equalBtn"
+            android:text="="
+            android:textColor="@color/green"
+            android:textSize="20sp"
+            app:backgroundTint="@null" />
+
+        <!-- Row 4 -->
+        <Button
+            android:id="@+id/btn0"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:background="@drawable/custom_button"
+            android:onClick="zeroBtn"
+            android:text="0"
+            android:textColor="@color/green"
+            android:textSize="20sp"
+            app:backgroundTint="@null" />
+
+        <Button
+            android:id="@+id/btn000"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:background="@drawable/custom_button"
+            android:onClick="threeZeroBtn"
+            android:text="000"
+            android:textColor="@color/green"
+            android:textSize="20sp"
+            app:backgroundTint="@null" />
+
+        <Button
+            android:id="@+id/btnDot"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:background="@drawable/custom_button"
+            android:onClick="dotBtn"
+            android:text="."
+            android:textColor="@color/green"
+            android:textSize="20sp"
+            app:backgroundTint="@null" />
+
+
+    </GridLayout>
+
+
+</LinearLayout>
