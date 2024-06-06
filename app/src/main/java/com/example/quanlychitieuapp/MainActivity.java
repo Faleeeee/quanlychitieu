@@ -19,6 +19,9 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
         display = findViewById(R.id.display);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().hide();
+        }
         display.setShowSoftInputOnFocus(false);
         display.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
     public void equalBtn(View view) {
         String userExp = display.getText().toString();
         userExp = userExp.replaceAll("÷", "/");
-        userExp = userExp.replaceAll("×", "x");
+        userExp = userExp.replaceAll("×", "×");
 
         Expression exp = new Expression(userExp);
 
@@ -127,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void multiplyBtn(View view) {
-        updateText("x");
+        updateText("×");
 
     }
 
