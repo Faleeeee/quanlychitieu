@@ -100,259 +100,274 @@
         android:textColorHint="@color/white" />
 
     <!-- Save Button -->
-    <Button
-        android:id="@+id/btnSave"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_marginTop="20dp"
-        android:background="#60555555"
-        android:padding="16dp"
-        android:text="Lưu"
-        android:textColor="@android:color/white"
-        app:backgroundTint="@null" />
-
-    <!-- Custom Keyboard -->
-    <GridLayout
-        android:id="@+id/customKeyboard"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/vi"
-        android:columnCount="4"
-        android:padding="8dp">
+        android:orientation="vertical">
 
-        <!--Row 1-->
         <Button
-            android:id="@+id/btnC"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_columnWeight="1"
-            android:background="@drawable/custom_button"
-            android:onClick="restartBtn"
-            android:text="C"
-            android:textColor="@color/green"
-            android:textStyle="bold"
+            android:id="@+id/btnSave"
+            android:layout_width="300dp"
+            android:layout_height="55dp"
+            android:layout_gravity="center"
+            android:background="@drawable/button_save_wallet"
+            android:gravity="center"
+            android:text="Lưu"
+            android:textColor="@android:color/white"
             app:backgroundTint="@null" />
+    </LinearLayout>
 
-        <Button
-            android:id="@+id/btnDivide"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_columnWeight="1"
-            android:background="@drawable/custom_button"
-            android:onClick="divideBtn"
-            android:text="÷"
-            android:textColor="@color/green"
-            app:backgroundTint="@null" />
-
-        <Button
-            android:id="@+id/btnMultiply"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_columnWeight="1"
-            android:background="@drawable/custom_button"
-            android:onClick="multiplyBtn"
-            android:text="×"
-            android:textColor="@color/green"
-            app:backgroundTint="@null" />
-
-        <ImageButton
-            android:id="@+id/btnDelete"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_columnWeight="1"
-            android:background="@drawable/custom_button"
-            android:onClick="deleteBtn"
-            android:scaleType="center"
-            android:src="@drawable/delete" />
-        <!-- Row 1 -->
-        <Button
-            android:id="@+id/btn7"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_columnWeight="1"
-            android:background="@drawable/custom_button"
-            android:onClick="sevenBtn"
-            android:text="7"
-            android:textColor="@color/green"
-            android:textSize="20sp"
-            app:backgroundTint="@null" />
-
-        <Button
-            android:id="@+id/btn8"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_columnWeight="1"
-            android:background="@drawable/custom_button"
-            android:onClick="eightBtn"
-            android:text="8"
-            android:textColor="@color/green"
-            android:textSize="20sp"
-            app:backgroundTint="@null" />
-
-        <Button
-            android:id="@+id/btn9"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_columnWeight="1"
-            android:background="@drawable/custom_button"
-            android:onClick="nineBtn"
-            android:text="9"
-            android:textColor="@color/green"
-            android:textSize="20sp"
-            app:backgroundTint="@null" />
-
-        <Button
-            android:id="@+id/btnSubtract"
-            android:layout_width="0dp"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom"
+        android:orientation="vertical">
+        <!-- Custom Keyboard -->
+        <GridLayout
+            android:id="@+id/customKeyboard"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:background="@drawable/custom_button"
-            android:onClick="subtractBtn"
-            android:text="-"
-            android:textColor="@color/green"
-            android:textSize="20sp"
-            app:backgroundTint="@null" />
+            android:background="@drawable/vi"
+            android:columnCount="4">
 
-        <!-- Row 2 -->
-        <Button
-            android:id="@+id/btn4"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:background="@drawable/custom_button"
-            android:onClick="fourBtn"
-            android:text="4"
-            android:textColor="@color/green"
-            android:textSize="20sp"
-            app:backgroundTint="@null" />
+            <!--Row 1-->
+            <Button
+                android:id="@+id/btnC"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_columnWeight="1"
+                android:background="@drawable/custom_button"
+                android:onClick="restartBtn"
+                android:text="C"
+                android:textColor="@color/green"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                app:backgroundTint="@null" />
 
-        <Button
-            android:id="@+id/btn5"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:background="@drawable/custom_button"
-            android:onClick="fiveBtn"
-            android:text="5"
-            android:textColor="@color/green"
-            android:textSize="20sp"
-            app:backgroundTint="@null" />
+            <Button
+                android:id="@+id/btnDivide"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_columnWeight="1"
+                android:background="@drawable/custom_button"
+                android:onClick="divideBtn"
+                android:text="÷"
+                android:textColor="@color/green"
+                android:textSize="30sp"
+                app:backgroundTint="@null" />
 
-        <Button
-            android:id="@+id/btn6"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:background="@drawable/custom_button"
-            android:onClick="sixBtn"
-            android:text="6"
-            android:textColor="@color/green"
-            android:textSize="20sp"
-            app:backgroundTint="@null" />
+            <Button
+                android:id="@+id/btnMultiply"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_columnWeight="1"
+                android:background="@drawable/custom_button"
+                android:onClick="multiplyBtn"
+                android:text="×"
+                android:textColor="@color/green"
+                android:textSize="30sp"
+                app:backgroundTint="@null" />
 
-        <Button
-            android:id="@+id/btnAdd"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:background="@drawable/custom_button"
-            android:onClick="addBtn"
-            android:text="+"
-            android:textColor="@color/green"
-            android:textSize="20sp"
-            app:backgroundTint="@null" />
+            <ImageButton
+                android:id="@+id/btnDelete"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_columnWeight="1"
+                android:background="@drawable/custom_button"
+                android:onClick="deleteBtn"
+                android:padding="18dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/delete"
+                app:backgroundTint="@null" />
+            <!-- Row 1 -->
+            <Button
+                android:id="@+id/btn7"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_columnWeight="1"
+                android:background="@drawable/custom_button"
+                android:onClick="sevenBtn"
+                android:text="7"
+                android:textColor="@color/green"
+                android:textSize="30sp"
+                app:backgroundTint="@null" />
 
-        <!-- Row 3 -->
-        <Button
-            android:id="@+id/btn1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:background="@drawable/custom_button"
-            android:onClick="oneBtn"
-            android:text="1"
-            android:textColor="@color/green"
-            android:textSize="20sp"
-            app:backgroundTint="@null" />
+            <Button
+                android:id="@+id/btn8"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_columnWeight="1"
+                android:background="@drawable/custom_button"
+                android:onClick="eightBtn"
+                android:text="8"
+                android:textColor="@color/green"
+                android:textSize="30sp"
+                app:backgroundTint="@null" />
 
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:background="@drawable/custom_button"
-            android:onClick="twoBtn"
-            android:text="2"
-            android:textColor="@color/green"
-            android:textSize="20sp"
-            app:backgroundTint="@null" />
+            <Button
+                android:id="@+id/btn9"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_columnWeight="1"
+                android:background="@drawable/custom_button"
+                android:onClick="nineBtn"
+                android:text="9"
+                android:textColor="@color/green"
+                android:textSize="30sp"
+                app:backgroundTint="@null" />
 
-        <Button
-            android:id="@+id/btn3"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:background="@drawable/custom_button"
-            android:onClick="threeBtn"
-            android:text="3"
-            android:textColor="@color/green"
-            android:textSize="20sp"
-            app:backgroundTint="@null" />
+            <Button
+                android:id="@+id/btnSubtract"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:background="@drawable/custom_button"
+                android:onClick="subtractBtn"
+                android:text="-"
+                android:textColor="@color/green"
+                android:textSize="30sp"
+                app:backgroundTint="@null" />
 
-        <Button
-            android:id="@+id/btnEquals"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_row="2"
-            android:layout_rowSpan="2"
-            android:layout_rowWeight="2"
-            android:layout_columnWeight="1"
-            android:background="@drawable/custom_button"
-            android:onClick="equalBtn"
-            android:text="="
-            android:textColor="@color/green"
-            android:textSize="20sp"
-            app:backgroundTint="@null" />
+            <!-- Row 2 -->
+            <Button
+                android:id="@+id/btn4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:background="@drawable/custom_button"
+                android:onClick="fourBtn"
+                android:text="4"
+                android:textColor="@color/green"
+                android:textSize="30sp"
+                app:backgroundTint="@null" />
 
-        <!-- Row 4 -->
-        <Button
-            android:id="@+id/btn0"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:background="@drawable/custom_button"
-            android:onClick="zeroBtn"
-            android:text="0"
-            android:textColor="@color/green"
-            android:textSize="20sp"
-            app:backgroundTint="@null" />
+            <Button
+                android:id="@+id/btn5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:background="@drawable/custom_button"
+                android:onClick="fiveBtn"
+                android:text="5"
+                android:textColor="@color/green"
+                android:textSize="30sp"
+                app:backgroundTint="@null" />
 
-        <Button
-            android:id="@+id/btn000"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:background="@drawable/custom_button"
-            android:onClick="threeZeroBtn"
-            android:text="000"
-            android:textColor="@color/green"
-            android:textSize="20sp"
-            app:backgroundTint="@null" />
+            <Button
+                android:id="@+id/btn6"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:background="@drawable/custom_button"
+                android:onClick="sixBtn"
+                android:text="6"
+                android:textColor="@color/green"
+                android:textSize="30sp"
+                app:backgroundTint="@null" />
 
-        <Button
-            android:id="@+id/btnDot"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:background="@drawable/custom_button"
-            android:onClick="dotBtn"
-            android:text="."
-            android:textColor="@color/green"
-            android:textSize="20sp"
-            app:backgroundTint="@null" />
+            <Button
+                android:id="@+id/btnAdd"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:background="@drawable/custom_button"
+                android:onClick="addBtn"
+                android:text="+"
+                android:textColor="@color/green"
+                android:textSize="30sp"
+                app:backgroundTint="@null" />
+
+            <!-- Row 3 -->
+            <Button
+                android:id="@+id/btn1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:background="@drawable/custom_button"
+                android:onClick="oneBtn"
+                android:text="1"
+                android:textColor="@color/green"
+                android:textSize="30sp"
+                app:backgroundTint="@null" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:background="@drawable/custom_button"
+                android:onClick="twoBtn"
+                android:text="2"
+                android:textColor="@color/green"
+                android:textSize="30sp"
+                app:backgroundTint="@null" />
+
+            <Button
+                android:id="@+id/btn3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:background="@drawable/custom_button"
+                android:onClick="threeBtn"
+                android:text="3"
+                android:textColor="@color/green"
+                android:textSize="30sp"
+                app:backgroundTint="@null" />
+
+            <Button
+                android:id="@+id/btnEquals"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_row="2"
+                android:layout_rowSpan="2"
+                android:layout_rowWeight="2"
+                android:layout_columnWeight="1"
+                android:background="@drawable/button_equals_calculator"
+                android:onClick="equalBtn"
+                android:text="="
+                android:textColor="@color/white"
+                android:textSize="30sp"
+                app:backgroundTint="@null" />
+
+            <!-- Row 4 -->
+            <Button
+                android:id="@+id/btn0"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:background="@drawable/custom_button"
+                android:onClick="zeroBtn"
+                android:text="0"
+                android:textColor="@color/green"
+                android:textSize="30sp"
+                app:backgroundTint="@null" />
+
+            <Button
+                android:id="@+id/btn000"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:background="@drawable/custom_button"
+                android:onClick="threeZeroBtn"
+                android:text="000"
+                android:textColor="@color/green"
+                android:textSize="30sp"
+                app:backgroundTint="@null" />
+
+            <Button
+                android:id="@+id/btnDot"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:background="@drawable/custom_button"
+                android:onClick="dotBtn"
+                android:text="."
+                android:textColor="@color/green"
+                android:textSize="30sp"
+                app:backgroundTint="@null" />
 
 
-    </GridLayout>
+        </GridLayout>
+    </LinearLayout>
 
 
 </LinearLayout>
