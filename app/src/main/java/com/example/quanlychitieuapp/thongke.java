@@ -1,11 +1,14 @@
 package com.example.quanlychitieuapp;
 
+import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -35,22 +38,61 @@ public class thongke extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_thongke);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().hide();
+        }
         xuLySaoChepCSDL();
         addConTrols();
+        addGiaoDich();
         showAll();
+    }
+
+    private void addGiaoDich() {
+        database = openOrCreateDatabase(DATABASE_NAME, MODE_PRIVATE, null);
+
+        //nhận intent
+        Intent myIntent = getIntent();
+//lấy bundle khỏi intent
+        Bundle myBundle = myIntent.getBundleExtra("myPackage");
+        if (myBundle != null) {
+//lấy dữ liệu khỏi bundle
+            int id_wal = myBundle.getInt("id_wal");
+            Double money = myBundle.getDouble("money");
+            String group_name = myBundle.getString("group_name");
+            String day = myBundle.getString("day");
+            String note = myBundle.getString("note");
+
+            ContentValues row = new ContentValues();
+            row.put("id_wal", id_wal);
+            row.put("money", money);
+            row.put("group_name", group_name);
+            row.put("day", day);
+            row.put("note", note);
+
+            long r = database.insert("giaodich", null, row);
+            Toast.makeText(this, "Them thanh cong", Toast.LENGTH_LONG).show();
+
+            showAll();
+        } else {
+            Log.e("thongke", "Bundle is null");
+        }
     }
 
     private void showAll() {
         database = openOrCreateDatabase(DATABASE_NAME, MODE_PRIVATE, null);
 
-        Cursor cursor = database.query("user", null, null, null, null, null, null);
+        Cursor cursor = database.query("giaodich", null, null, null, null, null, null);
         arrThongKe.clear();
 
         while (cursor.moveToNext()) {
-            int ma = cursor.getInt(0);
-            String mail = cursor.getString(1);
-            String pass = cursor.getString(2);
-            arrThongKe.add(ma + "-" + mail + "-" + pass);
+            int id = cursor.getInt(0);
+            int id_wal = cursor.getInt(1);
+            int money = cursor.getInt(2);
+            String group_name = cursor.getString(3);
+            String day = cursor.getString(4);
+            String note = cursor.getString(5);
+
+            arrThongKe.add(id + "-" + id_wal + "-" + money + "-" + group_name + "-" + day + "-" + note);
         }
         cursor.close();
         adapterDB.notifyDataSetChanged();
@@ -60,7 +102,7 @@ public class thongke extends AppCompatActivity {
     private void addConTrols() {
         listView = findViewById(R.id.listView);
         arrThongKe = new ArrayList<>();
-        adapterDB = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrThongKe);
+        adapterDB = new ArrayAdapter<String>(this, R.layout.list_item, arrThongKe);
         listView.setAdapter(adapterDB);
     }
 
@@ -68,9 +110,6 @@ public class thongke extends AppCompatActivity {
         File dbFile = getDatabasePath(DATABASE_NAME);
 
         if (!dbFile.exists()) {
-            copyDatabase();
-        } else {
-            dbFile.delete();
             copyDatabase();
         }
     }
