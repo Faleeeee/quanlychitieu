@@ -2,15 +2,14 @@ package com.example.quanlychitieuapp;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.text.SpannableStringBuilder;
 import android.text.TextWatcher;
 import android.text.Editable;
 import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -24,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText display, note_content;
     private Button btnSave, btnBack, btnDate;
     private String dateSelect;
+    private TextView nhomGiaoDich;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +33,14 @@ public class MainActivity extends AppCompatActivity {
 
         initViews();
         setupListeners();
+        giaoDich();
         checkFieldsForEmptyValues();
+    }
+
+    private void giaoDich() {
+        Intent intent = getIntent();
+        String data = intent.getStringExtra("Giaodich"); // Nhận chuỗi dữ liệu từ Intent
+        nhomGiaoDich.setText(data);
     }
 
     private void initViews() {
@@ -42,14 +49,13 @@ public class MainActivity extends AppCompatActivity {
         btnSave = findViewById(R.id.btnSave);
         btnBack = findViewById(R.id.btnBack);
         btnDate = findViewById(R.id.btnDate);
+        nhomGiaoDich = findViewById(R.id.textGroup);
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().hide();
         }
 //ngăn chặn bàn phím khi người dùng ấn vào editText
         display.setShowSoftInputOnFocus(false);
-
-
     }
 
     private void setupListeners() {
@@ -57,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
         display.addTextChangedListener(textWatcher);
 
         btnBack.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, thongke.class)));
+        nhomGiaoDich.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, nhom.class)));
         btnSave.setOnClickListener(v -> saveTransaction());
         btnDate.setOnClickListener(v -> showDatePickerDialog());
     }
@@ -107,13 +114,14 @@ public class MainActivity extends AppCompatActivity {
         }
 
         int id_wal = 8;
-        String group_name = "Momo";
+        String group_name = "Ăn uống";
         String date = dateSelect;
         String note = note_content.getText().toString();
-
+        String giaoDich = nhomGiaoDich.getText().toString();
         Bundle myBundle = new Bundle();
         myBundle.putDouble("money", money);
         myBundle.putInt("id_wal", id_wal);
+        myBundle.putString("giaoDich", giaoDich);
         myBundle.putString("group_name", group_name);
         myBundle.putString("day", date);
         myBundle.putString("note", note);

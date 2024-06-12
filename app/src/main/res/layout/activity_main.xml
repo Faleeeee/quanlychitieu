@@ -49,18 +49,18 @@
         android:textSize="24sp" />
 
 
-    <!-- Spinner Category -->
-    <Button
-        android:id="@+id/btnGroup"
+    <!-- Nhom -->
+    <TextView
+        android:id="@+id/textGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/black"
-        android:drawableLeft="@drawable/baseline_calendar_month_24"
         android:gravity="left"
-        android:onClick="btnCalendar"
+        android:hint="Chọn nhóm"
+        android:onClick="btnNhom"
         android:padding="16dp"
-        android:text="Ngày"
         android:textColor="@android:color/white"
+        android:textColorHint="@android:color/darker_gray"
         app:backgroundTint="@null" />
 
     <!-- Description -->

@@ -58,13 +58,14 @@ public class thongke extends AppCompatActivity {
 //lấy dữ liệu khỏi bundle
             int id_wal = myBundle.getInt("id_wal");
             Double money = myBundle.getDouble("money");
+            String giaoDich = myBundle.getString("giaoDich");
             String group_name = myBundle.getString("group_name");
             String day = myBundle.getString("day");
             String note = myBundle.getString("note");
-
             ContentValues row = new ContentValues();
             row.put("id_wal", id_wal);
             row.put("money", money);
+            row.put("loai_giaodich", giaoDich);
             row.put("group_name", group_name);
             row.put("day", day);
             row.put("note", note);
@@ -88,11 +89,12 @@ public class thongke extends AppCompatActivity {
             int id = cursor.getInt(0);
             int id_wal = cursor.getInt(1);
             int money = cursor.getInt(2);
-            String group_name = cursor.getString(3);
-            String day = cursor.getString(4);
-            String note = cursor.getString(5);
+            String loaigiaoDich = cursor.getString(3);
+            String group_name = cursor.getString(4);
+            String day = cursor.getString(5);
+            String note = cursor.getString(6);
 
-            arrThongKe.add(id + "-" + id_wal + "-" + money + "-" + group_name + "-" + day + "-" + note);
+            arrThongKe.add(id + "-" + id_wal + "-" + money + "-" + loaigiaoDich + "-" + group_name + "-" + day + "-" + note);
         }
         cursor.close();
         adapterDB.notifyDataSetChanged();
@@ -112,6 +114,10 @@ public class thongke extends AppCompatActivity {
         if (!dbFile.exists()) {
             copyDatabase();
         }
+//        else {
+//            dbFile.delete();  // Xóa tệp CSDL cũ nếu tồn tại
+//        }
+//        copyDatabase();
     }
 
     private void copyDatabase() {
