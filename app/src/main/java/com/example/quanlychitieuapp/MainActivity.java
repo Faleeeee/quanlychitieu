@@ -37,10 +37,17 @@ public class MainActivity extends AppCompatActivity {
         checkFieldsForEmptyValues();
     }
 
+
     private void giaoDich() {
         Intent intent = getIntent();
-        String data = intent.getStringExtra("Giaodich"); // Nhận chuỗi dữ liệu từ Intent
-        nhomGiaoDich.setText(data);
+        Bundle myBundle = intent.getBundleExtra("myPackageNhom");
+
+        if (myBundle != null) {
+            String nGiaoDich = myBundle.getString("loaiChiTieu");
+            nhomGiaoDich.setText(nGiaoDich);
+        } else {
+            // Xử lý khi myBundle là null
+        }
     }
 
     private void initViews() {
@@ -54,7 +61,6 @@ public class MainActivity extends AppCompatActivity {
         if (getSupportActionBar() != null) {
             getSupportActionBar().hide();
         }
-//ngăn chặn bàn phím khi người dùng ấn vào editText
         display.setShowSoftInputOnFocus(false);
     }
 
@@ -112,17 +118,21 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(MainActivity.this, "Định dạng số không hợp lệ", Toast.LENGTH_SHORT).show();
             return;
         }
+        Intent intent = getIntent();
+        Bundle myBundleNhom = intent.getBundleExtra("myPackageNhom");
+        String lGiaoDich = myBundleNhom.getString("nhomChiTieu");
+
 
         int id_wal = 8;
-        String group_name = "Ăn uống";
         String date = dateSelect;
         String note = note_content.getText().toString();
         String giaoDich = nhomGiaoDich.getText().toString();
+
         Bundle myBundle = new Bundle();
         myBundle.putDouble("money", money);
         myBundle.putInt("id_wal", id_wal);
-        myBundle.putString("giaoDich", giaoDich);
-        myBundle.putString("group_name", group_name);
+        myBundle.putString("giaoDich", lGiaoDich);
+        myBundle.putString("loaiGiaoDich", giaoDich);
         myBundle.putString("day", date);
         myBundle.putString("note", note);
 
@@ -134,7 +144,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void checkFieldsForEmptyValues() {
         String money = display.getText().toString();
-        if (money.isEmpty() || dateSelect == null || dateSelect.isEmpty()) {
+        String nGiaoDich = nhomGiaoDich.getText().toString();
+        if (money.isEmpty() || dateSelect == null || dateSelect.isEmpty() || nGiaoDich.isEmpty()) {
             btnSave.setEnabled(false);
             btnSave.setBackgroundResource(R.drawable.disabled_button_background);
         } else {

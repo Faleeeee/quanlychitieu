@@ -59,7 +59,7 @@ public class thongke extends AppCompatActivity {
             int id_wal = myBundle.getInt("id_wal");
             Double money = myBundle.getDouble("money");
             String giaoDich = myBundle.getString("giaoDich");
-            String group_name = myBundle.getString("group_name");
+            String group_name = myBundle.getString("loaiGiaoDich");
             String day = myBundle.getString("day");
             String note = myBundle.getString("note");
             ContentValues row = new ContentValues();
@@ -113,11 +113,10 @@ public class thongke extends AppCompatActivity {
 
         if (!dbFile.exists()) {
             copyDatabase();
+        } else {
+            dbFile.delete();  // Xóa tệp CSDL cũ nếu tồn tại
         }
-//        else {
-//            dbFile.delete();  // Xóa tệp CSDL cũ nếu tồn tại
-//        }
-//        copyDatabase();
+        copyDatabase();
     }
 
     private void copyDatabase() {
