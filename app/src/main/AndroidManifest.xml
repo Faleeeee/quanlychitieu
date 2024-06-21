@@ -13,6 +13,15 @@
         android:theme="@style/Theme.Quanlychitieuapp"
         tools:targetApi="31">
         <activity
+            android:name=".home"
+            android:exported="false" />
+        <activity
+            android:name=".doimatkhau"
+            android:exported="false" />
+        <activity
+            android:name=".hosocanhan"
+            android:exported="false" />
+        <activity
             android:name=".dangnhap"
             android:exported="false"
             android:label="@string/title_activity_dangnhap"
@@ -22,7 +31,7 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

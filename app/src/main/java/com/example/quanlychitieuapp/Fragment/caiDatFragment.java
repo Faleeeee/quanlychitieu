@@ -1,5 +1,6 @@
 package com.example.quanlychitieuapp.Fragment;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -67,12 +68,12 @@ public class caiDatFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_cai_dat, container, false);
         // Initialize the button and set the onClick listener
-        Button  dangxuat = view.findViewById(R.id.dangxuat);
-        dangxuat.setOnClickListener(new View.OnClickListener() {
+         Button  btntk = view.findViewById(R.id.btntk);
+        btntk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Action when button is clicked
-                Intent intent = new Intent(getActivity(), com.example.quanlychitieuapp.dangnhap.class);
+                Intent intent = new Intent(getActivity(), com.example.quanlychitieuapp.hosocanhan.class);
                 startActivity(intent);
             }
         });

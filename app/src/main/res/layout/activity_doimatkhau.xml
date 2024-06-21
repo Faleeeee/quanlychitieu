@@ -10,16 +10,16 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Đăng ký"
+        android:text="ĐỔI MẬT KHẨU"
         android:textColor="#ffffff"
         android:textSize="24sp"
         android:layout_marginBottom="24dp" />
 
     <EditText
-        android:id="@+id/emailEditText"
+        android:id="@+id/oldpassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Email"
+        android:hint="Mật khẩu cũ"
         android:textColorHint="#808080"
         android:textColor="#FFFFFF"
         android:padding="16dp"
@@ -28,10 +28,10 @@
         android:layout_marginBottom="16dp" />
 
     <EditText
-        android:id="@+id/passwordEditText"
+        android:id="@+id/newpassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Mật khẩu"
+        android:hint="Mật khẩu mới"
         android:textColorHint="#808080"
         android:textColor="#FFFFFF"
         android:padding="16dp"
@@ -40,37 +40,35 @@
         android:layout_marginBottom="16dp"
         android:inputType="textPassword" />
     <EditText
-        android:id="@+id/confirmPasswordEditText"
+        android:id="@+id/confirmnewbutton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="32dp"
         android:layout_marginBottom="16dp"
         android:background="@drawable/edit_text_background"
-        android:hint="Xác nhận mật khẩu"
+        android:hint="Xác nhận mật khẩu mới"
         android:inputType="textPassword"
         android:padding="16dp"
         android:textColor="#FFFFFF"
         android:textColorHint="#808080" />
 
+
     <Button
-        android:id="@+id/dangkyButton"
+        android:id="@+id/doibutton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="ĐĂNG KÝ"
-        android:textColor="#FFFFFF"
-        android:background="@drawable/button_background"
-        android:padding="16dp"
-        android:layout_marginHorizontal="32dp" />
-    <Button
-        android:id="@+id/loginutton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="ĐĂNG NHẬP"
+        android:text="Thay đổi"
 
         style="@style/ForgotPasswordButton"
         android:padding="16dp"
         android:layout_marginHorizontal="32dp" />
-
+    <TextView
+        android:id="@+id/tvMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_gravity="center_horizontal"
+        android:visibility="gone"/>
 
 
 
