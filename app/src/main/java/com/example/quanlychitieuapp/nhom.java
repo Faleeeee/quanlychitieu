@@ -77,7 +77,7 @@ public class nhom extends AppCompatActivity {
         myadapterNhomChi = new ArrayAdapter<>(nhom.this, R.layout.list_item, nhomChi);
         lvNhomChi.setAdapter(myadapterNhomChi);
 
-        listenClick(lvNhomChi, nhomChi, "Chi");
+        listenClick(lvNhomChi, nhomChi, "chi");
 
         //Xử lý ListView Nhom thu
         ArrayList<String> nhomThu;
@@ -88,7 +88,7 @@ public class nhom extends AppCompatActivity {
         nhomThu.add("Di chuyển");
         myadapterNhomThu = new ArrayAdapter<>(nhom.this, R.layout.list_item, nhomThu);
         lvNhomThu.setAdapter(myadapterNhomThu);
-        listenClick(lvNhomThu, nhomThu, "Thu");
+        listenClick(lvNhomThu, nhomThu, "thu");
 
     }
 

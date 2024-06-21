@@ -123,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
         String lGiaoDich = myBundleNhom.getString("nhomChiTieu");
 
 
-        int id_wal = 8;
+        int id_wal = 1;
         String date = dateSelect;
         String note = note_content.getText().toString();
         String giaoDich = nhomGiaoDich.getText().toString();
