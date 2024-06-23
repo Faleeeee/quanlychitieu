@@ -68,7 +68,6 @@ public class sign_up extends AppCompatActivity {
         }
 
 
-
         if (databaseHelper.isEmailExists(email)) {
             Toast.makeText(this, "Email đã được sử dụng", Toast.LENGTH_SHORT).show();
             return;
@@ -79,9 +78,11 @@ public class sign_up extends AppCompatActivity {
             return;
         }
 
-        boolean isRegistered = databaseHelper.registerUser(email, password,confirmPassword);
+        boolean isRegistered = databaseHelper.registerUser(email, password, confirmPassword);
         if (isRegistered) {
             Toast.makeText(this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, dangnhap.class);
+            startActivity(intent);
         } else {
             Toast.makeText(this, "Đăng ký không thành công", Toast.LENGTH_SHORT).show();
         }
@@ -95,6 +96,7 @@ public class sign_up extends AppCompatActivity {
         return matcher.matches();
 
     }
+
     private void openLoginActivity() {
         Intent intent = new Intent(this, dangnhap.class);
         startActivity(intent);

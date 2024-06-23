@@ -10,7 +10,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/vi"
+        android:background="@drawable/giaodichvi"
         android:orientation="vertical">
 
         <LinearLayout
@@ -124,7 +124,7 @@
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:layout_marginTop="30dp"
-        android:background="@drawable/vi"
+        android:background="@drawable/giaodichvi"
         android:orientation="vertical"></LinearLayout>
 
 

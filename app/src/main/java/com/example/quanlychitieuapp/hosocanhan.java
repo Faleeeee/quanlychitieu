@@ -16,9 +16,7 @@ import androidx.core.view.WindowInsetsCompat;
 public class hosocanhan extends AppCompatActivity {
 
     private TextView emailTextView;
-    private Button btn6,btn7;
-
-
+    private Button btn6, btn7;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,8 +24,8 @@ public class hosocanhan extends AppCompatActivity {
         setContentView(R.layout.activity_hosocanhan);
 
         emailTextView = findViewById(R.id.emailTextView);
-        btn6=findViewById(R.id.btn6);
-        btn7=findViewById(R.id.btn7);
+        btn6 = findViewById(R.id.btn6);
+        btn7 = findViewById(R.id.btn7);
         Intent intent = getIntent();
         if (intent != null && intent.hasExtra("email")) {
             String email = intent.getStringExtra("email"); // Sửa dòng này
@@ -53,8 +51,9 @@ public class hosocanhan extends AppCompatActivity {
         Intent intent = new Intent(this, doimatkhau.class);
         startActivity(intent);
     }
-    private void openDangnhapActivity(){
-        Intent intent1=new Intent(this, dangnhap.class);
+
+    private void openDangnhapActivity() {
+        Intent intent1 = new Intent(this, dangnhap.class);
         startActivity(intent1);
     }
 }

@@ -32,7 +32,7 @@ public class dangnhap extends AppCompatActivity {
         emailEditText = findViewById(R.id.emailEditText);
         passwordEditText = findViewById(R.id.passwordEditText);
         loginButton = findViewById(R.id.loginButton);
-        registerTextView= findViewById(R.id.registerTextView);
+        registerTextView = findViewById(R.id.registerTextView);
 
         databaseHelper = new DatabaseHelper(this);
 
@@ -52,7 +52,7 @@ public class dangnhap extends AppCompatActivity {
                     editor.apply();
 
                     Toast.makeText(dangnhap.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
-                    Intent loginIntent1 = new Intent(dangnhap.this, homeFragment.class);
+                    Intent loginIntent1 = new Intent(dangnhap.this, MainActivity.class);
                     startActivity(loginIntent1);
                 } else {
                     // Kiểm tra xem email hoặc mật khẩu có đúng không
