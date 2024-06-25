@@ -62,6 +62,16 @@
         style="@style/ForgotPasswordButton"
         android:padding="16dp"
         android:layout_marginHorizontal="32dp" />
+    <Button
+        android:id="@+id/doibutton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="quay lại"
+
+        style="@style/ForgotPasswordButton"
+        android:padding="16dp"
+        android:layout_marginHorizontal="32dp" />
+
     <TextView
         android:id="@+id/tvMessage"
         android:layout_width="wrap_content"
