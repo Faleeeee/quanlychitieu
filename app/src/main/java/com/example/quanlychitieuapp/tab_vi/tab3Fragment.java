@@ -7,8 +7,14 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
 
+import com.example.quanlychitieuapp.db;
 import com.example.quanlychitieuapp.R;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -17,12 +23,17 @@ import com.example.quanlychitieuapp.R;
  */
 public class tab3Fragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    TextView tienThu;
+    TextView tienChi;
+    TextView tongTien;
+    ListView listView;
+    ArrayList<String> arrThongKe;
+    ArrayAdapter<String> adapterDB;
+    db database;
+
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
@@ -30,15 +41,6 @@ public class tab3Fragment extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment tab3Fragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static tab3Fragment newInstance(String param1, String param2) {
         tab3Fragment fragment = new tab3Fragment();
         Bundle args = new Bundle();
@@ -55,12 +57,48 @@ public class tab3Fragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        // Khởi tạo đối tượng database
+        database = new db(getContext());
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_tab3, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_tab3, container, false);
+
+        tienChi = view.findViewById(R.id.tienRa);
+        tienThu = view.findViewById(R.id.tienVao);
+        tongTien = view.findViewById(R.id.tongTien);
+        listView = view.findViewById(R.id.listView);
+
+        addConTrols(view);
+        showAll();
+        return view;
+    }
+
+    private void addConTrols(View view) {
+        listView = view.findViewById(R.id.listView);
+        arrThongKe = new ArrayList<>();
+        adapterDB = new ArrayAdapter<>(getContext(), R.layout.list_item, arrThongKe);
+        listView.setAdapter(adapterDB);
+    }
+
+    private void showAll() {
+        ArrayList<String> resultList = database.showAll();
+        arrThongKe.clear();
+
+        // Lấy tổng tiền thu và chi từ resultList
+        int tongTienThu = Integer.parseInt(resultList.get(0));
+        int tongTienChi = Integer.parseInt(resultList.get(1));
+
+        // Xóa hai giá trị đầu tiên để lấy danh sách giao dịch
+        resultList.remove(0);
+        resultList.remove(0);
+
+        arrThongKe.addAll(resultList);
+        adapterDB.notifyDataSetChanged();
+
+        tienThu.setText(String.valueOf(tongTienThu));
+        tienChi.setText(String.valueOf(tongTienChi));
+        tongTien.setText(String.valueOf(tongTienThu - tongTienChi));
     }
 }

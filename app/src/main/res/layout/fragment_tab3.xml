@@ -42,9 +42,9 @@
                 android:gravity="end">
 
                 <TextView
+                    android:id="@+id/tienVao"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0"
                     android:textColor="@color/green_tienvao"
                     android:textSize="20dp"></TextView>
             </LinearLayout>
@@ -79,9 +79,10 @@
                 android:gravity="end">
 
                 <TextView
+                    android:id="@+id/tienRa"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="2000000"
+                    android:hint=""
                     android:textColor="@color/tienra"
                     android:textSize="20dp"></TextView>
             </LinearLayout>
@@ -95,9 +96,9 @@
             android:gravity="end">
 
             <TextView
+                android:id="@+id/tongTien"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="2000000"
                 android:textColor="@color/white"
                 android:textSize="20dp"></TextView>
         </LinearLayout>
@@ -122,10 +123,16 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:background="@drawable/giaodichvi"
-        android:orientation="vertical"></LinearLayout>
+        android:orientation="vertical">
+
+        <ListView
+            android:id="@+id/listView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></ListView>
+    </LinearLayout>
 
 
 </LinearLayout>

@@ -13,6 +13,13 @@
         android:theme="@style/Theme.Quanlychitieuapp"
         tools:targetApi="31">
         <activity
+            android:name=".nhom"
+            android:exported="false"
+            android:parentActivityName=".calculator" />
+        <activity
+            android:name=".calculator"
+            android:exported="false" />
+        <activity
             android:name=".home"
             android:exported="false" />
         <activity
@@ -31,7 +38,7 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
