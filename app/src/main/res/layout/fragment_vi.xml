@@ -33,12 +33,12 @@
             android:background="@drawable/giaodichvi"
             android:gravity="center">
 
-            <TextView
+            <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="2000000"
                 android:textColor="@color/white"
-                android:textSize="40dp"></TextView>
+                android:textSize="40dp"></EditText>
         </LinearLayout>
 
         <LinearLayout

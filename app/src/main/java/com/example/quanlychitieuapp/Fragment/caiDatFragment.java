@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -68,8 +69,8 @@ public class caiDatFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_cai_dat, container, false);
         // Initialize the button and set the onClick listener
-         Button  btntk = view.findViewById(R.id.btntk);
-        btntk.setOnClickListener(new View.OnClickListener() {
+        CardView cardTaiKhoan = view.findViewById(R.id.card_taikhoan);
+        cardTaiKhoan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Action when button is clicked
