@@ -1,5 +1,6 @@
 package com.example.quanlychitieuapp;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -10,8 +11,11 @@ import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -139,6 +143,89 @@ public class db {
             this.money = money;
             this.loai_giaoDich = loai_giaoDich;
             this.group_name = group_name;
+        }
+    }
+
+    public long registerUser(String email, String password) {
+        // Mã hóa mật khẩu trước khi lưu vào cơ sở dữ liệu
+        database = context.openOrCreateDatabase(DATABASE_NAME, Context.MODE_PRIVATE, null);
+        String hashedPassword = hashPassword(password);
+
+        ContentValues values = new ContentValues();
+        values.put("email", email);
+        values.put("password", hashedPassword);
+
+        long newId = database.insert("user", null, values);
+        return newId;
+    }
+
+    // Phương thức kiểm tra email đã tồn tại hay chưa
+    public boolean isEmailExists(String email) {
+        database = context.openOrCreateDatabase(DATABASE_NAME, Context.MODE_PRIVATE, null);
+        try (Cursor cursor = database.rawQuery("SELECT COUNT(*) FROM users WHERE email = ?", new String[]{email})) {
+            if (cursor.moveToFirst()) {
+                return cursor.getInt(0) > 0;
+            }
+        }
+        return false;
+    }
+
+    // Phương thức đăng nhập
+    public boolean loginUser(String email, String password) {
+        database = context.openOrCreateDatabase(DATABASE_NAME, Context.MODE_PRIVATE, null);
+        try (Cursor cursor = database.rawQuery("SELECT * FROM users WHERE email = ?", new String[]{email})) {
+            if (cursor.moveToFirst()) {
+                // So sánh mật khẩu đã mã hóa trong cơ sở dữ liệu với mật khẩu đã nhập
+                @SuppressLint("Range") String hashedPassword = cursor.getString(cursor.getColumnIndex("password"));
+                return hashedPassword.equals(hashPassword(password));
+            }
+        }
+        return false;
+    }
+
+    // Phương thức đổi mật khẩu
+    public boolean changePassword(String email, String oldPassword, String newPassword) {
+        database = context.openOrCreateDatabase(DATABASE_NAME, Context.MODE_PRIVATE, null);
+        String hashedOldPassword = hashPassword(oldPassword);
+        String hashedNewPassword = hashPassword(newPassword);
+
+        // Kiểm tra xem email và mật khẩu cũ có chính xác không
+        try (Cursor cursor = database.rawQuery("SELECT * FROM users WHERE email = ? AND password = ?", new String[]{email, hashedOldPassword})) {
+            if (cursor.moveToFirst()) {
+                // Cập nhật mật khẩu mới
+                database.execSQL("UPDATE users SET password = ? WHERE email = ?", new String[]{hashedNewPassword, email});
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // Phương thức lấy user_id dựa trên email
+    @SuppressLint("Range")
+    public int getUserIdByEmail(String email) {
+        database = context.openOrCreateDatabase(DATABASE_NAME, Context.MODE_PRIVATE, null);
+        int userId = -1;
+        try (Cursor cursor = database.rawQuery("SELECT id FROM users WHERE email = ?", new String[]{email})) {
+            if (cursor.moveToFirst()) {
+                userId = cursor.getInt(cursor.getColumnIndex("id"));
+            }
+        }
+        return userId;
+    }
+
+    // Hàm băm mật khẩu bằng SHA-256
+    private String hashPassword(String password) {
+        try {
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            byte[] hash = digest.digest(password.getBytes("UTF-8"));
+            StringBuilder sb = new StringBuilder();
+            for (byte b : hash) {
+                sb.append(String.format("%02x", b));
+            }
+            return sb.toString();
+        } catch (NoSuchAlgorithmException | IOException e) {
+            Log.e("DatabaseHelper", "Lỗi mã hóa mật khẩu: " + e.getMessage());
+            return null;
         }
     }
 }

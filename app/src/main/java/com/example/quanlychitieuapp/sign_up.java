@@ -8,13 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-
-import com.example.quanlychitieuapp.Fragment.caiDatFragment;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -25,7 +19,7 @@ public class sign_up extends AppCompatActivity {
     private EditText confirmPasswordEditText;
     private Button dangkyButton;
     private Button loginutton;
-    DatabaseHelper databaseHelper = new DatabaseHelper(this);
+    private DatabaseHelper databaseHelper;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -38,6 +32,8 @@ public class sign_up extends AppCompatActivity {
         confirmPasswordEditText = findViewById(R.id.confirmPasswordEditText);
         dangkyButton = findViewById(R.id.dangkyButton);
         loginutton = findViewById(R.id.loginutton);
+
+        databaseHelper = new DatabaseHelper(this);
 
         dangkyButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,7 +63,6 @@ public class sign_up extends AppCompatActivity {
             return;
         }
 
-
         if (databaseHelper.isEmailExists(email)) {
             Toast.makeText(this, "Email đã được sử dụng", Toast.LENGTH_SHORT).show();
             return;
@@ -94,7 +89,6 @@ public class sign_up extends AppCompatActivity {
         Pattern pattern = Pattern.compile(emailRegex);
         Matcher matcher = pattern.matcher(email);
         return matcher.matches();
-
     }
 
     private void openLoginActivity() {
