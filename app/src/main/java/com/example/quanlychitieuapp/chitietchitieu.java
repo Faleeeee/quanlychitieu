@@ -35,11 +35,13 @@ public class chitietchitieu extends AppCompatActivity {
         Intent myIntent = getIntent();
         // Get bundle from intent
         Bundle myBundle = myIntent.getBundleExtra("myPackageChiTietChiTieu");
-        // Extract data from bundle
-        name = myBundle.getString("name");
-        money = myBundle.getInt("money");
-        date = myBundle.getString("date");
-        wallet = myBundle.getString("wallet");
+        if (myBundle != null) {
+            // Extract data from bundle
+            name = myBundle.getString("name");
+            money = myBundle.getInt("money");
+            date = myBundle.getString("date");
+            wallet = myBundle.getString("wallet");
+        }
     }
 
     private void setContentText() {

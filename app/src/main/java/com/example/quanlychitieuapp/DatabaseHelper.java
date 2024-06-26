@@ -79,11 +79,10 @@ public class DatabaseHelper {
     }
 
     public ArrayList<String> showAll(ListView listView) {
-        ArrayList<String> arrThongKe = new ArrayList<>();
+        ArrayList<GiaoDich> giaoDichList = new ArrayList<>();
         database = context.openOrCreateDatabase(DATABASE_NAME, Context.MODE_PRIVATE, null);
         Cursor cursor = database.query("giaodich", null, null, null, null, null, null);
 
-        Map<Integer, List<GiaoDich>> giaoDichMap = new HashMap<>();
         int tongTienThu = 0;
         int tongTienChi = 0;
 
@@ -96,13 +95,7 @@ public class DatabaseHelper {
             String note = cursor.getString(6);
             GiaoDich giaoDich = new GiaoDich(id_wal, money, loai_giaoDich, group_name, date, note);
 
-            listenClick(listView, arrThongKe, group_name, money, date, "Tien mat");
-
-            if (!giaoDichMap.containsKey(id_wal)) {
-                giaoDichMap.put(id_wal, new ArrayList<GiaoDich>());
-            }
-            arrThongKe.add(group_name + "   " + money + "   " + note);
-            giaoDichMap.get(id_wal).add(giaoDich);
+            giaoDichList.add(giaoDich);
 
             if (giaoDich.loai_giaoDich.equals("thu")) {
                 tongTienThu += money;
@@ -113,32 +106,33 @@ public class DatabaseHelper {
 
         cursor.close();
 
-        Bundle resultBundle = new Bundle();
-        resultBundle.putInt("tongTienThu", tongTienThu);
-        resultBundle.putInt("tongTienChi", tongTienChi);
-
         ArrayList<String> resultList = new ArrayList<>();
         resultList.add(String.valueOf(tongTienThu));
         resultList.add(String.valueOf(tongTienChi));
-        resultList.addAll(arrThongKe);
+        for (GiaoDich gd : giaoDichList) {
+            resultList.add(gd.toString());
+        }
+
+        listenClick(listView, giaoDichList);
 
         return resultList;
     }
 
-    private void listenClick(ListView lv, ArrayList<String> data, String name, int money, String date, String wallet) {
+    private void listenClick(ListView lv, ArrayList<GiaoDich> data) {
         lv.setOnItemClickListener((parent, view, position, id) -> {
-            String selectedItem = data.get(position);
-            Toast.makeText(context, "Bạn đã chọn: " + selectedItem, Toast.LENGTH_SHORT).show();
+            GiaoDich selectedItem = data.get(position);
+            Toast.makeText(context, "Bạn đã chọn: " + selectedItem.toString(), Toast.LENGTH_SHORT).show();
 
             Intent myIntent = new Intent(context, chitietchitieu.class);
             Bundle myBundle = new Bundle();
-            myBundle.putString("name", name);
-            myBundle.putInt("money", money);
-            myBundle.putString("date", date);
-            myBundle.putString("wallet", wallet);
+            myBundle.putString("name", selectedItem.group_name);
+            myBundle.putInt("money", selectedItem.money);
+            myBundle.putString("date", selectedItem.date);
+            myBundle.putString("note", selectedItem.note);
 
             myIntent.putExtra("myPackageChiTietChiTieu", myBundle);
             context.startActivity(myIntent);
         });
     }
+
 }

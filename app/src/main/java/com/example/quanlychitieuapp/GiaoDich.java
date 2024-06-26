@@ -16,4 +16,9 @@ public class GiaoDich {
         this.date = date;
         this.note = note;
     }
+
+    @Override
+    public String toString() {
+        return group_name + "   " + money + "   " + note;
+    }
 }
