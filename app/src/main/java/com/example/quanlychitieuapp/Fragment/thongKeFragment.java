@@ -9,6 +9,17 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.quanlychitieuapp.R;
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.formatter.ValueFormatter;
+import com.github.mikephil.charting.utils.ColorTemplate;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -17,28 +28,18 @@ import com.example.quanlychitieuapp.R;
  */
 public class thongKeFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private BarChart barChart;
 
     public thongKeFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment thongKeFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static thongKeFragment newInstance(String param1, String param2) {
         thongKeFragment fragment = new thongKeFragment();
         Bundle args = new Bundle();
@@ -61,6 +62,35 @@ public class thongKeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_thong_ke, container, false);
+        View view = inflater.inflate(R.layout.fragment_thong_ke, container, false);
+        barChart = view.findViewById(R.id.barChart);
+        setupBarChart();
+        return view;
+    }
+
+    private void setupBarChart() {
+        List<BarEntry> entries = new ArrayList<>();
+        // Thêm dữ liệu vào entries
+        entries.add(new BarEntry(1f, 1000f));
+        entries.add(new BarEntry(2f, 2000f));
+        entries.add(new BarEntry(3f, 1500f));
+
+        BarDataSet dataSet = new BarDataSet(entries, "Chi tiêu");
+        dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+        BarData barData = new BarData(dataSet);
+
+        barChart.setData(barData);
+        barChart.invalidate(); // refresh
+
+        // Cấu hình XAxis nếu cần
+        XAxis xAxis = barChart.getXAxis();
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        xAxis.setGranularity(1f);
+        xAxis.setValueFormatter(new ValueFormatter() {
+            @Override
+            public String getFormattedValue(float value) {
+                return "Tháng " + (int) value;
+            }
+        });
     }
 }
