@@ -15,6 +15,9 @@
         android:theme="@style/Theme.Quanlychitieuapp"
         tools:targetApi="31">
         <activity
+            android:name=".delete_account_confirmation"
+            android:exported="false" />
+        <activity
             android:name=".chitietchitieu"
             android:exported="false" />
         <activity

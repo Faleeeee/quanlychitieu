@@ -95,4 +95,5 @@ public class sign_up extends AppCompatActivity {
         Intent intent = new Intent(this, dangnhap.class);
         startActivity(intent);
     }
+
 }

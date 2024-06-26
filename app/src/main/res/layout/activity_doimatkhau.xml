@@ -1,85 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#000000"
-    android:orientation="vertical"
-    android:gravity="center">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ĐỔI MẬT KHẨU"
-        android:textColor="#ffffff"
-        android:textSize="24sp"
-        android:layout_marginBottom="24dp" />
-
-    <EditText
-        android:id="@+id/oldpassword"
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Mật khẩu cũ"
-        android:textColorHint="#808080"
-        android:textColor="#FFFFFF"
-        android:padding="16dp"
-        android:background="@drawable/edit_text_background"
-        android:layout_marginHorizontal="32dp"
-        android:layout_marginBottom="16dp" />
+        android:background="@color/black">
 
-    <EditText
-        android:id="@+id/newpassword"
+
+        <Button
+            android:id="@+id/backButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/ForgotButon"
+            android:textSize="22sp"
+            android:text="Quay Lại"
+            android:layout_margin="16dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Mật khẩu mới"
-        android:textColorHint="#808080"
-        android:textColor="#FFFFFF"
-        android:padding="16dp"
-        android:background="@drawable/edit_text_background"
-        android:layout_marginHorizontal="32dp"
-        android:layout_marginBottom="16dp"
-        android:inputType="textPassword" />
-    <EditText
-        android:id="@+id/confirmnewbutton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="32dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/edit_text_background"
-        android:hint="Xác nhận mật khẩu mới"
-        android:inputType="textPassword"
-        android:padding="16dp"
-        android:textColor="#FFFFFF"
-        android:textColorHint="#808080" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <!-- Nội dung của Activity -->
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#000000"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ĐỔI MẬT KHẨU"
+                android:textColor="#ffffff"
+                android:textSize="24sp"
+                android:layout_marginBottom="24dp" />
+
+            <EditText
+                android:id="@+id/oldpassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Mật khẩu cũ"
+                android:textColorHint="#808080"
+                android:textColor="#FFFFFF"
+                android:padding="16dp"
+                android:background="@drawable/edit_text_background"
+                android:layout_marginHorizontal="32dp"
+                android:layout_marginBottom="16dp" />
+
+            <EditText
+                android:id="@+id/newpassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Mật khẩu mới"
+                android:textColorHint="#808080"
+                android:textColor="#FFFFFF"
+                android:padding="16dp"
+                android:background="@drawable/edit_text_background"
+                android:layout_marginHorizontal="32dp"
+                android:layout_marginBottom="16dp"
+                android:inputType="textPassword" />
+            <EditText
+                android:id="@+id/confirmnewbutton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="32dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/edit_text_background"
+                android:hint="Xác nhận mật khẩu mới"
+                android:inputType="textPassword"
+                android:padding="16dp"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#808080" />
 
 
-    <Button
-        android:id="@+id/doibutton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Thay đổi"
+            <Button
+                android:id="@+id/doibutton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Lưu"
+                android:background="@drawable/button_background"
+                style="@style/ForgotPasswordButton"
+                android:padding="16dp"
+                android:layout_marginHorizontal="32dp" />
 
-        style="@style/ForgotPasswordButton"
-        android:padding="16dp"
-        android:layout_marginHorizontal="32dp" />
-    <Button
-        android:id="@+id/doibutton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="quay lại"
 
-        style="@style/ForgotPasswordButton"
-        android:padding="16dp"
-        android:layout_marginHorizontal="32dp" />
-
-    <TextView
-        android:id="@+id/tvMessage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_gravity="center_horizontal"
-        android:visibility="gone"/>
+            <TextView
+                android:id="@+id/tvMessage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_gravity="center_horizontal"
+                android:visibility="gone"/>
 
 
 
-</LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

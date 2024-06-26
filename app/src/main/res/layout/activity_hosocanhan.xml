@@ -51,9 +51,27 @@
 
         <Button
             android:id="@+id/btn6"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/button_background"
             android:text="Thay đổi mật khẩu"
+            style="@style/ForgotPasswordButton"
+            />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edit_text_background"
+        android:layout_marginTop="32dp"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/btn15"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_background"
+            android:text="Quay lại"
             style="@style/ForgotPasswordButton"
             />
 
@@ -68,7 +86,8 @@
 
         <Button
             android:id="@+id/btn7"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
+            android:background="@drawable/button_background"
             android:layout_height="wrap_content"
             android:text="Đăng xuất"
             style="@style/ForgotRed" />
@@ -76,7 +95,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/btn8"
+
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -85,7 +104,9 @@
         android:gravity="center">
 
         <Button
-            android:layout_width="wrap_content"
+            android:id="@+id/btn8"
+            android:layout_width="match_parent"
+            android:background="@drawable/button_background"
             android:layout_height="wrap_content"
             android:text="Xóa tài khoản"
             style="@style/ForgotRed"

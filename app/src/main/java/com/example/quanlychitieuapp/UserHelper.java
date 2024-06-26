@@ -6,6 +6,11 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
+import android.widget.Toast;
+
+import java.io.IOException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 public class UserHelper {
     private Context context;
@@ -105,4 +110,9 @@ public class UserHelper {
         return emailExists;
     }
 
+    public boolean deleteUser(int userId) {
+        database = context.openOrCreateDatabase(DATABASE_NAME, Context.MODE_PRIVATE, null);
+        int rowsDeleted = database.delete("user", "id = ?", new String[]{String.valueOf(userId)});
+        return rowsDeleted > 0;
+    }
 }
