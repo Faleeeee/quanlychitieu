@@ -20,7 +20,7 @@ public class doimatkhau extends AppCompatActivity {
     private EditText oldpassword, newpassword, confirmnewbutton;
     private Button doibutton;
     private TextView tvMessage;
-    private DatabaseHelper databaseHelper;
+    private UserHelper databaseHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +32,7 @@ public class doimatkhau extends AppCompatActivity {
         confirmnewbutton = findViewById(R.id.confirmnewbutton);
         doibutton = findViewById(R.id.doibutton);
         tvMessage = findViewById(R.id.tvMessage);
-        databaseHelper = new DatabaseHelper(this);
+        databaseHelper = new UserHelper(this);
         doibutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

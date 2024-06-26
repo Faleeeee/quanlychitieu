@@ -94,16 +94,15 @@
                         android:layout_weight="1"
                         android:orientation="horizontal">
 
-                        <Button
-                            style="@style/ForgotPasswordButton"
+                        <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginRight="15dp"
                             android:gravity="end"
                             android:text="Xem tất cả"
                             android:textColor="@color/green"
-                            android:textSize="15sp"
-                            android:textStyle="bold"></Button>
+                            android:textSize="20sp"
+                            android:textStyle="bold"></TextView>
                     </LinearLayout>
                 </LinearLayout>
 
@@ -140,15 +139,15 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1">
 
-                        <Button
-                            style="@style/ForgotPasswordButton"
+                        <TextView
+
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="end"
                             android:text="Xem báo cáo"
                             android:textColor="@color/green"
-                            android:textSize="15sp"
-                            android:textStyle="bold"></Button>
+                            android:textSize="20sp"
+                            android:textStyle="bold"></TextView>
                     </LinearLayout>
                 </LinearLayout>
 
@@ -201,15 +200,14 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1">
 
-                        <Button
-                            style="@style/ForgotPasswordButton"
+                        <TextView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="end"
                             android:text="Xem báo cáo"
                             android:textColor="@color/green"
-                            android:textSize="15sp"
-                            android:textStyle="bold"></Button>
+                            android:textSize="20sp"
+                            android:textStyle="bold"></TextView>
                     </LinearLayout>
                 </LinearLayout>
 

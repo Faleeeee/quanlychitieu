@@ -19,7 +19,7 @@ public class sign_up extends AppCompatActivity {
     private EditText confirmPasswordEditText;
     private Button dangkyButton;
     private Button loginutton;
-    private DatabaseHelper databaseHelper;
+    private UserHelper databaseHelper;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -33,7 +33,7 @@ public class sign_up extends AppCompatActivity {
         dangkyButton = findViewById(R.id.dangkyButton);
         loginutton = findViewById(R.id.loginutton);
 
-        databaseHelper = new DatabaseHelper(this);
+        databaseHelper = new UserHelper(this);
 
         dangkyButton.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -23,7 +23,7 @@ public class dangnhap extends AppCompatActivity {
     private Button loginButton;
 
     private Button registerTextView;
-    private DatabaseHelper databaseHelper;
+    private UserHelper databaseHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +34,7 @@ public class dangnhap extends AppCompatActivity {
         loginButton = findViewById(R.id.loginButton);
         registerTextView = findViewById(R.id.registerTextView);
 
-        databaseHelper = new DatabaseHelper(this);
+        databaseHelper = new UserHelper(this);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override

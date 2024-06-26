@@ -1,9 +1,6 @@
 package com.example.quanlychitieuapp.tab_vi;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,16 +8,13 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.quanlychitieuapp.db;
+import androidx.fragment.app.Fragment;
+
+import com.example.quanlychitieuapp.DatabaseHelper;
 import com.example.quanlychitieuapp.R;
 
 import java.util.ArrayList;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link tab3Fragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class tab3Fragment extends Fragment {
 
     TextView tienThu;
@@ -29,7 +23,7 @@ public class tab3Fragment extends Fragment {
     ListView listView;
     ArrayList<String> arrThongKe;
     ArrayAdapter<String> adapterDB;
-    db database;
+    DatabaseHelper database;  // DatabaseHelper instance
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -57,8 +51,8 @@ public class tab3Fragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-        // Khởi tạo đối tượng database
-        database = new db(getContext());
+        // Initialize the DatabaseHelper instance
+        database = new DatabaseHelper(getActivity());
     }
 
     @Override
@@ -70,12 +64,12 @@ public class tab3Fragment extends Fragment {
         tongTien = view.findViewById(R.id.tongTien);
         listView = view.findViewById(R.id.listView);
 
-        addConTrols(view);
+        addControls(view);
         showAll();
         return view;
     }
 
-    private void addConTrols(View view) {
+    private void addControls(View view) {
         listView = view.findViewById(R.id.listView);
         arrThongKe = new ArrayList<>();
         adapterDB = new ArrayAdapter<>(getContext(), R.layout.list_item, arrThongKe);
@@ -83,14 +77,14 @@ public class tab3Fragment extends Fragment {
     }
 
     private void showAll() {
-        ArrayList<String> resultList = database.showAll();
+        ArrayList<String> resultList = database.showAll(listView);
         arrThongKe.clear();
 
-        // Lấy tổng tiền thu và chi từ resultList
+        // Get total income and expenses from resultList
         int tongTienThu = Integer.parseInt(resultList.get(0));
         int tongTienChi = Integer.parseInt(resultList.get(1));
 
-        // Xóa hai giá trị đầu tiên để lấy danh sách giao dịch
+        // Remove the first two values to get the transaction list
         resultList.remove(0);
         resultList.remove(0);
 
