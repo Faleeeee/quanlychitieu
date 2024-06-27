@@ -19,7 +19,8 @@
             android:exported="false" />
         <activity
             android:name=".chitietchitieu"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".ForgotPasswordActivity"
             android:exported="false" />
