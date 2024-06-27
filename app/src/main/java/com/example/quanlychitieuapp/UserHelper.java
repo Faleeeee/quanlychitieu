@@ -11,6 +11,8 @@ import android.widget.Toast;
 import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class UserHelper {
     private Context context;
@@ -26,6 +28,7 @@ public class UserHelper {
             database = context.openOrCreateDatabase(DATABASE_NAME, Context.MODE_PRIVATE, null);
 
             if (isEmailExists(email)) {
+                Toast.makeText(context, "Email đã tồn tại", Toast.LENGTH_SHORT).show();
                 return false;
             }
 
@@ -98,7 +101,25 @@ public class UserHelper {
     }
 
     private boolean confirmPassword(String password, String confirmPassword) {
-        return password.equals(confirmPassword);
+        if (!password.equals(confirmPassword)) {
+            return false; // Mật khẩu không khớp
+        }
+
+        // Kiểm tra độ dài mật khẩu
+        if (password.length() < 8) {
+            Toast.makeText(context, "Mật khẩu phải ít nhất 8 ký tự.", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        // Kiểm tra chữ hoa
+        Pattern pattern = Pattern.compile("[A-Z]");
+        Matcher matcher = pattern.matcher(password);
+        if (!matcher.find()) {
+            Toast.makeText(context, "Mật khẩu phải có ít nhất 1 chữ hoa.", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        return true; // Mật khẩu hợp lệ
     }
 
     public boolean checkEmail(String email) {

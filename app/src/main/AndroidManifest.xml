@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Quanlychitieuapp"
-        tools:targetApi="31">
+        tools:targetApi="31"
+         >
         <activity
             android:name=".delete_account_confirmation"
             android:exported="false" />
@@ -42,20 +43,21 @@
             android:exported="false" />
         <activity
             android:name=".dangnhap"
-            android:exported="false"
+            android:exported="true"
             android:label="@string/title_activity_dangnhap"
-            android:theme="@style/Theme.Quanlychitieuapp" />
+            android:theme="@style/Theme.Quanlychitieuapp">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
         <activity
             android:name=".sign_up"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

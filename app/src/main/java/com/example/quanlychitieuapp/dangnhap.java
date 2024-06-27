@@ -8,22 +8,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-
-import com.example.quanlychitieuapp.Fragment.caiDatFragment;
-import com.example.quanlychitieuapp.Fragment.homeFragment;
 
 public class dangnhap extends AppCompatActivity {
 
     private EditText emailEditText, passwordEditText;
     private Button loginButton;
-
     private Button registerTextView;
     private UserHelper databaseHelper;
+    private SharedPreferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,8 +26,17 @@ public class dangnhap extends AppCompatActivity {
         passwordEditText = findViewById(R.id.passwordEditText);
         loginButton = findViewById(R.id.loginButton);
         registerTextView = findViewById(R.id.registerTextView);
-
         databaseHelper = new UserHelper(this);
+        prefs = getSharedPreferences("user_info", MODE_PRIVATE);
+
+        // Kiểm tra xem người dùng đã đăng nhập chưa
+        int userId = prefs.getInt("user_id", -1);
+        if (userId != -1) {
+            // Nếu đã đăng nhập, chuyển đến activity chính
+            Intent intent = new Intent(dangnhap.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,12 +45,13 @@ public class dangnhap extends AppCompatActivity {
                 String password = passwordEditText.getText().toString();
 
                 if (databaseHelper.loginUser(email, password)) {
-                    int userId = databaseHelper.getUserIdByEmail(email); // Lấy ID người dùng từ email
+                    int userId = databaseHelper.getUserIdByEmail(email);
 
-                    // Lưu ID người dùng vào SharedPreferences
-                    SharedPreferences prefs = getSharedPreferences("user_info", MODE_PRIVATE);
+                    // Lưu ID người dùng và thông tin đăng nhập vào SharedPreferences
                     SharedPreferences.Editor editor = prefs.edit();
                     editor.putInt("user_id", userId);
+                    editor.putString("email", email);
+                    editor.putString("password", password);
                     editor.apply();
 
                     Toast.makeText(dangnhap.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
