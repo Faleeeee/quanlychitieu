@@ -38,6 +38,7 @@ public class editGiaoDich extends AppCompatActivity {
     String note;
     private int idGiaodich;
     private DatabaseHelper dbHelper;
+    String selectedGD;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,6 +121,7 @@ public class editGiaoDich extends AppCompatActivity {
                 Bundle myBundleNhom = data.getBundleExtra("myPackageNhom");
                 if (myBundleNhom != null) {
                     String selectedNhom = myBundleNhom.getString("loaiChiTieu");
+                    selectedGD = myBundleNhom.getString("nhomChiTieu");
                     nhomGiaoDich.setText(selectedNhom);
                 }
             } else {
@@ -185,7 +187,7 @@ public class editGiaoDich extends AppCompatActivity {
         String note = note_content.getText().toString();
         String giaoDich = nhomGiaoDich.getText().toString();
 
-        dbHelper.editGiaoDich(idGiaodich, id_wal, money, lGiaoDich, giaoDich, date, note);
+        dbHelper.editGiaoDich(idGiaodich, id_wal, money, selectedGD, lGiaoDich, date, note);
 
         Intent myIntent = new Intent(editGiaoDich.this, MainActivity.class);
         startActivity(myIntent);
