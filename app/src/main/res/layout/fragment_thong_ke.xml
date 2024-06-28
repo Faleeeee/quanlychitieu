@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blue"
+    android:background="@color/purple_500"
     tools:context=".Fragment.homeFragment">
 
     <com.github.mikephil.charting.charts.BarChart
