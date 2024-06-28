@@ -74,7 +74,7 @@ public class tab3Fragment extends Fragment {
         arrThongKe = new ArrayList<>();
         // Cung cấp các biểu tượng phù hợp cho CustomAdapter
         int[] icons = {
-                R.drawable.baseline_directions_car_24,
+                R.drawable.baseline_fastfood_24,
                 R.drawable.outline_medical_information_24,
                 R.drawable.baseline_business_center_24,
                 R.drawable.baseline_directions_car_24,

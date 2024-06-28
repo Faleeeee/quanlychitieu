@@ -7,20 +7,20 @@
     android:orientation="vertical"
     tools:context=".tab_vi.tab3Fragment">
 
+    <!-- Layout cho Tiền vào và Tiền ra -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/giaodichvi"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:background="@drawable/giaodichvi">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="15dp"
             android:orientation="horizontal"
-            android:weightSum="2">
+            android:weightSum="2"
+            android:paddingBottom="8dp">
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -32,7 +32,7 @@
                     android:layout_height="wrap_content"
                     android:text="Tiền vào"
                     android:textColor="@color/gray"
-                    android:textSize="20dp"></TextView>
+                    android:textSize="20sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -46,22 +46,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/green_tienvao"
-                    android:textSize="20dp"></TextView>
+                    android:textSize="20sp" />
             </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginEnd="15dp"
             android:orientation="horizontal"
-            android:weightSum="2">
+            android:weightSum="2"
+            android:paddingBottom="8dp">
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-
                 android:layout_weight="1">
 
                 <TextView
@@ -69,7 +67,7 @@
                     android:layout_height="wrap_content"
                     android:text="Tiền ra"
                     android:textColor="@color/gray"
-                    android:textSize="20dp"></TextView>
+                    android:textSize="20sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -82,17 +80,14 @@
                     android:id="@+id/tienRa"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint=""
                     android:textColor="@color/tienra"
-                    android:textSize="20dp"></TextView>
+                    android:textSize="20sp" />
             </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginEnd="15dp"
             android:gravity="end">
 
             <TextView
@@ -100,14 +95,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
-                android:textSize="20dp"></TextView>
+                android:textSize="20sp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginEnd="15dp"
             android:gravity="center">
 
             <Button
@@ -117,24 +110,26 @@
                 android:text="Xem báo cáo giai đoạn này"
                 android:textColor="@color/green"
                 android:textStyle="bold"
-                app:backgroundTint="@null"></Button>
+                app:backgroundTint="@null" />
         </LinearLayout>
     </LinearLayout>
 
+    <!-- Layout cho ListView -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:layout_marginTop="30dp"
         android:background="@drawable/giaodichvi"
-        android:orientation="vertical">
+        android:padding="16dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:weightSum="5">
+            android:weightSum="5"
+            android:paddingBottom="8dp">
 
-            <!-- LinearLayout chứa "0" -->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -145,10 +140,9 @@
                     android:layout_height="wrap_content"
                     android:hint="0"
                     android:textColor="@color/white"
-                    android:textSize="25sp"></TextView>
+                    android:textSize="25sp" />
             </LinearLayout>
 
-            <!-- LinearLayout chứa "Thu" và "Thang nam" -->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -158,15 +152,14 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="Thu"></TextView>
+                    android:hint="Thu" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="Thang nam"></TextView>
+                    android:hint="Thang nam" />
             </LinearLayout>
 
-            <!-- LinearLayout cuối cùng chứa "0" và được đặt ở cuối cùng -->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -178,10 +171,9 @@
                     android:layout_gravity="end"
                     android:hint="0"
                     android:textColor="@color/white"
-                    android:textSize="20sp"></TextView>
+                    android:textSize="20sp" />
             </LinearLayout>
         </LinearLayout>
-
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -190,13 +182,9 @@
             <ListView
                 android:id="@+id/listView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-
-            </ListView>
+                android:layout_height="match_parent" />
         </LinearLayout>
 
     </LinearLayout>
-
 
 </LinearLayout>
