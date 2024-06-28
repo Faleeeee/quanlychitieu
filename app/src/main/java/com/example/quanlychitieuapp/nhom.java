@@ -72,10 +72,10 @@ public class nhom extends AppCompatActivity {
         nhomChi.add("Các chi phí khác");
 
         int[] iconsChi = {
-                R.drawable.baseline_directions_car_24,  // icon for "Ăn uống"
+                R.drawable.baseline_fastfood_24,  // icon for "Ăn uống"
                 R.drawable.outline_medical_information_24,  // icon for "Bảo hiểm"
-                R.drawable.baseline_business_center_24,  // icon for "Đầu tư"
-                R.drawable.baseline_directions_car_24,  // icon for "Di chuyển"
+                R.drawable.baseline_business_center_241,  // icon for "Đầu tư"
+                R.drawable.baseline_directions_car_filled_24,  // icon for "Di chuyển"
                 R.drawable.baseline_monetization_on_24  // icon for "Các chi phí khác"
         };
 
