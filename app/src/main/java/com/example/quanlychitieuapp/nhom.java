@@ -120,7 +120,9 @@ public class nhom extends AppCompatActivity {
                 myBundle.putString("loaiChiTieu", selectedItem);
                 // đưa bundle vào intent
                 myIntent.putExtra("myPackageNhom", myBundle);
-                startActivity(myIntent);
+                setResult(RESULT_OK, myIntent);
+                finish();
+
             }
         });
     }

@@ -20,6 +20,7 @@ public class chitietchitieu extends AppCompatActivity {
     int money;
     String date;
     String wallet;
+    String note;
     private int idGiaodich;
     private DatabaseHelper dbHelper;
 
@@ -55,7 +56,18 @@ public class chitietchitieu extends AppCompatActivity {
 
         int itemId = item.getItemId();
         if (itemId == R.id.edit) {
-            Toast.makeText(chitietchitieu.this, "Bạn đã chọn: Edit", Toast.LENGTH_SHORT).show();
+
+            Bundle myBundle = new Bundle();
+
+            myBundle.putInt("id_giaodich", idGiaodich);  // Thêm id của giao dịch vào bundle
+            myBundle.putString("name", name);
+            myBundle.putInt("money", money);
+            myBundle.putString("date", date);
+            myBundle.putString("note", note);
+
+            Intent intent = new Intent(chitietchitieu.this, editGiaoDich.class);
+            intent.putExtra("myPackageEditChiTieu", myBundle);
+            startActivity(intent);
         } else if (itemId == R.id.delete) {
             // Tạo dialog
             AlertDialog.Builder myDialog = new AlertDialog.Builder(chitietchitieu.this);
@@ -94,7 +106,7 @@ public class chitietchitieu extends AppCompatActivity {
             money = myBundle.getInt("money");
             date = myBundle.getString("date");
             wallet = myBundle.getString("wallet");
-
+            note = myBundle.getString("note");
             // Kiểm tra giá trị id_giaodich
             Toast.makeText(this, "ID giao dịch: " + idGiaodich, Toast.LENGTH_SHORT).show();
         }

@@ -3,9 +3,9 @@ package com.example.quanlychitieuapp;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.SpannableStringBuilder;
 import android.text.TextWatcher;
-import android.text.Editable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,33 +14,59 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.quanlychitieuapp.tab_vi.tab3Fragment;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 import org.mariuszgromada.math.mxparser.Expression;
 
 import java.util.Calendar;
 
-public class calculator extends AppCompatActivity {
+public class editGiaoDich extends AppCompatActivity {
+
     static final int REQUEST_CODE = 0;
 
     private EditText display, note_content;
     private Button btnSave, btnBack, btnDate;
     private String dateSelect;
     private TextView nhomGiaoDich;
-    DatabaseHelper database;
+
+    String name;
+    int money;
+    String date;
+    String wallet;
+    String note;
+    private int idGiaodich;
+    private DatabaseHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_calculator);
-        database = new DatabaseHelper(this);
+        setContentView(R.layout.activity_edit_giao_dich);
+        dbHelper = new DatabaseHelper(this);
 
         initViews();
         setupListeners();
         giaoDich();
         checkFieldsForEmptyValues();
+    }
+
+    private void getData() {
+        Intent myIntent = getIntent();
+        Bundle myBundle = myIntent.getBundleExtra("myPackageEditChiTieu");
+        if (myBundle != null) {
+            idGiaodich = myBundle.getInt("id_giaodich");
+            name = myBundle.getString("name");
+            money = myBundle.getInt("money");
+            date = myBundle.getString("date");
+            wallet = myBundle.getString("wallet");
+            note = myBundle.getString("note");
+            // Kiểm tra giá trị id_giaodich
+            Toast.makeText(this, "ID giao dịch edit: " + idGiaodich, Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Khong nhan duoc bundle", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void giaoDich() {
@@ -67,6 +93,13 @@ public class calculator extends AppCompatActivity {
             getSupportActionBar().hide();
         }
         display.setShowSoftInputOnFocus(false);
+
+        getData();
+
+        display.setText(String.valueOf(money));
+        note_content.setText(note);
+        nhomGiaoDich.setText(name);
+        btnDate.setText(date);
     }
 
     private void setupListeners() {
@@ -74,7 +107,7 @@ public class calculator extends AppCompatActivity {
         display.addTextChangedListener(textWatcher);
 
         btnBack.setOnClickListener(v -> startActivity(new Intent(this, MainActivity.class)));
-        nhomGiaoDich.setOnClickListener(v -> startActivityForResult(new Intent(calculator.this, nhom.class), REQUEST_CODE));
+        nhomGiaoDich.setOnClickListener(v -> startActivityForResult(new Intent(editGiaoDich.this, nhom.class), REQUEST_CODE));
         btnSave.setOnClickListener(v -> saveTransaction());
         btnDate.setOnClickListener(v -> showDatePickerDialog());
     }
@@ -152,9 +185,9 @@ public class calculator extends AppCompatActivity {
         String note = note_content.getText().toString();
         String giaoDich = nhomGiaoDich.getText().toString();
 
-        database.addGiaoDich(id_wal, money, lGiaoDich, giaoDich, date, note);
+        dbHelper.editGiaoDich(idGiaodich, id_wal, money, lGiaoDich, giaoDich, date, note);
 
-        Intent myIntent = new Intent(calculator.this, MainActivity.class);
+        Intent myIntent = new Intent(editGiaoDich.this, MainActivity.class);
         startActivity(myIntent);
     }
 
@@ -170,7 +203,6 @@ public class calculator extends AppCompatActivity {
         }
     }
 
-    // Phương thức cập nhật văn bản
     private void updateText(String strToAdd) {
         String oldStr = display.getText().toString();
         int cursorPos = display.getSelectionStart();
@@ -277,4 +309,5 @@ public class calculator extends AppCompatActivity {
         display.setText(result);
         display.setSelection(result.length());
     }
+
 }
