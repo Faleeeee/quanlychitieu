@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Adapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -78,6 +79,21 @@ public class DatabaseHelper {
         Toast.makeText(context, "Thêm thành công", Toast.LENGTH_LONG).show();
     }
 
+    public void xoaGiaoDich(int id_giaodich) {
+        // Mở cơ sở dữ liệu
+        database = context.openOrCreateDatabase(DATABASE_NAME, Context.MODE_PRIVATE, null);
+
+        // Xóa giao dịch theo id
+        int rowsDeleted = database.delete("giaodich", "id=?", new String[]{String.valueOf(id_giaodich)});
+
+        if (rowsDeleted > 0) {
+            Toast.makeText(context, "Xóa thành công", Toast.LENGTH_SHORT).show();
+//            showAll();
+        } else {
+            Toast.makeText(context, "Không tìm thấy giao dịch để xóa", Toast.LENGTH_SHORT).show();
+        }
+    }
+
     public ArrayList<String> showAll(ListView listView) {
         ArrayList<GiaoDich> giaoDichList = new ArrayList<>();
         database = context.openOrCreateDatabase(DATABASE_NAME, Context.MODE_PRIVATE, null);
@@ -87,13 +103,14 @@ public class DatabaseHelper {
         int tongTienChi = 0;
 
         while (cursor.moveToNext()) {
+            int id = cursor.getInt(0);  // Giả sử cột id là cột đầu tiên
             int id_wal = cursor.getInt(1);
             int money = cursor.getInt(2);
             String loai_giaoDich = cursor.getString(3);
             String group_name = cursor.getString(4);
             String date = cursor.getString(5);
             String note = cursor.getString(6);
-            GiaoDich giaoDich = new GiaoDich(id_wal, money, loai_giaoDich, group_name, date, note);
+            GiaoDich giaoDich = new GiaoDich(id, id_wal, money, loai_giaoDich, group_name, date, note);
 
             giaoDichList.add(giaoDich);
 
@@ -125,6 +142,7 @@ public class DatabaseHelper {
 
             Intent myIntent = new Intent(context, chitietchitieu.class);
             Bundle myBundle = new Bundle();
+            myBundle.putInt("id_giaodich", selectedItem.getId());  // Thêm id của giao dịch vào bundle
             myBundle.putString("name", selectedItem.group_name);
             myBundle.putInt("money", selectedItem.money);
             myBundle.putString("date", selectedItem.date);

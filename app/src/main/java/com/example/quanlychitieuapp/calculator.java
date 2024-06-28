@@ -26,14 +26,14 @@ public class calculator extends AppCompatActivity {
     private Button btnSave, btnBack, btnDate;
     private String dateSelect;
     private TextView nhomGiaoDich;
-    db database;
+    DatabaseHelper database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_calculator);
-        database = new db(this);
+        database = new DatabaseHelper(this);
 
         initViews();
         setupListeners();
