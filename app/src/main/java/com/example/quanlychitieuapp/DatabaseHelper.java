@@ -94,6 +94,24 @@ public class DatabaseHelper {
         }
     }
 
+    public void editGiaoDich(int id_giaodich, int id_wal, Double money, String tenGiaoDich, String nhomGiaoDich, String day, String note) {
+        // Mở cơ sở dữ liệu
+        database = context.openOrCreateDatabase(DATABASE_NAME, Context.MODE_PRIVATE, null);
+
+        ContentValues row = new ContentValues();
+        row.put("id_wal", id_wal);
+        row.put("money", money);
+        row.put("loai_giaodich", tenGiaoDich);
+        row.put("group_name", nhomGiaoDich);
+        row.put("day", day);
+        row.put("note", note);
+
+        // Sửa giao dịch theo id
+        int rowsEdit = database.update("giaodich", row, "id=?", new String[]{String.valueOf(id_giaodich)});
+        Toast.makeText(context, "Sửa giao dịch thành công", Toast.LENGTH_LONG).show();
+
+    }
+
     public ArrayList<String> showAll(ListView listView) {
         ArrayList<GiaoDich> giaoDichList = new ArrayList<>();
         database = context.openOrCreateDatabase(DATABASE_NAME, Context.MODE_PRIVATE, null);
