@@ -72,7 +72,15 @@ public class tab3Fragment extends Fragment {
     private void addControls(View view) {
         listView = view.findViewById(R.id.listView);
         arrThongKe = new ArrayList<>();
-        int[] icons = new int[arrThongKe.size()];
+        // Cung cấp các biểu tượng phù hợp cho CustomAdapter
+        int[] icons = {
+                R.drawable.baseline_directions_car_24,
+                R.drawable.outline_medical_information_24,
+                R.drawable.baseline_business_center_24,
+                R.drawable.baseline_directions_car_24,
+                R.drawable.baseline_monetization_on_24
+        };
+
         adapterDB = new CustomAdapter(getContext(), arrThongKe, icons);
         listView.setAdapter(adapterDB);
     }
