@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TabHost;
 import android.widget.TabWidget;
@@ -20,9 +19,8 @@ public class nhom extends AppCompatActivity {
     ListView lvNhomChi;
     ListView lvNhomThu;
 
-    ArrayAdapter<String> myadapterNhomChi;
-
-    ArrayAdapter<String> myadapterNhomThu;
+    CustomAdapter myadapterNhomChi;
+    CustomAdapter myadapterNhomThu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +35,6 @@ public class nhom extends AppCompatActivity {
     }
 
     private void addControls() {
-
         addListview();
         // Xử lý tabhost
         tabHost = findViewById(R.id.mytab);
@@ -66,53 +63,65 @@ public class nhom extends AppCompatActivity {
     }
 
     private void addListview() {
-        //Xử lý ListView Nhom chi
-        ArrayList<String> nhomChi;
-        nhomChi = new ArrayList<>();
+        // Xử lý ListView Nhom chi
+        ArrayList<String> nhomChi = new ArrayList<>();
         nhomChi.add("Ăn uống");
         nhomChi.add("Bảo hiểm");
         nhomChi.add("Đầu tư");
         nhomChi.add("Di chuyển");
         nhomChi.add("Các chi phí khác");
-        myadapterNhomChi = new ArrayAdapter<>(nhom.this, R.layout.list_item, nhomChi);
-        lvNhomChi.setAdapter(myadapterNhomChi);
 
+        int[] iconsChi = {
+                R.drawable.baseline_directions_car_24,  // icon for "Ăn uống"
+                R.drawable.outline_medical_information_24,  // icon for "Bảo hiểm"
+                R.drawable.baseline_business_center_24,  // icon for "Đầu tư"
+                R.drawable.baseline_directions_car_24,  // icon for "Di chuyển"
+                R.drawable.baseline_monetization_on_24  // icon for "Các chi phí khác"
+        };
+
+        myadapterNhomChi = new CustomAdapter(nhom.this, nhomChi, iconsChi);
+        lvNhomChi.setAdapter(myadapterNhomChi);
         listenClick(lvNhomChi, nhomChi, "chi");
 
-        //Xử lý ListView Nhom thu
-        ArrayList<String> nhomThu;
-        nhomThu = new ArrayList<>();
+        // Xử lý ListView Nhom thu
+        ArrayList<String> nhomThu = new ArrayList<>();
         nhomThu.add("Lương");
         nhomThu.add("Thu nhập khác");
         nhomThu.add("Tiền chuyển đến");
         nhomThu.add("Di chuyển");
-        myadapterNhomThu = new ArrayAdapter<>(nhom.this, R.layout.list_item, nhomThu);
+
+        int[] iconsThu = {
+                R.drawable.baseline_monetization_on_24,  // icon for "Lương"
+                R.drawable.baseline_monetization_on_24,  // icon for "Thu nhập khác"
+                R.drawable.baseline_monetization_on_24,  // icon for "Tiền chuyển đến"
+                R.drawable.baseline_directions_car_24  // icon for "Di chuyển"
+        };
+
+        myadapterNhomThu = new CustomAdapter(nhom.this, nhomThu, iconsThu);
         lvNhomThu.setAdapter(myadapterNhomThu);
         listenClick(lvNhomThu, nhomThu, "thu");
-
     }
 
     private void listenClick(ListView lv, ArrayList<String> data, String nhomChiTieu) {
         // Xử lý sự kiện khi click vào một item trong ListView
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, android.view.View view, int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 // Lấy giá trị của item được click
                 String selectedItem = data.get(position);
                 Toast.makeText(nhom.this, "Bạn đã chọn: " + selectedItem, Toast.LENGTH_SHORT).show();
 
-                //khai báo intent
+                // khai báo intent
                 Intent myIntent = new Intent(nhom.this, calculator.class);
-                //đóng gói dữ liệu vào Bundle
+                // đóng gói dữ liệu vào Bundle
                 Bundle myBundle = new Bundle();
-                //Đưa dữ liệu vào Bundle
+                // Đưa dữ liệu vào Bundle
                 myBundle.putString("nhomChiTieu", nhomChiTieu);
                 myBundle.putString("loaiChiTieu", selectedItem);
-                //đưa bundle vào intent
+                // đưa bundle vào intent
                 myIntent.putExtra("myPackageNhom", myBundle);
                 startActivity(myIntent);
             }
         });
-
     }
 }

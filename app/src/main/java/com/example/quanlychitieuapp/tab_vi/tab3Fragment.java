@@ -4,12 +4,12 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.quanlychitieuapp.CustomAdapter;
 import com.example.quanlychitieuapp.DatabaseHelper;
 import com.example.quanlychitieuapp.R;
 
@@ -22,7 +22,7 @@ public class tab3Fragment extends Fragment {
     TextView tongTien;
     ListView listView;
     ArrayList<String> arrThongKe;
-    ArrayAdapter<String> adapterDB;
+    CustomAdapter adapterDB;
     DatabaseHelper database;  // DatabaseHelper instance
 
     private static final String ARG_PARAM1 = "param1";
@@ -72,7 +72,8 @@ public class tab3Fragment extends Fragment {
     private void addControls(View view) {
         listView = view.findViewById(R.id.listView);
         arrThongKe = new ArrayList<>();
-        adapterDB = new ArrayAdapter<>(getContext(), R.layout.list_item, arrThongKe);
+        int[] icons = new int[arrThongKe.size()];
+        adapterDB = new CustomAdapter(getContext(), arrThongKe, icons);
         listView.setAdapter(adapterDB);
     }
 
