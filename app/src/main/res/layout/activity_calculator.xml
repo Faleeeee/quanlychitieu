@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="16dp"
-            android:text="Thêm giao dịch"
+            android:text=" Thêm giao dịch"
             android:textColor="@android:color/white"
             android:textSize="24sp" />
     </LinearLayout>
@@ -50,6 +50,8 @@
 
 
     <!-- Nhom -->
+
+    <!-- Description -->
     <TextView
         android:id="@+id/textGroup"
         android:layout_width="match_parent"
@@ -62,9 +64,9 @@
         android:textColor="@android:color/white"
         android:textColorHint="@android:color/darker_gray"
         android:textSize="20dp"
-        app:backgroundTint="@null" />
+        app:backgroundTint="@null"
+        android:layout_marginStart="30dp" /> <!-- Thêm khoảng cách ở đây -->/>
 
-    <!-- Description -->
     <EditText
         android:id="@+id/noteEdit"
         android:layout_width="match_parent"
@@ -72,7 +74,7 @@
         android:background="@color/black"
         android:drawableLeft="@drawable/outline_comment_24"
         android:gravity="left"
-        android:hint="Thêm ghi chú"
+        android:hint="    Thêm ghi chú"
         android:padding="16dp"
         android:textColor="@color/white"
         android:textColorHint="@android:color/darker_gray"
@@ -88,13 +90,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/black"
-            android:drawableLeft="@drawable/baseline_calendar_month_24"
+            android:drawableLeft="@drawable/baseline_calendar_month_241"
             android:gravity="left"
             android:onClick="btnCalendar"
             android:padding="16dp"
-            android:text="Ngày"
+            android:text="    Ngày"
             android:textColor="@android:color/white"
-            app:backgroundTint="@null" />
+            app:backgroundTint="@null"
+            />
     </LinearLayout>
 
 
@@ -105,7 +108,7 @@
         android:layout_height="wrap_content"
         android:background="@null"
         android:drawableStart="@drawable/baseline_account_balance_wallet_24"
-        android:hint="Tài Khoản"
+        android:hint="   Tài Khoản"
         android:inputType="date"
         android:padding="16dp"
         android:textColor="@android:color/white"

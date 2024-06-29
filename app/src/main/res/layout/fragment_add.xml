@@ -53,9 +53,9 @@
         android:layout_height="wrap_content"
         android:background="@null"
 
-        android:hint="Thêm ghi chú"
+        android:hint="     Thêm ghi chú"
         android:inputType="text"
-
+        android:drawableStart="@drawable/baseline_subject_24"
         android:padding="16dp"
         android:textColor="@android:color/white"
         android:textColorHint="@color/white" />
@@ -67,7 +67,7 @@
         android:layout_height="wrap_content"
         android:background="@null"
         android:drawableStart="@drawable/baseline_calendar_month_24"
-        android:hint="Hôm nay"
+        android:hint="       Hôm nay"
         android:inputType="date"
         android:padding="16dp"
         android:textColor="@android:color/white"
@@ -80,9 +80,9 @@
         android:layout_height="wrap_content"
         android:background="@null"
         android:drawableStart="@drawable/baseline_account_balance_wallet_24"
-        android:hint="Tài Khoản"
+        android:hint=   "     Tài Khoản"
         android:inputType="date"
-        android:padding="16dp"
+        android:padding="17dp"
         android:textColor="@android:color/white"
         android:textColorHint="@color/white" />
 
