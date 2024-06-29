@@ -94,7 +94,7 @@ public class nhom extends AppCompatActivity {
                 R.drawable.baseline_monetization_on_24,  // icon for "Lương"
                 R.drawable.baseline_monetization_on_24,  // icon for "Thu nhập khác"
                 R.drawable.baseline_monetization_on_24,  // icon for "Tiền chuyển đến"
-                R.drawable.baseline_directions_car_24  // icon for "Di chuyển"
+                R.drawable.baseline_directions_car_filled_24  // icon for "Di chuyển"
         };
 
         myadapterNhomThu = new CustomAdapter(nhom.this, nhomThu, iconsThu);

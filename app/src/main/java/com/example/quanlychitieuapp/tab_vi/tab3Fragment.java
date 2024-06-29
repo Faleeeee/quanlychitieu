@@ -76,8 +76,8 @@ public class tab3Fragment extends Fragment {
         int[] icons = {
                 R.drawable.baseline_fastfood_24,
                 R.drawable.outline_medical_information_24,
-                R.drawable.baseline_business_center_24,
-                R.drawable.baseline_directions_car_24,
+                R.drawable.baseline_business_center_241,
+                R.drawable.baseline_directions_car_filled_24,
                 R.drawable.baseline_monetization_on_24
         };
 
