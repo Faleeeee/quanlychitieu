@@ -29,6 +29,7 @@ public class calculator extends AppCompatActivity {
     private String dateSelect;
     private TextView nhomGiaoDich;
     DatabaseHelper database;
+    String selectedGD;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +88,7 @@ public class calculator extends AppCompatActivity {
                 Bundle myBundleNhom = data.getBundleExtra("myPackageNhom");
                 if (myBundleNhom != null) {
                     String selectedNhom = myBundleNhom.getString("loaiChiTieu");
+                    selectedGD = myBundleNhom.getString("nhomChiTieu");
                     nhomGiaoDich.setText(selectedNhom);
                 }
             } else {
@@ -150,9 +152,9 @@ public class calculator extends AppCompatActivity {
         int id_wal = 1;
         String date = dateSelect;
         String note = note_content.getText().toString();
-        String giaoDich = nhomGiaoDich.getText().toString();
 
-        database.addGiaoDich(id_wal, money, lGiaoDich, giaoDich, date, note);
+
+        database.addGiaoDich(id_wal, money, selectedGD, lGiaoDich, date, note);
 
         Intent myIntent = new Intent(calculator.this, MainActivity.class);
         startActivity(myIntent);

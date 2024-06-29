@@ -38,6 +38,11 @@ public class DatabaseHelper {
         if (!dbFile.exists()) {
             copyDatabase();
         }
+//        else {
+//            context.deleteDatabase(DATABASE_NAME);
+//            copyDatabase();
+//        }
+
     }
 
     private void copyDatabase() {
