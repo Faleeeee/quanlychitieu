@@ -2,7 +2,6 @@ package com.example.quanlychitieuapp;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -13,6 +12,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import com.example.quanlychitieuapp.Fragment.thongke;
 
 public class chitietchitieu extends AppCompatActivity {
     TextView tvName, tvMoney, tvDate, tvWallet;
@@ -29,7 +30,7 @@ public class chitietchitieu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chitietchitieu);
 
-        // Khởi tạo DatabaseHelper tại đây
+        // Khởi tạo DatabaseHelper
         dbHelper = new DatabaseHelper(this);
 
         Toolbar toolbar = findViewById(R.id.toolbarVi);
@@ -53,13 +54,10 @@ public class chitietchitieu extends AppCompatActivity {
     @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         int itemId = item.getItemId();
         if (itemId == R.id.edit) {
-
             Bundle myBundle = new Bundle();
-
-            myBundle.putInt("id_giaodich", idGiaodich);  // Thêm id của giao dịch vào bundle
+            myBundle.putInt("id_giaodich", idGiaodich);
             myBundle.putString("name", name);
             myBundle.putInt("money", money);
             myBundle.putString("date", date);
@@ -69,27 +67,18 @@ public class chitietchitieu extends AppCompatActivity {
             intent.putExtra("myPackageEditChiTieu", myBundle);
             startActivity(intent);
         } else if (itemId == R.id.delete) {
-            // Tạo dialog
             AlertDialog.Builder myDialog = new AlertDialog.Builder(chitietchitieu.this);
             myDialog.setTitle("Question");
             myDialog.setMessage("Bạn có chắc chắn muốn xóa giao dịch này không?");
 
-            myDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dbHelper.xoaGiaoDich(idGiaodich);
-                    Intent intent = new Intent(chitietchitieu.this, MainActivity.class);
-                    startActivity(intent);
-//                    finish(); // Đóng activity sau khi xóa
-                }
+            myDialog.setPositiveButton("Yes", (dialog, which) -> {
+                dbHelper.xoaGiaoDich(idGiaodich);
+                Intent intent = new Intent(chitietchitieu.this, MainActivity.class);
+                startActivity(intent);
+                finish();
             });
 
-            myDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.cancel();
-                }
-            });
+            myDialog.setNegativeButton("No", (dialog, which) -> dialog.cancel());
 
             myDialog.create().show();
         }
@@ -107,11 +96,9 @@ public class chitietchitieu extends AppCompatActivity {
             date = myBundle.getString("date");
             wallet = myBundle.getString("wallet");
             note = myBundle.getString("note");
-            // Kiểm tra giá trị id_giaodich
             Toast.makeText(this, "ID giao dịch: " + idGiaodich, Toast.LENGTH_SHORT).show();
         }
     }
-
 
     private void setContentText() {
         getData();
@@ -119,5 +106,9 @@ public class chitietchitieu extends AppCompatActivity {
         tvMoney.setText(String.valueOf(money));
         tvDate.setText(date);
         tvWallet.setText(wallet);
+
+        // Chuyển sang activity thống kê
+        Intent intent = new Intent(chitietchitieu.this, thongke.class);
+        startActivity(intent);
     }
 }
