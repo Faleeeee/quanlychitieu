@@ -27,6 +27,8 @@ public class DatabaseHelper {
     private String DATABASE_NAME = "quanlychitieu.db";
     private SQLiteDatabase database;
 
+    int idWalletChose = 1;
+
     public DatabaseHelper(Context context) {
         this.context = context;
         xuLySaoChepCSDL();
@@ -117,30 +119,31 @@ public class DatabaseHelper {
 
     }
 
-    public ArrayList<String> showAll(ListView listView) {
+    public ArrayList<String> showAll(ListView listView, int idWalletChose) {
         ArrayList<GiaoDich> giaoDichList = new ArrayList<>();
         database = context.openOrCreateDatabase(DATABASE_NAME, Context.MODE_PRIVATE, null);
-        Cursor cursor = database.query("giaodich", null, null, null, null, null, null);
+        Cursor cursor = database.query("giaodich", null, "id_wal = ?", new String[]{String.valueOf(idWalletChose)}, null, null, null);
 
         int tongTienThu = 0;
         int tongTienChi = 0;
 
         while (cursor.moveToNext()) {
-            int id = cursor.getInt(0);  // Giả sử cột id là cột đầu tiên
+            int id = cursor.getInt(0);
             int id_wal = cursor.getInt(1);
             int money = cursor.getInt(2);
-            String loai_giaoDich = cursor.getString(3);
+            String loai_giaodich = cursor.getString(3);
             String group_name = cursor.getString(4);
             String date = cursor.getString(5);
             String note = cursor.getString(6);
-            GiaoDich giaoDich = new GiaoDich(id, id_wal, money, loai_giaoDich, group_name, date, note);
+            if (idWalletChose == id_wal) {
+                GiaoDich giaoDich = new GiaoDich(id, id_wal, money, loai_giaodich, group_name, date, note);
+                giaoDichList.add(giaoDich);
 
-            giaoDichList.add(giaoDich);
-
-            if (giaoDich.loai_giaoDich.equals("thu")) {
-                tongTienThu += money;
-            } else if (giaoDich.loai_giaoDich.equals("chi")) {
-                tongTienChi += money;
+                if (giaoDich.loai_giaoDich.equals("thu")) {
+                    tongTienThu += money;
+                } else if (giaoDich.loai_giaoDich.equals("chi")) {
+                    tongTienChi += money;
+                }
             }
         }
 
@@ -166,6 +169,7 @@ public class DatabaseHelper {
             Intent myIntent = new Intent(context, chitietchitieu.class);
             Bundle myBundle = new Bundle();
             myBundle.putInt("id_giaodich", selectedItem.getId());  // Thêm id của giao dịch vào bundle
+            myBundle.putInt("id_wallet", selectedItem.getIdWallet());
             myBundle.putString("name", selectedItem.group_name);
             myBundle.putInt("money", selectedItem.money);
             myBundle.putString("date", selectedItem.date);
@@ -175,5 +179,6 @@ public class DatabaseHelper {
             context.startActivity(myIntent);
         });
     }
+
 
 }

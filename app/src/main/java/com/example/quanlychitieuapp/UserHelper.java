@@ -3,6 +3,7 @@ package com.example.quanlychitieuapp;
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
@@ -35,10 +36,18 @@ public class UserHelper {
             ContentValues values = new ContentValues();
             values.put("email", email);
             values.put("password", Util.hashPassword(password));
-            values.put("username", email);
+
+
             long result = database.insert("user", null, values);
 
-            Log.d("UserHelper", "Register result: " + result);
+            //Tao vi moi khi tao tai khoan
+            ContentValues valuesWallet = new ContentValues();
+            valuesWallet.put("user_id", result);
+            valuesWallet.put("name_wallet", "Tien mat");
+            valuesWallet.put("money", 0);
+
+            long insertWallet = database.insert("wallet", null, valuesWallet);
+            Log.d("UserHelper", "Register result: " + insertWallet);
 
             return result != -1;
         } else {
@@ -52,13 +61,31 @@ public class UserHelper {
             if (cursor.moveToFirst()) {
                 @SuppressLint("Range") String hashedPassword = cursor.getString(cursor.getColumnIndex("password"));
                 String hashedInputPassword = Util.hashPassword(password);
-                Log.d("UserHelper", "Stored Password: " + hashedPassword);
-                Log.d("UserHelper", "Input Password (hashed): " + hashedInputPassword);
-                return hashedPassword.equals(hashedInputPassword);
+                if (hashedPassword.equals(hashedInputPassword)) {
+                    @SuppressLint("Range") int userId = cursor.getInt(cursor.getColumnIndex("id"));
+                    saveUserIdToPreferences(userId);
+                    Log.d("UserHelper", "User ID saved: " + userId);
+                    return true;
+                }
             }
         }
         return false;
     }
+
+
+    private void saveUserIdToPreferences(int userId) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("MyAppPreferences", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt("user_id", userId);
+        editor.apply();
+    }
+
+
+    public int getUserIdFromPreferences() {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("MyAppPreferences", Context.MODE_PRIVATE);
+        return sharedPreferences.getInt("user_id", -1); // -1 nếu không tìm thấy
+    }
+
 
     public boolean changePassword(int userId, String oldPassword, String newPassword, String confirmPassword) {
         database = context.openOrCreateDatabase(DATABASE_NAME, Context.MODE_PRIVATE, null);

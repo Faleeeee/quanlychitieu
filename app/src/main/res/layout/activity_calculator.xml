@@ -56,6 +56,7 @@
         android:id="@+id/textGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
         android:background="@color/black"
         android:gravity="left"
         android:hint="Chọn nhóm"
@@ -64,8 +65,7 @@
         android:textColor="@android:color/white"
         android:textColorHint="@android:color/darker_gray"
         android:textSize="20dp"
-        app:backgroundTint="@null"
-        android:layout_marginStart="30dp" /> <!-- Thêm khoảng cách ở đây -->/>
+        app:backgroundTint="@null" /> <!-- Thêm khoảng cách ở đây -->/>
 
     <EditText
         android:id="@+id/noteEdit"
@@ -96,20 +96,20 @@
             android:padding="16dp"
             android:text="    Ngày"
             android:textColor="@android:color/white"
-            app:backgroundTint="@null"
-            />
+            app:backgroundTint="@null" />
     </LinearLayout>
 
 
     <!-- Spinner Account -->
-    <EditText
-        android:id="@+id/etAccount"
+    <TextView
+        android:id="@+id/wallet"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@null"
         android:drawableStart="@drawable/baseline_account_balance_wallet_24"
         android:hint="   Tài Khoản"
         android:inputType="date"
+        android:onClick="chonWallet"
         android:padding="16dp"
         android:textColor="@android:color/white"
         android:textColorHint="@color/white" />

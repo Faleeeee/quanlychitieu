@@ -33,6 +33,10 @@ public class GiaoDich {
         return id;
     }
 
+    public int getIdWallet() {
+        return id_wal;
+    }
+
     @Override
     public String toString() {
         return group_name + "   " + money + "   " + note + loai_giaoDich;

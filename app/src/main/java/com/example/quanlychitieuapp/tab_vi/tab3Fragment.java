@@ -1,29 +1,41 @@
 package com.example.quanlychitieuapp.tab_vi;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
 import com.example.quanlychitieuapp.CustomAdapter;
 import com.example.quanlychitieuapp.DatabaseHelper;
 import com.example.quanlychitieuapp.R;
+import com.example.quanlychitieuapp.wallet;
+import com.example.quanlychitieuapp.walletHelper;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class tab3Fragment extends Fragment {
-
+    int userID;
     TextView tienThu;
     TextView tienChi;
     TextView tongTien;
     ListView listView;
+    Spinner spinnerWallet;
     ArrayList<String> arrThongKe;
     CustomAdapter adapterDB;
     DatabaseHelper database;  // DatabaseHelper instance
+    private walletHelper walletData;
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -53,7 +65,9 @@ public class tab3Fragment extends Fragment {
         }
         // Initialize the DatabaseHelper instance
         database = new DatabaseHelper(getActivity());
+        walletData = new walletHelper(getActivity());
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -63,11 +77,73 @@ public class tab3Fragment extends Fragment {
         tienThu = view.findViewById(R.id.tienVao);
         tongTien = view.findViewById(R.id.tongTien);
         listView = view.findViewById(R.id.listView);
+        spinnerWallet = view.findViewById(R.id.spinnerWallet);
 
-        addControls(view);
-        showAll();
+        walletHelper walletHelper = new walletHelper(getContext());
+        ArrayList<wallet> walletList = walletHelper.showWallet();
+
+        ArrayList<String> walletNames = new ArrayList<>();
+        final Map<String, Integer> walletMap = new HashMap<>();
+        for (wallet walletItem : walletList) {
+            walletNames.add(walletItem.getName());
+            walletMap.put(walletItem.getName(), walletItem.getIdWallet());
+        }
+
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getContext(), R.layout.style_spinner, walletNames);
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerWallet.setAdapter(arrayAdapter);
+
+        addControls(view); // Ensure addControls() is called first
+//        showAll(); // Call showAll() after addControls()
+
+        spinnerWallet.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedWalletName = walletNames.get(position);
+                int idWalletChose = walletMap.get(selectedWalletName);
+                Toast.makeText(getContext(), "Đã chọn ví: " + selectedWalletName, Toast.LENGTH_SHORT).show();
+                showAll(idWalletChose);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                if (!walletNames.isEmpty()) {
+                    String firstWalletName = walletNames.get(0);
+                    int idWalletChose = walletMap.get(firstWalletName);
+                    Toast.makeText(getContext(), "Đã chọn ví: " + firstWalletName, Toast.LENGTH_SHORT).show();
+                    showAll(idWalletChose);
+                }
+            }
+        });
+
         return view;
     }
+
+    private void showAll(int idWalletChose) {
+        ArrayList<String> resultList = database.showAll(listView, idWalletChose);
+        arrThongKe.clear();
+
+        if (resultList.size() >= 2) {
+            int tongTienThu = Integer.parseInt(resultList.get(0));
+            int tongTienChi = Integer.parseInt(resultList.get(1));
+
+            resultList.remove(0);
+            resultList.remove(0);
+
+            arrThongKe.addAll(resultList);
+            adapterDB.notifyDataSetChanged();
+
+            tienThu.setText(String.valueOf(tongTienThu));
+            tienChi.setText(String.valueOf(tongTienChi));
+            tongTien.setText(String.valueOf(tongTienThu - tongTienChi));
+        } else {
+            tienThu.setText("0");
+            tienChi.setText("0");
+            tongTien.setText("0");
+            Toast.makeText(getContext(), "Không có giao dịch nào cho ví này.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
 
     private void addControls(View view) {
         listView = view.findViewById(R.id.listView);
@@ -85,23 +161,5 @@ public class tab3Fragment extends Fragment {
         listView.setAdapter(adapterDB);
     }
 
-    private void showAll() {
-        ArrayList<String> resultList = database.showAll(listView);
-        arrThongKe.clear();
 
-        // Get total income and expenses from resultList
-        int tongTienThu = Integer.parseInt(resultList.get(0));
-        int tongTienChi = Integer.parseInt(resultList.get(1));
-
-        // Remove the first two values to get the transaction list
-        resultList.remove(0);
-        resultList.remove(0);
-
-        arrThongKe.addAll(resultList);
-        adapterDB.notifyDataSetChanged();
-
-        tienThu.setText(String.valueOf(tongTienThu));
-        tienChi.setText(String.valueOf(tongTienChi));
-        tongTien.setText(String.valueOf(tongTienThu - tongTienChi));
-    }
 }

@@ -24,12 +24,14 @@ import java.util.Calendar;
 public class calculator extends AppCompatActivity {
     static final int REQUEST_CODE = 0;
 
-    private EditText display, note_content;
+    private EditText note_content, display;
     private Button btnSave, btnBack, btnDate;
     private String dateSelect;
-    private TextView nhomGiaoDich;
+    private TextView nhomGiaoDich, wallet;
     DatabaseHelper database;
     String selectedGD;
+    String walletName;
+    int id_wal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +61,7 @@ public class calculator extends AppCompatActivity {
     private void initViews() {
         display = findViewById(R.id.display);
         note_content = findViewById(R.id.noteEdit);
+        wallet = findViewById(R.id.wallet);
         btnSave = findViewById(R.id.btnSave);
         btnBack = findViewById(R.id.btnBack);
         btnDate = findViewById(R.id.btnDate);
@@ -76,6 +79,7 @@ public class calculator extends AppCompatActivity {
 
         btnBack.setOnClickListener(v -> startActivity(new Intent(this, MainActivity.class)));
         nhomGiaoDich.setOnClickListener(v -> startActivityForResult(new Intent(calculator.this, nhom.class), REQUEST_CODE));
+        wallet.setOnClickListener(v -> startActivityForResult(new Intent(calculator.this, chonVi.class), REQUEST_CODE));
         btnSave.setOnClickListener(v -> saveTransaction());
         btnDate.setOnClickListener(v -> showDatePickerDialog());
     }
@@ -89,13 +93,21 @@ public class calculator extends AppCompatActivity {
                 if (myBundleNhom != null) {
                     String selectedNhom = myBundleNhom.getString("loaiChiTieu");
                     selectedGD = myBundleNhom.getString("nhomChiTieu");
-                    nhomGiaoDich.setText(selectedNhom);
+                    nhomGiaoDich.setText(selectedNhom); // Hiển thị lựa chọn nhóm giao dịch
+                }
+
+                Bundle myBundleVi = data.getBundleExtra("selectedWallet");
+                if (myBundleVi != null) {
+                    walletName = myBundleVi.getString("nameWallet"); // Lấy tên ví được chọn
+                    id_wal = myBundleVi.getInt("idWallet"); // Lấy tên ví được chọn
+                    wallet.setText(walletName);
                 }
             } else {
-                Toast.makeText(this, "Không nhận được dữ liệu từ Activity nhom", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Không nhận được dữ liệu từ Activity nhom hoặc ví", Toast.LENGTH_SHORT).show();
             }
         }
     }
+
 
     private void clearDisplayOnFirstClick(View v) {
         if (getString(R.string.calculator).equals(display.getText().toString())) {
@@ -149,7 +161,6 @@ public class calculator extends AppCompatActivity {
             return;
         }
 
-        int id_wal = 1;
         String date = dateSelect;
         String note = note_content.getText().toString();
 
@@ -163,7 +174,8 @@ public class calculator extends AppCompatActivity {
     private void checkFieldsForEmptyValues() {
         String money = display.getText().toString();
         String nGiaoDich = nhomGiaoDich.getText().toString();
-        if (money.isEmpty() || dateSelect == null || dateSelect.isEmpty() || nGiaoDich.isEmpty()) {
+        String nameWallet = wallet.getText().toString();
+        if (money.isEmpty() || dateSelect == null || dateSelect.isEmpty() || nGiaoDich.isEmpty() || nameWallet.isEmpty()) {
             btnSave.setEnabled(false);
             btnSave.setBackgroundResource(R.drawable.disabled_button_background);
         } else {
