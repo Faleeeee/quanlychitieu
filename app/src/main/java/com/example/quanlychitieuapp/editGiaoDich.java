@@ -63,12 +63,46 @@ public class editGiaoDich extends AppCompatActivity {
             date = myBundle.getString("date");
             wallet = myBundle.getString("wallet");
             note = myBundle.getString("note");
-            // Kiểm tra giá trị id_giaodich
+            selectedGD = myBundle.getString("loai_giaodich"); // Get selectedGD
             Toast.makeText(this, "ID giao dịch edit: " + idGiaodich, Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, "Khong nhan duoc bundle", Toast.LENGTH_SHORT).show();
         }
     }
+
+    private void saveTransaction() {
+        Double money = 0.0;
+        try {
+            money = Double.parseDouble(display.getText().toString());
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            Toast.makeText(this, "Định dạng số không hợp lệ", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        String lGiaoDich = nhomGiaoDich.getText().toString();
+        if (lGiaoDich.isEmpty()) {
+            Toast.makeText(this, "Lỗi: Nhóm giao dịch rỗng", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        int id_wal = 1;
+        String date = dateSelect;
+        String note = note_content.getText().toString();
+        String giaoDich = nhomGiaoDich.getText().toString();
+
+        // Check if selectedGD is set
+        if (selectedGD == null || selectedGD.isEmpty()) {
+            Toast.makeText(this, "Lỗi: Nhóm giao dịch chưa được chọn", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        dbHelper.editGiaoDich(idGiaodich, id_wal, money, selectedGD, lGiaoDich, date, note);
+
+        Intent myIntent = new Intent(editGiaoDich.this, MainActivity.class);
+        startActivity(myIntent);
+    }
+
 
     private void giaoDich() {
         Intent intent = getIntent();
@@ -130,6 +164,7 @@ public class editGiaoDich extends AppCompatActivity {
         }
     }
 
+
     private void clearDisplayOnFirstClick(View v) {
         if (getString(R.string.calculator).equals(display.getText().toString())) {
             display.setText("");
@@ -165,33 +200,6 @@ public class editGiaoDich extends AppCompatActivity {
         datePickerDialog.show();
     }
 
-    private void saveTransaction() {
-        Double money = 0.0;
-        try {
-            money = Double.parseDouble(display.getText().toString());
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
-            Toast.makeText(this, "Định dạng số không hợp lệ", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        String lGiaoDich = nhomGiaoDich.getText().toString();
-
-        if (lGiaoDich.isEmpty()) {
-            Toast.makeText(this, "Lỗi: Nhóm giao dịch rỗng", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        int id_wal = 1;
-        String date = dateSelect;
-        String note = note_content.getText().toString();
-        String giaoDich = nhomGiaoDich.getText().toString();
-
-        dbHelper.editGiaoDich(idGiaodich, id_wal, money, selectedGD, lGiaoDich, date, note);
-
-        Intent myIntent = new Intent(editGiaoDich.this, MainActivity.class);
-        startActivity(myIntent);
-    }
 
     private void checkFieldsForEmptyValues() {
         String money = display.getText().toString();

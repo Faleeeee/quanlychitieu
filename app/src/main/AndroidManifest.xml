@@ -15,14 +15,6 @@
         android:theme="@style/Theme.Quanlychitieuapp"
         tools:targetApi="31">
         <activity
-            android:name=".addWallet"
-            android:exported="false"
-            android:parentActivityName=".chonVi" />
-        <activity
-            android:name=".chonVi"
-            android:exported="false"
-            android:parentActivityName=".calculator" />
-        <activity
             android:name=".editGiaoDich"
             android:exported="false" />
         <activity
@@ -67,7 +59,7 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true" />
+            android:exported="true"></activity>
     </application>
 
 </manifest>

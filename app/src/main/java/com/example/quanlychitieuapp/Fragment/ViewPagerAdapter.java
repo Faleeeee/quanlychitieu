@@ -21,7 +21,8 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
             case 2:
                 return new addFragment();
             case 3:
-                return new thongKeFragment();
+                return new thongke();
+
             case 4:
                 return new caiDatFragment();
             default:

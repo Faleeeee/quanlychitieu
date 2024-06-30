@@ -19,12 +19,10 @@ public class chitietchitieu extends AppCompatActivity {
     String name;
     int money;
     String date;
-    String walletName;
+    String wallet;
     String note;
     private int idGiaodich;
-    int id_wal;
     private DatabaseHelper dbHelper;
-    private walletHelper walletHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +31,6 @@ public class chitietchitieu extends AppCompatActivity {
 
         // Khởi tạo DatabaseHelper tại đây
         dbHelper = new DatabaseHelper(this);
-        walletHelper = new walletHelper(this);
 
         Toolbar toolbar = findViewById(R.id.toolbarVi);
         setSupportActionBar(toolbar);
@@ -105,10 +102,10 @@ public class chitietchitieu extends AppCompatActivity {
         Bundle myBundle = myIntent.getBundleExtra("myPackageChiTietChiTieu");
         if (myBundle != null) {
             idGiaodich = myBundle.getInt("id_giaodich");
-            id_wal = myBundle.getInt("id_wallet");
             name = myBundle.getString("name");
             money = myBundle.getInt("money");
             date = myBundle.getString("date");
+            wallet = myBundle.getString("wallet");
             note = myBundle.getString("note");
             // Kiểm tra giá trị id_giaodich
             Toast.makeText(this, "ID giao dịch: " + idGiaodich, Toast.LENGTH_SHORT).show();
@@ -121,13 +118,6 @@ public class chitietchitieu extends AppCompatActivity {
         tvName.setText(name);
         tvMoney.setText(String.valueOf(money));
         tvDate.setText(date);
-
-        walletName = walletHelper.getWalletNameById(id_wal);
-        if (walletName != null) {
-            tvWallet.setText(walletName);  // Chuyển đổi int sang String
-        } else {
-            tvWallet.setText("Wallet name not found");
-        }
-
+        tvWallet.setText(wallet);
     }
 }
