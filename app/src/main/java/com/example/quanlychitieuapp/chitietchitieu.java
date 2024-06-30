@@ -22,6 +22,7 @@ public class chitietchitieu extends AppCompatActivity {
     String date;
     String wallet;
     String note;
+    String loaiGD;
     private int idGiaodich;
     private DatabaseHelper dbHelper;
 
@@ -51,7 +52,6 @@ public class chitietchitieu extends AppCompatActivity {
         return true;
     }
 
-    @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int itemId = item.getItemId();
@@ -61,7 +61,10 @@ public class chitietchitieu extends AppCompatActivity {
             myBundle.putString("name", name);
             myBundle.putInt("money", money);
             myBundle.putString("date", date);
+            myBundle.putString("wallet", wallet);
             myBundle.putString("note", note);
+            // Add selectedGD if it exists
+            myBundle.putString("loai_giaodich", loaiGD);
 
             Intent intent = new Intent(chitietchitieu.this, editGiaoDich.class);
             intent.putExtra("myPackageEditChiTieu", myBundle);
@@ -86,6 +89,7 @@ public class chitietchitieu extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+
     private void getData() {
         Intent myIntent = getIntent();
         Bundle myBundle = myIntent.getBundleExtra("myPackageChiTietChiTieu");
@@ -93,6 +97,7 @@ public class chitietchitieu extends AppCompatActivity {
             idGiaodich = myBundle.getInt("id_giaodich");
             name = myBundle.getString("name");
             money = myBundle.getInt("money");
+            loaiGD = myBundle.getString("loai_giaodich");
             date = myBundle.getString("date");
             wallet = myBundle.getString("wallet");
             note = myBundle.getString("note");
@@ -108,7 +113,7 @@ public class chitietchitieu extends AppCompatActivity {
         tvWallet.setText(wallet);
 
         // Chuyển sang activity thống kê
-        Intent intent = new Intent(chitietchitieu.this, thongke.class);
-        startActivity(intent);
+//        Intent intent = new Intent(chitietchitieu.this, thongke.class);
+//        startActivity(intent);
     }
 }

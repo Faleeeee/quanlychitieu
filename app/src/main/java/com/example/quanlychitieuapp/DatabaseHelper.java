@@ -168,6 +168,7 @@ public class DatabaseHelper {
             myBundle.putInt("id_giaodich", selectedItem.getId());  // Thêm id của giao dịch vào bundle
             myBundle.putString("name", selectedItem.group_name);
             myBundle.putInt("money", selectedItem.money);
+            myBundle.putString("loai_giaodich", selectedItem.loai_giaoDich);
             myBundle.putString("date", selectedItem.date);
             myBundle.putString("note", selectedItem.note);
 
