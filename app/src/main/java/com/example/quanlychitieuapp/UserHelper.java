@@ -35,21 +35,33 @@ public class UserHelper {
 
             ContentValues values = new ContentValues();
             values.put("email", email);
-            values.put("password", Util.hashPassword(password));
+            values.put("password", Util.hashPassword(password)); // Sử dụng hàm hashPassword
 
+            try {
+                long result = database.insert("user", null, values);
+                if (result != -1) {
+                    // Tao vi moi khi tao tai khoan
+                    ContentValues valuesWallet = new ContentValues();
+                    valuesWallet.put("user_id", result);
+                    valuesWallet.put("name_wallet", "Tien mat");
+                    valuesWallet.put("money", 0);
 
-            long result = database.insert("user", null, values);
-
-            //Tao vi moi khi tao tai khoan
-            ContentValues valuesWallet = new ContentValues();
-            valuesWallet.put("user_id", result);
-            valuesWallet.put("name_wallet", "Tien mat");
-            valuesWallet.put("money", 0);
-
-            long insertWallet = database.insert("wallet", null, valuesWallet);
-            Log.d("UserHelper", "Register result: " + insertWallet);
-
-            return result != -1;
+                    long insertWallet = database.insert("wallet", null, valuesWallet);
+                    if (insertWallet != -1) {
+                        Log.d("UserHelper", "Register result: " + insertWallet);
+                        return true;
+                    } else {
+                        Log.e("UserHelper", "Error creating wallet");
+                        return false;
+                    }
+                } else {
+                    Log.e("UserHelper", "Error registering user");
+                    return false;
+                }
+            } catch (Exception e) {
+                Log.e("UserHelper", "Error occurred: " + e.getMessage());
+                return false;
+            }
         } else {
             return false;
         }
@@ -127,7 +139,7 @@ public class UserHelper {
         return false;
     }
 
-    private boolean confirmPassword(String password, String confirmPassword) {
+    boolean confirmPassword(String password, String confirmPassword) {
         if (!password.equals(confirmPassword)) {
             return false; // Mật khẩu không khớp
         }

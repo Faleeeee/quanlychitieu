@@ -54,25 +54,32 @@ public class sign_up extends AppCompatActivity {
         String email = emailEditText.getText().toString().trim();
         String password = passwordEditText.getText().toString().trim();
         String confirmPassword = confirmPasswordEditText.getText().toString().trim();
-        if (email.isEmpty() || password.isEmpty()) {
+
+        // Kiểm tra các trường trống
+        if (email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
             Toast.makeText(this, "Vui lòng điền đầy đủ", Toast.LENGTH_SHORT).show();
-            return;
+            return; // Dừng lại nếu có trường trống
         }
+
+        // Kiểm tra email hợp lệ
         if (!isValidEmail(email)) {
             Toast.makeText(this, "Email không hợp lệ", Toast.LENGTH_SHORT).show();
-            return;
+            return; // Dừng lại nếu email không hợp lệ
         }
 
+        // Kiểm tra email đã tồn tại
         if (databaseHelper.isEmailExists(email)) {
             Toast.makeText(this, "Email đã được sử dụng", Toast.LENGTH_SHORT).show();
-            return;
+            return; // Dừng lại nếu email đã tồn tại
         }
 
-        if (!password.equals(confirmPassword)) {
-            Toast.makeText(this, "Mật khẩu không khớp", Toast.LENGTH_SHORT).show();
-            return;
+        // **GỌI HÀM KIỂM TRA MẬT KHẨU**
+        if (!databaseHelper.confirmPassword(password, confirmPassword)) {
+            // Nếu confirmPassword() trả về false (mật khẩu không hợp lệ)
+            return; // Dừng lại
         }
 
+        // Tiến hành đăng ký nếu tất cả các kiểm tra đều thành công
         boolean isRegistered = databaseHelper.registerUser(email, password, confirmPassword);
         if (isRegistered) {
             Toast.makeText(this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
@@ -82,6 +89,8 @@ public class sign_up extends AppCompatActivity {
             Toast.makeText(this, "Đăng ký không thành công", Toast.LENGTH_SHORT).show();
         }
     }
+
+
 
     private boolean isValidEmail(String email) {
         String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@" +
