@@ -45,6 +45,7 @@ public class chonVi extends AppCompatActivity {
         int[] icons = {
                 R.drawable.baseline_account_balance_wallet_24,
                 R.drawable.baseline_account_balance_wallet_24
+
         };
 
         // Tạo danh sách tên ví từ danh sách wallet
@@ -77,7 +78,7 @@ public class chonVi extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int itemId = item.getItemId();
-        if (itemId == R.id.add) {
+        if (itemId == R.id.add ) {
             Intent intent = new Intent(chonVi.this, addWallet.class);
             startActivity(intent);
         }

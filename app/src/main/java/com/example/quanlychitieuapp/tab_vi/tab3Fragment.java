@@ -12,6 +12,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.quanlychitieuapp.CustomAdapter;
@@ -89,9 +91,25 @@ public class tab3Fragment extends Fragment {
             walletMap.put(walletItem.getName(), walletItem.getIdWallet());
         }
 
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getContext(), R.layout.style_spinner, walletNames);
-        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerWallet.setAdapter(arrayAdapter);
+        // Tạo ArrayAdapter sử dụng layout custom
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getContext(), R.layout.style_spinner, walletNames) {
+            @NonNull
+            @Override
+            public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                View view = super.getView(position, convertView, parent);
+
+                TextView textViewName = view.findViewById(R.id.textViewName);
+                textViewName.setText("Tài khoản"); // Hiển thị chữ "Tài khoản" cho mọi item
+
+                return view;
+            }
+
+            @Override
+            public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                return getView(position, convertView, parent);
+            }
+        };
+
 
         addControls(view); // Ensure addControls() is called first
 //        showAll(); // Call showAll() after addControls()
