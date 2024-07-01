@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/purple_500"
     android:orientation="vertical"
-    tools:context=".Fragment.homeFragment">
+    tools:context=".Fragment.viFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -41,31 +41,33 @@
                 android:textSize="40dp"></EditText>
         </LinearLayout>
 
-        <LinearLayout
+
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:background="@drawable/giaodichvi"
-            android:gravity="center">
+            android:layout_height="wrap_content">
 
-            <ListView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"></ListView>
-        </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tab_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"></com.google.android.material.tabs.TabLayout>
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tab_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:tabGravity="center"
+                    app:tabMinWidth="120dp"
+                    app:tabMode="scrollable"
+                    app:tabPaddingEnd="10dp"
+                    app:tabPaddingStart="10dp" />
+            </LinearLayout>
+        </ScrollView>
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/vi_viewpager"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/tab_layout"></androidx.viewpager.widget.ViewPager>
-
+            android:layout_height="match_parent"></androidx.viewpager.widget.ViewPager>
 
     </LinearLayout>
-
 
 </LinearLayout>

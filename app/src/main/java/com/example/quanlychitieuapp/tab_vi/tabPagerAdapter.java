@@ -6,44 +6,43 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
+
 public class tabPagerAdapter extends FragmentStatePagerAdapter {
-    public tabPagerAdapter(@NonNull FragmentManager fm, int behavior) {
+    private final int numWeeks;
+    private final Calendar calendar = Calendar.getInstance();
+    private final SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM", Locale.getDefault());
+
+    public tabPagerAdapter(@NonNull FragmentManager fm, int behavior, int numWeeks) {
         super(fm, behavior);
+        this.numWeeks = numWeeks;
     }
 
     @NonNull
     @Override
     public Fragment getItem(int position) {
-        switch (position) {
-            case 0:
-                return new tab1Fragment();
-            case 1:
-                return new tab2Fragment();
-            case 2:
-                return new tab3Fragment();
-            default:
-                return new tab1Fragment();
-
-        }
+        // Trả về một instance mới của WeekFragment với tham số tuần tương ứng
+        return WeekFragment.newInstance(position + 1, 10);
     }
 
     @Override
     public int getCount() {
-        return 3;
+        return numWeeks;
     }
 
     @Nullable
     @Override
     public CharSequence getPageTitle(int position) {
-        switch (position) {
-            case 0:
-                return "Tab 1";
-            case 1:
-                return "Tab 2";
-            case 2:
-                return "Tab 3";
-            default:
-                return "Tab 1";
-        }
+        // Tính toán ngày bắt đầu và ngày kết thúc của tuần
+        calendar.set(Calendar.WEEK_OF_YEAR, position + 1);
+        calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+        String startDate = dateFormat.format(calendar.getTime());
+
+        calendar.add(Calendar.DAY_OF_WEEK, 6);
+        String endDate = dateFormat.format(calendar.getTime());
+
+        return startDate + " - " + endDate;
     }
 }

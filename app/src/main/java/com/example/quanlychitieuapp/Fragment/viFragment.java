@@ -1,83 +1,52 @@
 package com.example.quanlychitieuapp.Fragment;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
 import com.example.quanlychitieuapp.R;
 import com.example.quanlychitieuapp.tab_vi.tabPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link viFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class viFragment extends Fragment {
+import java.util.Calendar;
 
+public class viFragment extends Fragment {
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private View mView;
-
-
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private static final int NUM_WEEKS = 52; // hoặc số tuần mà bạn muốn hiển thị
+    private int currentWeekIndex; // chỉ số của tuần hiện tại
 
     public viFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment viFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static viFragment newInstance(String param1, String param2) {
-        viFragment fragment = new viFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         mView = inflater.inflate(R.layout.fragment_vi, container, false);
 
         tabLayout = mView.findViewById(R.id.tab_layout);
         viewPager = mView.findViewById(R.id.vi_viewpager);
 
-        tabPagerAdapter adapter = new tabPagerAdapter(getChildFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+        // Tính chỉ số của tuần hiện tại (ví dụ là tuần hiện tại là tuần 26)
+        Calendar calendar = Calendar.getInstance();
+        int currentWeek = calendar.get(Calendar.WEEK_OF_YEAR);
+
+        // Khởi tạo adapter và set cho ViewPager
+        tabPagerAdapter adapter = new tabPagerAdapter(getChildFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT, NUM_WEEKS);
         viewPager.setAdapter(adapter);
 
+        // Đặt tab của tuần hiện tại là tab mặc định khi vào ứng dụng
+        currentWeekIndex = currentWeek - 1; // vì currentWeek bắt đầu từ 1
+        viewPager.setCurrentItem(currentWeekIndex);
+
         tabLayout.setupWithViewPager(viewPager);
-        viewPager.setCurrentItem(2);
 
         return mView;
     }

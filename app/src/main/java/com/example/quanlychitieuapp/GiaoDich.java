@@ -1,5 +1,7 @@
 package com.example.quanlychitieuapp;
 
+import android.os.Parcelable;
+
 public class GiaoDich {
     int id;
     int id_wal;
@@ -35,6 +37,14 @@ public class GiaoDich {
 
     public int getIdWallet() {
         return id_wal;
+    }
+
+    public String getLoai_giaoDich() {
+        return loai_giaoDich;
+    }
+
+    public int getMoney() {
+        return money;
     }
 
     @Override

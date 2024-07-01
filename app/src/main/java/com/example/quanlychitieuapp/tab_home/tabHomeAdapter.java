@@ -6,9 +6,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
-import com.example.quanlychitieuapp.tab_vi.tab1Fragment;
-import com.example.quanlychitieuapp.tab_vi.tab2Fragment;
-import com.example.quanlychitieuapp.tab_vi.tab3Fragment;
 
 public class tabHomeAdapter extends FragmentStatePagerAdapter {
     public tabHomeAdapter(@NonNull FragmentManager fm, int behavior) {
