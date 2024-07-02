@@ -89,8 +89,8 @@ public class activity_wallet_barchart extends AppCompatActivity {
         Cursor cursor = database.query("wallet", null, "user_id = ?", new String[]{String.valueOf(userId)}, null, null, null);
 
         while (cursor.moveToNext()) {
-            String name_wallet = cursor.getString(cursor.getColumnIndex("name_wallet"));
-            int money = cursor.getInt(cursor.getColumnIndex("money")); // Lấy tổng tiền từ cột "money" của bảng "wallet"
+            String name_wallet = cursor.getString(cursor.getInt(2));
+            int money = cursor.getInt(3); // Lấy tổng tiền từ cột "money" của bảng "wallet"
 
             thongKe.put(name_wallet, money);
         }
