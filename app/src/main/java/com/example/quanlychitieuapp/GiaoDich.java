@@ -49,6 +49,6 @@ public class GiaoDich {
 
     @Override
     public String toString() {
-        return group_name + "   " + money + "   " + note + loai_giaoDich;
+        return group_name + "                         " + money;
     }
 }

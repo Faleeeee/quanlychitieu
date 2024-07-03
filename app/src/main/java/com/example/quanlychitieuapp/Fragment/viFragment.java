@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentStatePagerAdapter;
@@ -20,7 +21,8 @@ public class viFragment extends Fragment {
     private ViewPager viewPager;
     private View mView;
     private static final int NUM_WEEKS = 52; // hoặc số tuần mà bạn muốn hiển thị
-    private int currentWeekIndex; // chỉ số của tuần hiện tại
+    private int currentWeekIndex; // chỉ số của tuần hiện tại.
+    TextView money;
 
     public viFragment() {
         // Required empty public constructor
@@ -33,6 +35,7 @@ public class viFragment extends Fragment {
 
         tabLayout = mView.findViewById(R.id.tab_layout);
         viewPager = mView.findViewById(R.id.vi_viewpager);
+        money = mView.findViewById(R.id.moneyWallet);
 
         // Tính chỉ số của tuần hiện tại (ví dụ là tuần hiện tại là tuần 26)
         Calendar calendar = Calendar.getInstance();
