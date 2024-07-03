@@ -1,10 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     android:background="@color/black"
     tools:context=".Fragment.homeFragment">
 
@@ -14,10 +12,11 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
             android:layout_marginEnd="15dp"
             android:orientation="vertical">
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -62,13 +61,14 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/radius"
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:layout_marginTop="60dp"
-                    android:background="@drawable/radius"
+                    android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:weightSum="2">
 
@@ -104,6 +104,17 @@
                             android:textSize="20sp"
                             android:textStyle="bold"></TextView>
                     </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ListView
+                        android:id="@+id/lvWallet"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:nestedScrollingEnabled="true"></ListView>
                 </LinearLayout>
 
             </LinearLayout>
@@ -153,7 +164,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
+                    android:layout_height="wrap_content"
                     android:background="@drawable/radius"
                     android:orientation="vertical">
 
@@ -165,7 +176,7 @@
                     <androidx.viewpager.widget.ViewPager
                         android:id="@+id/baocao_viewpager"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_below="@id/tab_baocao_home"></androidx.viewpager.widget.ViewPager>
                 </LinearLayout>
             </LinearLayout>
@@ -213,14 +224,14 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
+                    android:layout_height="wrap_content"
                     android:background="@drawable/radius"></LinearLayout>
             </LinearLayout>
+
             <FrameLayout
                 android:id="@+id/fragmentContainer"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                />
+                android:layout_height="match_parent" />
 
         </LinearLayout>
     </ScrollView>

@@ -74,7 +74,7 @@ public class nhom extends AppCompatActivity {
         int[] iconsChi = {
                 R.drawable.baseline_fastfood_24,  // icon for "Ăn uống"
                 R.drawable.outline_medical_information_24,  // icon for "Bảo hiểm"
-                  // icon for "Đầu tư"
+                // icon for "Đầu tư"
                 R.drawable.baseline_directions_car_filled_24,  // icon for "Di chuyển"
                 R.drawable.baseline_monetization_on_24  // icon for "Các chi phí khác"
         };
@@ -88,13 +88,12 @@ public class nhom extends AppCompatActivity {
         nhomThu.add("Lương");
         nhomThu.add("Thu nhập khác");
         nhomThu.add("Tiền chuyển đến");
-        nhomThu.add("Di chuyển");
+
 
         int[] iconsThu = {
                 R.drawable.baseline_monetization_on_24,  // icon for "Lương"
                 R.drawable.baseline_monetization_on_24,  // icon for "Thu nhập khác"
-                R.drawable.baseline_monetization_on_24,  // icon for "Tiền chuyển đến"
-                R.drawable.baseline_directions_car_filled_24  // icon for "Di chuyển"
+                R.drawable.baseline_monetization_on_24 // icon for "Di chuyển"
         };
 
         myadapterNhomThu = new CustomAdapter(nhom.this, nhomThu, iconsThu);
