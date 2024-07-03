@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,11 +18,13 @@ public class CustomAdapterWallet extends BaseExpandableListAdapter {
     private Context context;
     private List<String> listDataHeader;
     private HashMap<String, List<GiaoDich>> listDataChild;
+    private HashMap<String, Integer> listIcons;
 
-    public CustomAdapterWallet(Context context, List<String> listDataHeader, HashMap<String, List<GiaoDich>> listDataChild) {
+    public CustomAdapterWallet(Context context, List<String> listDataHeader, HashMap<String, List<GiaoDich>> listDataChild, HashMap<String, Integer> listIcons) {
         this.context = context;
         this.listDataHeader = listDataHeader;
         this.listDataChild = listDataChild;
+        this.listIcons = listIcons; // Lưu danh sách icon
     }
 
     @Override
@@ -77,12 +80,20 @@ public class CustomAdapterWallet extends BaseExpandableListAdapter {
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
         final GiaoDich giaoDich = (GiaoDich) getChild(groupPosition, childPosition);
         if (convertView == null) {
-            LayoutInflater inflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.list_item_with_icon, null);
         }
 
         TextView txtListChild = convertView.findViewById(R.id.text_view);
         txtListChild.setText(giaoDich.toString());
+
+        ImageView iconImageView = convertView.findViewById(R.id.icon);
+        int iconResource = getIconResourceForTransaction(giaoDich); // Lấy resource icon tương ứng
+        if (iconResource != 0) {
+            iconImageView.setImageResource(iconResource);
+        } else {
+            iconImageView.setImageResource(R.drawable.outline_comment_24); // Nếu không có icon thì sử dụng icon mặc định
+        }
 
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,6 +116,34 @@ public class CustomAdapterWallet extends BaseExpandableListAdapter {
         });
 
         return convertView;
+    }
+
+    // Phương thức này dựa trên các quy tắc của bạn để chọn icon tương ứng với từng loại giao dịch
+    private int getIconResourceForTransaction(GiaoDich giaoDich) {
+
+        // Thêm các trường hợp khác nếu cần thiết
+
+        if (giaoDich.getGroup_name().equals("Ăn uống")) {
+            return R.drawable.baseline_fastfood_24;
+        } else if (giaoDich.getGroup_name().equals("Bảo hiểm")) {
+            return R.drawable.outline_medical_information_24;
+        } else if (giaoDich.getGroup_name().equals("Đầu tư")) {
+            return R.drawable.baseline_monetization_on_24;
+        } else if (giaoDich.getGroup_name().equals("Di chuyển")) {
+            return R.drawable.baseline_directions_car_filled_24;
+        } else if (giaoDich.getGroup_name().equals("Các chi phí khác")) {
+            return R.drawable.baseline_monetization_on_24;
+        } else if (giaoDich.getGroup_name().equals("Lương")) {
+            return R.drawable.baseline_monetization_on_24;
+        } else if (giaoDich.getGroup_name().equals("Thu nhập khác")) {
+            return R.drawable.baseline_monetization_on_24;
+        } else if (giaoDich.getGroup_name().equals("Tiền chuyển đến")) {
+            return R.drawable.baseline_monetization_on_24;
+        } else {
+            return R.drawable.outline_comment_24; // Biểu tượng mặc định nếu không có loại giao dịch phù hợp
+        }
+
+//        return 0; // Trả về 0 nếu không có icon nào phù hợp
     }
 
 

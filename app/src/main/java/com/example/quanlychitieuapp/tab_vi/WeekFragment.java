@@ -123,16 +123,12 @@ public class WeekFragment extends Fragment {
     private void showAllTransactionsForWeek(int weekNumber, int idWalletChose) {
         List<String> listDataHeader = new ArrayList<>();
         HashMap<String, List<GiaoDich>> listDataChild = new HashMap<>();
+        HashMap<String, Integer> listIcons = new HashMap<>(); // Khởi tạo danh sách icon
 
-        database.showAllTransactionsForWeek(listDataHeader, listDataChild, weekNumber, idWalletChose); // Truyền id ví được chọn vào phương thức
+        database.showAllTransactionsForWeek(listDataHeader, listDataChild, listIcons, weekNumber, idWalletChose); // Truyền listIcons vào
 
-
-        EmptyExpandableListAdapter adapterNull = null;
-        EmptyExpandableListAdapter adapterNu = null;
         if (!listDataHeader.isEmpty() && !listDataChild.isEmpty()) {
-            CustomAdapterWallet adapter = new CustomAdapterWallet(getContext(), listDataHeader, listDataChild);
-            adapterNu = new EmptyExpandableListAdapter(getContext());
-
+            CustomAdapterWallet adapter = new CustomAdapterWallet(getContext(), listDataHeader, listDataChild, listIcons);
             expandableListView.setAdapter(adapter);
 
             // Expand all groups
@@ -140,7 +136,7 @@ public class WeekFragment extends Fragment {
                 expandableListView.expandGroup(i, false);
             }
 
-            // Update the text views with total amounts
+            // Cập nhật các TextView với tổng số tiền
             int tongTienThu = 0;
             int tongTienChi = 0;
             for (List<GiaoDich> giaoDichs : listDataChild.values()) {
@@ -160,9 +156,10 @@ public class WeekFragment extends Fragment {
             tienThu.setText("0");
             tienChi.setText("0");
             tongTien.setText("0");
-            expandableListView.setAdapter(adapterNu);
+            expandableListView.setAdapter(new EmptyExpandableListAdapter(getContext()));
             Toast.makeText(getContext(), "Không có giao dịch nào cho tuần này.", Toast.LENGTH_SHORT).show();
         }
     }
+
 
 }

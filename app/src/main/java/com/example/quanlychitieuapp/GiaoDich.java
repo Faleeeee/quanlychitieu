@@ -47,6 +47,10 @@ public class GiaoDich {
         return money;
     }
 
+    public String getGroup_name() {
+        return group_name;
+    }
+
     @Override
     public String toString() {
         return group_name + "                         " + money;

@@ -158,7 +158,7 @@ public class DatabaseHelper {
         cursor.close();
     }
 
-    public void showAllTransactionsForWeek(List<String> listDataHeader, HashMap<String, List<GiaoDich>> listDataChild, int weekNumber, int idWalletChose) {
+    public void showAllTransactionsForWeek(List<String> listDataHeader, HashMap<String, List<GiaoDich>> listDataChild, HashMap<String, Integer> listIcons, int weekNumber, int idWalletChose) {
         database = context.openOrCreateDatabase(DATABASE_NAME, Context.MODE_PRIVATE, null);
 
         // Xác định ngày đầu tiên và ngày cuối cùng của tuần
@@ -211,8 +211,37 @@ public class DatabaseHelper {
                 listDataChild.put(date, new ArrayList<GiaoDich>());
             }
             listDataChild.get(date).add(giaoDich);
+
+            // Thêm thông tin icon cho giao dịch vào listIcons
+            // Ví dụ: Lấy icon dựa vào loại giao dịch (đây là một phần của logic của bạn)
+            int iconId = getIconForTransaction(loai_giaodich); // Phương thức này phải được cài đặt để trả về ID của icon
+            listIcons.put(giaoDich.getGroup_name(), iconId);
         }
         cursor.close();
+    }
+
+    // Phương thức để lấy ID của icon dựa vào loại giao dịch (ví dụ)
+    private int getIconForTransaction(String loai_giaodich) {
+        // Thay thế bằng logic của bạn để lấy ID của icon dựa vào loại giao dịch
+        if (loai_giaodich.equals("Ăn uống")) {
+            return R.drawable.baseline_fastfood_24;
+        } else if (loai_giaodich.equals("Bảo hiểm")) {
+            return R.drawable.outline_medical_information_24;
+        } else if (loai_giaodich.equals("Đầu tư")) {
+            return R.drawable.baseline_monetization_on_24;
+        } else if (loai_giaodich.equals("Di chuyển")) {
+            return R.drawable.baseline_directions_car_filled_24;
+        } else if (loai_giaodich.equals("Các chi phí khác")) {
+            return R.drawable.baseline_monetization_on_24;
+        } else if (loai_giaodich.equals("Lương")) {
+            return R.drawable.baseline_monetization_on_24;
+        } else if (loai_giaodich.equals("Thu nhập khác")) {
+            return R.drawable.baseline_monetization_on_24;
+        } else if (loai_giaodich.equals("Tiền chuyển đến")) {
+            return R.drawable.baseline_monetization_on_24;
+        } else {
+            return R.drawable.outline_comment_24; // Biểu tượng mặc định nếu không có loại giao dịch phù hợp
+        }
     }
 
 
