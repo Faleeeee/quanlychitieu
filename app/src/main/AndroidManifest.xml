@@ -32,10 +32,12 @@
             android:exported="false" />
         <activity
             android:name=".chonVi"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".calculator" />
         <activity
             android:name=".addWallet"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".chonVi" />
         <activity
             android:name=".nhom"
             android:exported="false"
