@@ -12,17 +12,21 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.quanlychitieuapp.R;
 import com.example.quanlychitieuapp.tab_vi.tabPagerAdapter;
+import com.example.quanlychitieuapp.walletHelper;
 import com.google.android.material.tabs.TabLayout;
 
+import java.text.NumberFormat;
 import java.util.Calendar;
+import java.util.Locale;
 
 public class viFragment extends Fragment {
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private View mView;
-    private static final int NUM_WEEKS = 52; // hoặc số tuần mà bạn muốn hiển thị
-    private int currentWeekIndex; // chỉ số của tuần hiện tại.
+    private static final int NUM_WEEKS = 52;
+    private int currentWeekIndex;
     TextView money;
+    private walletHelper walletData;
 
     public viFragment() {
         // Required empty public constructor
@@ -30,27 +34,33 @@ public class viFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         mView = inflater.inflate(R.layout.fragment_vi, container, false);
-
         tabLayout = mView.findViewById(R.id.tab_layout);
         viewPager = mView.findViewById(R.id.vi_viewpager);
         money = mView.findViewById(R.id.moneyWallet);
 
-        // Tính chỉ số của tuần hiện tại (ví dụ là tuần hiện tại là tuần 26)
+        // Khởi tạo walletData
+        walletData = new walletHelper(getContext()); // Thay context bằng context của bạn
+
         Calendar calendar = Calendar.getInstance();
         int currentWeek = calendar.get(Calendar.WEEK_OF_YEAR);
 
-        // Khởi tạo adapter và set cho ViewPager
         tabPagerAdapter adapter = new tabPagerAdapter(getChildFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT, NUM_WEEKS);
         viewPager.setAdapter(adapter);
 
-        // Đặt tab của tuần hiện tại là tab mặc định khi vào ứng dụng
-        currentWeekIndex = currentWeek - 1; // vì currentWeek bắt đầu từ 1
+        currentWeekIndex = currentWeek - 1;
         viewPager.setCurrentItem(currentWeekIndex);
-
         tabLayout.setupWithViewPager(viewPager);
 
+        // Lấy và hiển thị tổng số tiền trong ví
+        int totalMoney = walletData.getTotalMoney();
+        money.setText(formatCurrency(totalMoney));
+
         return mView;
+    }
+
+    private String formatCurrency(int amount) {
+        NumberFormat formatter = NumberFormat.getCurrencyInstance(new Locale("vi", "VN"));
+        return formatter.format(amount);
     }
 }

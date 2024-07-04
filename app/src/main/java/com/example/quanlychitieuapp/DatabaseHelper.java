@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Adapter;
@@ -38,6 +39,7 @@ public class DatabaseHelper {
         this.context = context;
         xuLySaoChepCSDL();
     }
+
     public SQLiteDatabase getReadableDatabase() {
         return context.openOrCreateDatabase(DATABASE_NAME, Context.MODE_PRIVATE, null);
     }
@@ -101,27 +103,104 @@ public class DatabaseHelper {
         row.put("note", note);
 
         long r = database.insert("giaodich", null, row);
-        Toast.makeText(context, "Thêm thành công", Toast.LENGTH_LONG).show();
+        if (r != -1) {
+            Toast.makeText(context, "Thêm thành công", Toast.LENGTH_LONG).show();
+
+            updateWalletBalance(id_wal, money, tenGiaoDich); // Cập nhật số tiền trong ví
+        } else {
+            Toast.makeText(context, "Thêm thất bại", Toast.LENGTH_LONG).show();
+        }
     }
+
+    private void updateWalletBalance(int id_wal, double money, String loai_giaoDich) {
+        Cursor cursor = null;
+        try {
+            database = context.openOrCreateDatabase(DATABASE_NAME, Context.MODE_PRIVATE, null);
+
+            // Truy vấn số tiền hiện tại trong ví
+            cursor = database.query("wallet", new String[]{"money"}, "id_w=?", new String[]{String.valueOf(id_wal)}, null, null, null);
+
+            if (cursor != null && cursor.moveToFirst()) {
+                // Lấy số dư hiện tại từ cột "money"
+                double currentBalance = cursor.getDouble(cursor.getColumnIndex("money"));
+
+                // Tính toán số tiền mới dựa trên loại giao dịch
+                double newBalance;
+                if (loai_giaoDich.equals("thu")) {
+                    newBalance = currentBalance + money;
+                } else if (loai_giaoDich.equals("chi")) {
+                    newBalance = currentBalance - money;
+                } else {
+                    // Nếu loại giao dịch không hợp lệ
+                    Toast.makeText(context, "Loại giao dịch không hợp lệ", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                // Tạo ContentValues để cập nhật số dư mới
+                ContentValues row = new ContentValues();
+                row.put("money", newBalance);
+
+                // Cập nhật số dư mới vào cơ sở dữ liệu
+                int rowsAffected = database.update("wallet", row, "id_w=?", new String[]{String.valueOf(id_wal)});
+
+                if (rowsAffected > 0) {
+                    Toast.makeText(context, "Cập nhật số tiền trong ví thành công", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(context, "Cập nhật số tiền trong ví thất bại", Toast.LENGTH_LONG).show();
+                }
+            } else {
+                Toast.makeText(context, "Không tìm thấy ví có ID " + id_wal, Toast.LENGTH_LONG).show();
+            }
+        } catch (SQLiteException e) {
+            e.printStackTrace();
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+    }
+
 
     public void xoaGiaoDich(int id_giaodich) {
         // Mở cơ sở dữ liệu
         database = context.openOrCreateDatabase(DATABASE_NAME, Context.MODE_PRIVATE, null);
 
-        // Xóa giao dịch theo id
-        int rowsDeleted = database.delete("giaodich", "id=?", new String[]{String.valueOf(id_giaodich)});
+        // Lấy thông tin giao dịch cần xóa để cập nhật lại ví
+        Cursor cursor = database.query("giaodich", new String[]{"id_wal", "money", "loai_giaodich"}, "id=?", new String[]{String.valueOf(id_giaodich)}, null, null, null);
+        if (cursor != null && cursor.moveToFirst()) {
+            int id_wal = cursor.getInt(cursor.getColumnIndex("id_wal"));
+            double money = cursor.getDouble(cursor.getColumnIndex("money"));
 
-        if (rowsDeleted > 0) {
-            Toast.makeText(context, "Xóa thành công", Toast.LENGTH_SHORT).show();
-//            showAll();
-        } else {
-            Toast.makeText(context, "Không tìm thấy giao dịch để xóa", Toast.LENGTH_SHORT).show();
+            // Xóa giao dịch theo id
+            int rowsDeleted = database.delete("giaodich", "id=?", new String[]{String.valueOf(id_giaodich)});
+
+            if (rowsDeleted > 0) {
+                Toast.makeText(context, "Xóa thành công", Toast.LENGTH_SHORT).show();
+
+                // Cập nhật số tiền trong ví sau khi xóa giao dịch
+                updateWalletBalance(id_wal, money, "chi");
+            } else {
+                Toast.makeText(context, "Không tìm thấy giao dịch để xóa", Toast.LENGTH_SHORT).show();
+            }
+        }
+
+        if (cursor != null) {
+            cursor.close();
         }
     }
 
     public void editGiaoDich(int id_giaodich, int id_wal, Double money, String tenGiaoDich, String nhomGiaoDich, String day, String note) {
-        // Mở cơ sở dữ liệu
         database = context.openOrCreateDatabase(DATABASE_NAME, Context.MODE_PRIVATE, null);
+
+        // Chuyển đổi định dạng ngày từ "dd/MM/yyyy" sang "yyyy-MM-dd"
+        SimpleDateFormat sdfInput = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+        SimpleDateFormat sdfDatabase = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        try {
+            Date dateFormatted = sdfInput.parse(day);
+            day = sdfDatabase.format(dateFormatted);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
         ContentValues row = new ContentValues();
         row.put("id_wal", id_wal);
@@ -133,9 +212,14 @@ public class DatabaseHelper {
 
         // Sửa giao dịch theo id
         int rowsEdit = database.update("giaodich", row, "id=?", new String[]{String.valueOf(id_giaodich)});
-        Toast.makeText(context, "Sửa giao dịch thành công", Toast.LENGTH_LONG).show();
-
+        if (rowsEdit > 0) {
+            Toast.makeText(context, "Sửa giao dịch thành công", Toast.LENGTH_LONG).show();
+            updateWalletBalance(id_wal, money, tenGiaoDich); // Cập nhật số tiền trong ví
+        } else {
+            Toast.makeText(context, "Không tìm thấy giao dịch để sửa", Toast.LENGTH_SHORT).show();
+        }
     }
+
 
     public void showAll(List<String> listDataHeader, HashMap<String, List<GiaoDich>> listDataChild, int idWalletChose) {
         database = context.openOrCreateDatabase(DATABASE_NAME, Context.MODE_PRIVATE, null);

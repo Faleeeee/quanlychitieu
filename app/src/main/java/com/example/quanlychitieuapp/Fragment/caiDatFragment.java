@@ -70,8 +70,8 @@ public class caiDatFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_cai_dat, container, false);
         // Initialize the button and set the onClick listener
         CardView cardTaiKhoan = view.findViewById(R.id.card_taikhoan);
-        CardView cardGiaodich =view.findViewById(R.id.card_giaodich);
-        CardView cardVi=view.findViewById(R.id.card_vi);
+        CardView cardGiaodich = view.findViewById(R.id.card_giaodich);
+        CardView cardVi = view.findViewById(R.id.card_vi);
         cardTaiKhoan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,20 +80,20 @@ public class caiDatFragment extends Fragment {
                 startActivity(intent);
             }
         });
-        cardGiaodich.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent1=new Intent(getActivity(),com.example.quanlychitieuapp.activity_barchart.class);
-                startActivity(intent1);
-            }
-        });
-        cardVi.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent2=new Intent(getActivity(),com.example.quanlychitieuapp.activity_wallet_barchart.class);
-                startActivity(intent2);
-            }
-        });
+//        cardGiaodich.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent1=new Intent(getActivity(),com.example.quanlychitieuapp.activity_barchart.class);
+//                startActivity(intent1);
+//            }
+//        });
+//        cardVi.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent2=new Intent(getActivity(),com.example.quanlychitieuapp.activity_wallet_barchart.class);
+//                startActivity(intent2);
+//            }
+//        });
 
         return view;
     }

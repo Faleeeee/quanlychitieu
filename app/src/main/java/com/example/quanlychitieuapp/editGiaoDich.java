@@ -30,6 +30,7 @@ public class editGiaoDich extends AppCompatActivity {
     private Button btnSave, btnBack, btnDate;
     private String dateSelect;
     private TextView nhomGiaoDich;
+    TextView txtWallet;
 
     String name;
     int money;
@@ -39,12 +40,18 @@ public class editGiaoDich extends AppCompatActivity {
     private int idGiaodich;
     private DatabaseHelper dbHelper;
     String selectedGD;
+    int id_wallet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_edit_giao_dich);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle("Chỉnh sửa giao dịch");
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+
         dbHelper = new DatabaseHelper(this);
 
         initViews();
@@ -58,6 +65,7 @@ public class editGiaoDich extends AppCompatActivity {
         Bundle myBundle = myIntent.getBundleExtra("myPackageEditChiTieu");
         if (myBundle != null) {
             idGiaodich = myBundle.getInt("id_giaodich");
+            id_wallet = myBundle.getInt("id_wallet");
             name = myBundle.getString("name");
             money = myBundle.getInt("money");
             date = myBundle.getString("date");
@@ -81,23 +89,16 @@ public class editGiaoDich extends AppCompatActivity {
         }
 
         String lGiaoDich = nhomGiaoDich.getText().toString();
+
         if (lGiaoDich.isEmpty()) {
             Toast.makeText(this, "Lỗi: Nhóm giao dịch rỗng", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        int id_wal = 1;
         String date = dateSelect;
         String note = note_content.getText().toString();
-        String giaoDich = nhomGiaoDich.getText().toString();
 
-        // Check if selectedGD is set
-        if (selectedGD == null || selectedGD.isEmpty()) {
-            Toast.makeText(this, "Lỗi: Nhóm giao dịch chưa được chọn", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        dbHelper.editGiaoDich(idGiaodich, id_wal, money, selectedGD, lGiaoDich, date, note);
+        dbHelper.editGiaoDich(idGiaodich, id_wallet, money, selectedGD, lGiaoDich, date, note);
 
         Intent myIntent = new Intent(editGiaoDich.this, MainActivity.class);
         startActivity(myIntent);
@@ -123,11 +124,8 @@ public class editGiaoDich extends AppCompatActivity {
         btnBack = findViewById(R.id.btnBack);
         btnDate = findViewById(R.id.btnDate);
         nhomGiaoDich = findViewById(R.id.textGroup);
+        txtWallet = findViewById(R.id.wallet);
 
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().hide();
-        }
-        display.setShowSoftInputOnFocus(false);
 
         getData();
 
@@ -135,13 +133,13 @@ public class editGiaoDich extends AppCompatActivity {
         note_content.setText(note);
         nhomGiaoDich.setText(name);
         btnDate.setText(date);
+        txtWallet.setText(wallet);
     }
 
     private void setupListeners() {
         display.setOnClickListener(this::clearDisplayOnFirstClick);
         display.addTextChangedListener(textWatcher);
 
-        btnBack.setOnClickListener(v -> startActivity(new Intent(this, MainActivity.class)));
         nhomGiaoDich.setOnClickListener(v -> startActivityForResult(new Intent(editGiaoDich.this, nhom.class), REQUEST_CODE));
         btnSave.setOnClickListener(v -> saveTransaction());
         btnDate.setOnClickListener(v -> showDatePickerDialog());

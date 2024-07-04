@@ -27,11 +27,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link WeekFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class WeekFragment extends Fragment {
     private static final String ARG_WEEK_NUMBER = "week_number";
     private static final String ARG_WALLET_ID = "wallet_id"; // Thêm key cho id ví được chọn
@@ -102,7 +98,6 @@ public class WeekFragment extends Fragment {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedWalletName = walletNames.get(position);
                 int idWalletChose = walletMap.get(selectedWalletName);
-                Toast.makeText(getContext(), "Đã chọn ví: " + selectedWalletName, Toast.LENGTH_SHORT).show();
                 showAllTransactionsForWeek(weekNumber, idWalletChose); // Truyền id ví được chọn vào phương thức
             }
 
@@ -111,7 +106,6 @@ public class WeekFragment extends Fragment {
                 if (!walletNames.isEmpty()) {
                     String firstWalletName = walletNames.get(0);
                     int idWalletChose = walletMap.get(firstWalletName);
-                    Toast.makeText(getContext(), "Đã chọn ví: " + firstWalletName, Toast.LENGTH_SHORT).show();
                     showAllTransactionsForWeek(weekNumber, idWalletChose); // Truyền id ví được chọn vào phương thức
                 }
             }
@@ -157,7 +151,6 @@ public class WeekFragment extends Fragment {
             tienChi.setText("0");
             tongTien.setText("0");
             expandableListView.setAdapter(new EmptyExpandableListAdapter(getContext()));
-            Toast.makeText(getContext(), "Không có giao dịch nào cho tuần này.", Toast.LENGTH_SHORT).show();
         }
     }
 

@@ -9,31 +9,6 @@
     tools:context=".editGiaoDich">
 
 
-    <!-- Header -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/giaodichvi"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/btnBack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Back"></Button>
-
-        <TextView
-            android:id="@+id/tvHeader"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:padding="16dp"
-            android:text="Chỉnh sửa giao dịch"
-            android:textColor="@android:color/white"
-            android:textSize="24sp" />
-    </LinearLayout>
-
-
     <!-- Amount -->
     <EditText
         android:id="@+id/display"
@@ -99,8 +74,8 @@
 
 
     <!-- Spinner Account -->
-    <EditText
-        android:id="@+id/etAccount"
+    <TextView
+        android:id="@+id/wallet"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@null"
@@ -109,7 +84,7 @@
         android:inputType="date"
         android:padding="16dp"
         android:textColor="@android:color/white"
-        android:textColorHint="@color/white" />
+        android:textColorHint="@color/gray" />
 
     <!-- Save Button -->
     <LinearLayout

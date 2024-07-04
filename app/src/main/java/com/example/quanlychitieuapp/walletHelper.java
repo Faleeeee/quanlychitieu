@@ -159,5 +159,27 @@ public class walletHelper {
         return walletName;
     }
 
+    public int getTotalMoney() {
+        openDatabase();
+
+        int totalMoney = 0;
+        if (userId == -1) {
+            return totalMoney;
+        }
+
+        Cursor cursor = database.rawQuery("SELECT SUM(money) FROM wallet WHERE user_id = ?", new String[]{String.valueOf(userId)});
+
+        if (cursor != null && cursor.moveToFirst()) {
+            totalMoney = cursor.getInt(0);
+        }
+
+        if (cursor != null) {
+            cursor.close();
+        }
+        closeDatabase();
+
+        return totalMoney;
+    }
+
 
 }

@@ -23,6 +23,7 @@ public class chitietchitieu extends AppCompatActivity {
     String note;
     private int idGiaodich;
     private DatabaseHelper dbHelper;
+    int id_wallet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +64,12 @@ public class chitietchitieu extends AppCompatActivity {
             myBundle.putString("name", name);
             myBundle.putInt("money", money);
             myBundle.putString("date", date);
+            myBundle.putString("wallet", wallet);
             myBundle.putString("note", note);
+
+            myBundle.putInt("id_wallet", id_wallet);
+//            myBundle.putString("loai_giaodich", giaoDich.loai_giaoDich);
+//            myBundle.putString("note", giaoDich.note);
 
             Intent intent = new Intent(chitietchitieu.this, editGiaoDich.class);
             intent.putExtra("myPackageEditChiTieu", myBundle);
@@ -102,6 +108,7 @@ public class chitietchitieu extends AppCompatActivity {
         Bundle myBundle = myIntent.getBundleExtra("myPackageChiTietChiTieu");
         if (myBundle != null) {
             idGiaodich = myBundle.getInt("id_giaodich");
+            id_wallet = myBundle.getInt("id_wallet");
             name = myBundle.getString("name");
             money = myBundle.getInt("money");
             date = myBundle.getString("date");
