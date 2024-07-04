@@ -17,11 +17,11 @@ public class tabHomeAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return new home_week_Fragment();
+                return new home_chi_Fragment();
             case 1:
-                return new home_month_Fragment();
+                return new home_thu_Fragment();
             default:
-                return new home_week_Fragment();
+                return new home_chi_Fragment();
 
         }
     }
@@ -36,11 +36,11 @@ public class tabHomeAdapter extends FragmentStatePagerAdapter {
     public CharSequence getPageTitle(int position) {
         switch (position) {
             case 0:
-                return "Tuần";
+                return "Chi";
             case 1:
-                return "Tháng";
+                return "Thu";
             default:
-                return "Tuần";
+                return "Chi";
         }
     }
 }

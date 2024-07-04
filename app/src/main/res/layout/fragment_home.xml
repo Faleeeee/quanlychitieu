@@ -17,7 +17,6 @@
             android:layout_marginEnd="15dp"
             android:orientation="vertical">
 
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -58,7 +57,6 @@
 
             </LinearLayout>
 
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -88,22 +86,7 @@
                             android:textStyle="bold"></TextView>
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="horizontal">
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="15dp"
-                            android:gravity="end"
-                            android:text="Xem tất cả"
-                            android:textColor="@color/green"
-                            android:textSize="20sp"
-                            android:textStyle="bold"></TextView>
-                    </LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout
@@ -116,9 +99,7 @@
                         android:layout_height="150dp"
                         android:nestedScrollingEnabled="true"></ListView>
                 </LinearLayout>
-
             </LinearLayout>
-
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -145,94 +126,30 @@
                             android:textSize="20sp" />
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1">
 
-                        <TextView
-
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="end"
-                            android:text="Xem báo cáo"
-                            android:textColor="@color/green"
-                            android:textSize="20sp"
-                            android:textStyle="bold"></TextView>
-                    </LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="450dp"
                     android:background="@drawable/radius"
                     android:orientation="vertical">
 
                     <com.google.android.material.tabs.TabLayout
                         android:id="@+id/tab_baocao_home"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"></com.google.android.material.tabs.TabLayout>
-                    <FrameLayout
-                        android:id="@+id/fragmentContainer"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/giaodichvi"
+                        app:tabSelectedTextColor="@color/blue"
+                        app:tabTextColor="@color/white"></com.google.android.material.tabs.TabLayout>
+
                     <androidx.viewpager.widget.ViewPager
                         android:id="@+id/baocao_viewpager"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/tab_baocao_home"></androidx.viewpager.widget.ViewPager>
+                        android:layout_height="0dp"
+                        android:layout_weight="1"></androidx.viewpager.widget.ViewPager>
                 </LinearLayout>
             </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:weightSum="2">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:text="Giao dịch gần đây"
-                            android:textColor="@color/gray"
-                            android:textSize="20sp"></TextView>
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="end"
-                            android:text="Xem báo cáo"
-                            android:textColor="@color/green"
-                            android:textSize="20sp"
-                            android:textStyle="bold"></TextView>
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/radius"></LinearLayout>
-            </LinearLayout>
-
-
-
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>

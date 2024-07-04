@@ -26,6 +26,9 @@ public class sign_up extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().hide();
+        }
 
         emailEditText = findViewById(R.id.emailEditText);
         passwordEditText = findViewById(R.id.passwordEditText);
@@ -89,7 +92,6 @@ public class sign_up extends AppCompatActivity {
             Toast.makeText(this, "Đăng ký không thành công", Toast.LENGTH_SHORT).show();
         }
     }
-
 
 
     private boolean isValidEmail(String email) {

@@ -27,7 +27,7 @@ public class luutrudangnhap extends AppCompatActivity {
         if (userId != -1) {
             // Nếu đã đăng nhập, chuyển đến homeFragment
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.fragmentContainer, new homeFragment());
+//            transaction.replace(R.id.fragmentContainer, new homeFragment());
             transaction.commit();
         } else {
             // Nếu chưa đăng nhập, chuyển đến activity đăng nhập
@@ -37,16 +37,16 @@ public class luutrudangnhap extends AppCompatActivity {
         }
     }
 
-    public void goToFragment(int fragmentId) {
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        switch (fragmentId) {
-            case 0:
-                transaction.replace(R.id.fragmentContainer, new homeFragment());
-                break;
-            case 1:
-                transaction.replace(R.id.fragmentContainer, new caiDatFragment());
-                break;
-        }
-        transaction.commit();
-    }
+//    public void goToFragment(int fragmentId) {
+//        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+//        switch (fragmentId) {
+//            case 0:
+//                transaction.replace(R.id.fragmentContainer, new homeFragment());
+//                break;
+//            case 1:
+//                transaction.replace(R.id.fragmentContainer, new caiDatFragment());
+//                break;
+//        }
+//        transaction.commit();
+//    }
 }

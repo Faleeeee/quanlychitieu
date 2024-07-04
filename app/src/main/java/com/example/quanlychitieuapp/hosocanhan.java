@@ -29,6 +29,9 @@ public class hosocanhan extends AppCompatActivity {
         btn7 = findViewById(R.id.btn7);
         btn15 = findViewById(R.id.btn15);
         btn8 = findViewById(R.id.btn8);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().hide();
+        }
 
         Intent intent = getIntent();
         if (intent != null && intent.hasExtra("email")) {

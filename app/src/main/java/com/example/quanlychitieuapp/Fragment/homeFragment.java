@@ -90,7 +90,6 @@ public class homeFragment extends Fragment {
         listView = mView.findViewById(R.id.lvWallet);
         tabLayout = mView.findViewById(R.id.tab_baocao_home);
         viewPager = mView.findViewById(R.id.baocao_viewpager);
-        FrameLayout barChartContainer = mView.findViewById(R.id.fragmentContainer);
 
         tabHomeAdapter adapter = new tabHomeAdapter(getChildFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         viewPager.setAdapter(adapter);
@@ -99,34 +98,11 @@ public class homeFragment extends Fragment {
 
         // Set up the ListView with wallet data
         setListViewWallet();
-        getChildFragmentManager().beginTransaction()
-                .replace(barChartContainer.getId(), new BarChartFragment())
-                .commit();
 
 
         return mView;
     }
 
-//    public void setListViewWallet() {
-//        int icons = R.drawable.baseline_monetization_on_24;
-//        ArrayList<wallet> walletList = walletData.showWallet(); // Lấy danh sách các ví từ cơ sở dữ liệu
-//
-//        // In ra log các ví được lấy từ cơ sở dữ liệu
-//        for (wallet walletItem : walletList) {
-//            System.out.println("Wallet: " + walletItem.getName());
-//        }
-//
-//        // Tạo danh sách tên các ví để hiển thị
-//        ArrayList<String> walletNames = new ArrayList<>();
-//        for (wallet walletItem : walletList) {
-//            walletNames.add(walletItem.getName());
-//        }
-//
-//
-//        // Tạo adapter cho ListView
-//        ArrayAdapter<String> arrayAdapter = new CustomAdapter(getContext(), walletNames, new int[]{icons});
-//        listView.setAdapter(arrayAdapter);
-//    }
 
     public void setListViewWallet() {
         int icon = R.drawable.baseline_account_balance_wallet_24; // Chọn một icon duy nhất
