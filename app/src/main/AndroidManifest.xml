@@ -15,6 +15,9 @@
         android:theme="@style/Theme.Quanlychitieuapp"
         tools:targetApi="31">
         <activity
+            android:name=".BarChartFragment"
+            android:exported="false" />
+        <activity
             android:name=".activity_wallet_barchart"
             android:exported="false" />
         <activity
