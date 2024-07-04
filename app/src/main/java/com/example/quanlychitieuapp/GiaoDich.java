@@ -53,6 +53,6 @@ public class GiaoDich {
 
     @Override
     public String toString() {
-        return group_name + "                         " + money;
+        return group_name + " " + money;
     }
 }

@@ -122,7 +122,7 @@ public class homeFragment extends Fragment {
 //    }
 
     public void setListViewWallet() {
-        int icon = R.drawable.baseline_monetization_on_24; // Chọn một icon duy nhất
+        int icon = R.drawable.baseline_account_balance_wallet_24; // Chọn một icon duy nhất
 
         ArrayList<wallet> walletList = walletData.showWallet(); // Lấy danh sách các ví từ cơ sở dữ liệu
 
