@@ -42,11 +42,7 @@ public class chonVi extends AppCompatActivity {
         // Lấy danh sách wallet từ cơ sở dữ liệu
         ArrayList<wallet> walletList = database.showWallet();
 
-        int[] icons = {
-                R.drawable.baseline_account_balance_wallet_24,
-                R.drawable.baseline_account_balance_wallet_24
-
-        };
+        int icon = R.drawable.baseline_account_balance_wallet_24;
 
         // Tạo danh sách tên ví từ danh sách wallet
         ArrayList<String> walletNames = new ArrayList<>();
@@ -55,7 +51,7 @@ public class chonVi extends AppCompatActivity {
         }
 
         // Sử dụng ArrayAdapter để hiển thị danh sách tên ví trong ListView
-        adapterDB = new CustomAdapter(this, walletNames, icons);
+        adapterDB = new walletAdapter(this, walletNames, icon);
         listView.setAdapter(adapterDB);
 
         // Gọi phương thức listenClick từ WalletHelper
@@ -78,7 +74,7 @@ public class chonVi extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int itemId = item.getItemId();
-        if (itemId == R.id.add ) {
+        if (itemId == R.id.add) {
             Intent intent = new Intent(chonVi.this, addWallet.class);
             startActivity(intent);
         }

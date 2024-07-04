@@ -117,7 +117,7 @@ public class chiCircleChart extends Fragment {
         PieDataSet dataSet = new PieDataSet(entries, "");
         dataSet.setColors(ColorTemplate.MATERIAL_COLORS);
         dataSet.setValueFormatter(new PercentFormatter(pieChart));
-        dataSet.setValueTextSize(12f);
+        dataSet.setValueTextSize(20f);
 
         // Thiết lập PieData
         PieData data = new PieData(dataSet);
