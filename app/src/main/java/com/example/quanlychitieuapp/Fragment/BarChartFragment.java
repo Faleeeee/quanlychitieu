@@ -4,6 +4,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +19,6 @@ import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
-import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -51,21 +51,27 @@ public class BarChartFragment extends Fragment {
 
         List<BarEntry> entries = new ArrayList<>();
         List<String> labels = new ArrayList<>();
+        int i = 0; // Biến đếm để thêm màu sắc
         for (Map.Entry<String, Integer> entry : thongKe.entrySet()) {
-            entries.add(new BarEntry(entries.size(), entry.getValue()));
+            entries.add(new BarEntry(i, entry.getValue()));
             labels.add(entry.getKey());
             tongTienChi += entry.getValue();
+            i++;
         }
 
-        BarDataSet dataSet = new BarDataSet(entries, "Chi tiêu theo loại");
-        dataSet.setColors(ColorTemplate.MATERIAL_COLORS);
+        BarDataSet dataSet = new BarDataSet(entries, "");
+        dataSet.setColors(getColors()); // Sử dụng danh sách màu sắc đã tạo
         dataSet.setValueTextColor(Color.WHITE);
-        BarData data = new BarData(dataSet);
+        dataSet.setValueTextSize(12f);
+        dataSet.setDrawValues(false); // Xóa chữ trên cột
 
+        BarData data = new BarData(dataSet);
         barChart.setData(data);
         barChart.getDescription().setEnabled(false);
         barChart.setFitBars(true);
         barChart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(labels));
+        // Ẩn legend mặc định của BarChart
+        barChart.getLegend().setEnabled(false);
 
         barChart.getXAxis().setTextColor(Color.WHITE);
         barChart.getAxisLeft().setTextColor(Color.WHITE);
@@ -76,8 +82,31 @@ public class BarChartFragment extends Fragment {
         TextView tvTongTienChi = view.findViewById(R.id.tvTongTienChi);
         tvTongTienChi.setText("Tổng tiền chi: " + tongTienChi);
         tvTongTienChi.setTextColor(Color.WHITE);
+
+        // Hiển thị chú thích chi tiết
+        TextView tvChuThich = view.findViewById(R.id.tvChuThich);
+        StringBuilder chuThichText = new StringBuilder("Chú thích:\n");
+        for (i = 0; i < labels.size(); i++) {
+            chuThichText.append(" - ")
+                    .append(labels.get(i))
+                    .append(": <font color=\"")
+                    .append(String.format("#%06X", (0xFFFFFF & getColors().get(i)))) // Chuyển đổi màu sang mã hex
+                    .append("\">■</font><br>");
+        }
+        tvChuThich.setText(Html.fromHtml(chuThichText.toString()));
     }
 
+    // Danh sách màu sắc cho các cột
+    private List<Integer> getColors() {
+        List<Integer> colors = new ArrayList<>();
+        colors.add(Color.BLUE);
+        colors.add(Color.RED);
+        colors.add(Color.GREEN);
+        colors.add(Color.YELLOW);
+        colors.add(Color.CYAN);
+        colors.add(Color.MAGENTA);
+        return colors;
+    }
     private Map<String, Integer> getThongKeChiTieu() {
         Map<String, Integer> thongKe = new HashMap<>();
 

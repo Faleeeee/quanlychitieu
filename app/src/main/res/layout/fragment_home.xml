@@ -172,7 +172,10 @@
                         android:id="@+id/tab_baocao_home"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"></com.google.android.material.tabs.TabLayout>
-
+                    <FrameLayout
+                        android:id="@+id/fragmentContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
                     <androidx.viewpager.widget.ViewPager
                         android:id="@+id/baocao_viewpager"
                         android:layout_width="match_parent"
@@ -228,10 +231,7 @@
                     android:background="@drawable/radius"></LinearLayout>
             </LinearLayout>
 
-            <FrameLayout
-                android:id="@+id/fragmentContainer"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+
 
         </LinearLayout>
     </ScrollView>
