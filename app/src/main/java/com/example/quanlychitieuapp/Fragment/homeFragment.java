@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.FrameLayout;
 import android.widget.ListView;
 
 import com.example.quanlychitieuapp.CustomAdapter;
@@ -77,6 +78,7 @@ public class homeFragment extends Fragment {
         }
         database = new DatabaseHelper(getActivity());
         walletData = new walletHelper(getActivity());
+
     }
 
     @Override
@@ -88,6 +90,7 @@ public class homeFragment extends Fragment {
         listView = mView.findViewById(R.id.lvWallet);
         tabLayout = mView.findViewById(R.id.tab_baocao_home);
         viewPager = mView.findViewById(R.id.baocao_viewpager);
+        FrameLayout barChartContainer = mView.findViewById(R.id.fragmentContainer);
 
         tabHomeAdapter adapter = new tabHomeAdapter(getChildFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         viewPager.setAdapter(adapter);
@@ -96,6 +99,10 @@ public class homeFragment extends Fragment {
 
         // Set up the ListView with wallet data
         setListViewWallet();
+        getChildFragmentManager().beginTransaction()
+                .replace(barChartContainer.getId(), new BarChartFragment())
+                .commit();
+
 
         return mView;
     }

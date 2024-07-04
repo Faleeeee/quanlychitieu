@@ -38,6 +38,9 @@ public class DatabaseHelper {
         this.context = context;
         xuLySaoChepCSDL();
     }
+    public SQLiteDatabase getReadableDatabase() {
+        return context.openOrCreateDatabase(DATABASE_NAME, Context.MODE_PRIVATE, null);
+    }
 
     private void xuLySaoChepCSDL() {
         File dbFile = context.getDatabasePath(DATABASE_NAME);
