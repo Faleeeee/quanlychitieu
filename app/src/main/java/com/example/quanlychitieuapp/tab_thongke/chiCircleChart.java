@@ -15,6 +15,8 @@ import android.widget.FrameLayout;
 
 import com.example.quanlychitieuapp.DatabaseHelper;
 import com.example.quanlychitieuapp.R;
+import com.example.quanlychitieuapp.UserHelper;
+import com.example.quanlychitieuapp.walletHelper;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
@@ -44,6 +46,8 @@ public class chiCircleChart extends Fragment {
 
     private DatabaseHelper dbHelper;
     private SQLiteDatabase database; // Khai báo biến database
+    private com.example.quanlychitieuapp.walletHelper walletHelper;
+    UserHelper userHelper;
 
     public chiCircleChart() {
         // Required empty public constructor
@@ -87,7 +91,8 @@ public class chiCircleChart extends Fragment {
 
         // Khởi tạo database
         database = getActivity().openOrCreateDatabase("quanlychitieu.db", Context.MODE_PRIVATE, null); // Sử dụng Context.MODE_PRIVATE
-
+        walletHelper = new walletHelper(getActivity());
+        userHelper = new UserHelper(getContext());
         // Tạo biểu đồ tròn
         createPieChart(view);
         return view;
@@ -135,23 +140,28 @@ public class chiCircleChart extends Fragment {
     private Map<String, Integer> getThongKeChiTieu() {
         Map<String, Integer> thongKe = new HashMap<>();
 
-        Cursor cursor = database.query("giaodich", null, "loai_giaodich = 'chi'", null, null, null, null);
+        if (database != null) {
+            Cursor cursor = database.query("giaodich", null, "loai_giaodich = 'chi'", null, null, null, null);
 
-        if (cursor != null) {
             while (cursor.moveToNext()) {
-                String groupName = cursor.getString(cursor.getColumnIndex("group_name"));
-                double money = cursor.getDouble(cursor.getColumnIndex("money")); // Sử dụng getDouble()
+                int id_w = cursor.getInt(cursor.getColumnIndex("id_wal"));
+                double money = cursor.getDouble(cursor.getColumnIndex("money"));
 
-                if (thongKe.containsKey(groupName)) {
-                    thongKe.put(groupName, thongKe.get(groupName) + (int) money); // Sửa thành int
-                } else {
-                    thongKe.put(groupName, (int) money); // Sửa thành int
+                // Get userId associated with this id_w
+                int userId = walletHelper.getUserIdFromWalletId(id_w);
+
+                // Check if the userId matches current user's id
+                if (userId == userHelper.getUserIdFromPreferences()) {
+                    String groupName = cursor.getString(cursor.getColumnIndex("group_name"));
+
+                    if (thongKe.containsKey(groupName)) {
+                        thongKe.put(groupName, thongKe.get(groupName) + (int) money);
+                    } else {
+                        thongKe.put(groupName, (int) money);
+                    }
                 }
             }
             cursor.close();
-        } else {
-            // Handle null cursor case
-            Log.e("chiCircleChart", "Cursor is null");
         }
 
         return thongKe;

@@ -15,6 +15,8 @@ import android.widget.TextView;
 
 import com.example.quanlychitieuapp.DatabaseHelper;
 import com.example.quanlychitieuapp.R;
+import com.example.quanlychitieuapp.UserHelper;
+import com.example.quanlychitieuapp.walletHelper;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
@@ -39,6 +41,9 @@ public class home_chi_Fragment extends Fragment {
     private String mParam2;
     private DatabaseHelper dbHelper;
     private SQLiteDatabase database;
+    private walletHelper walletHelper;
+    UserHelper userHelper;
+
 
     public home_chi_Fragment() {
         // Required empty public constructor
@@ -75,7 +80,8 @@ public class home_chi_Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home_chi_, container, false);
-
+        walletHelper = new walletHelper(getActivity());
+        userHelper = new UserHelper(getContext());
         dbHelper = new DatabaseHelper(getContext());
         database = dbHelper.getReadableDatabase();
 
@@ -156,13 +162,21 @@ public class home_chi_Fragment extends Fragment {
             Cursor cursor = database.query("giaodich", null, "loai_giaodich = 'chi'", null, null, null, null);
 
             while (cursor.moveToNext()) {
-                String groupName = cursor.getString(cursor.getColumnIndex("group_name"));
+                int id_w = cursor.getInt(cursor.getColumnIndex("id_wal"));
                 double money = cursor.getDouble(cursor.getColumnIndex("money"));
 
-                if (thongKe.containsKey(groupName)) {
-                    thongKe.put(groupName, thongKe.get(groupName) + (int) money);
-                } else {
-                    thongKe.put(groupName, (int) money);
+                // Get userId associated with this id_w
+                int userId = walletHelper.getUserIdFromWalletId(id_w);
+
+                // Check if the userId matches current user's id
+                if (userId == userHelper.getUserIdFromPreferences()) {
+                    String groupName = cursor.getString(cursor.getColumnIndex("group_name"));
+
+                    if (thongKe.containsKey(groupName)) {
+                        thongKe.put(groupName, thongKe.get(groupName) + (int) money);
+                    } else {
+                        thongKe.put(groupName, (int) money);
+                    }
                 }
             }
             cursor.close();
@@ -170,4 +184,6 @@ public class home_chi_Fragment extends Fragment {
 
         return thongKe;
     }
+
+
 }

@@ -14,6 +14,8 @@ import androidx.fragment.app.Fragment;
 
 import com.example.quanlychitieuapp.DatabaseHelper;
 import com.example.quanlychitieuapp.R;
+import com.example.quanlychitieuapp.UserHelper;
+import com.example.quanlychitieuapp.walletHelper;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
@@ -29,6 +31,8 @@ public class home_thu_Fragment extends Fragment {
 
     private DatabaseHelper dbHelper;
     private SQLiteDatabase database;
+    private com.example.quanlychitieuapp.walletHelper walletHelper;
+    UserHelper userHelper;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -37,6 +41,8 @@ public class home_thu_Fragment extends Fragment {
 
         dbHelper = new DatabaseHelper(getContext());
         database = dbHelper.getReadableDatabase();
+        walletHelper = new walletHelper(getActivity());
+        userHelper = new UserHelper(getContext());
 
         createBarChart(view);
 
@@ -119,13 +125,21 @@ public class home_thu_Fragment extends Fragment {
             Cursor cursor = database.query("giaodich", null, "loai_giaodich = 'thu'", null, null, null, null);
 
             while (cursor.moveToNext()) {
-                String groupName = cursor.getString(cursor.getColumnIndex("group_name"));
+                int id_w = cursor.getInt(cursor.getColumnIndex("id_wal"));
                 double money = cursor.getDouble(cursor.getColumnIndex("money"));
 
-                if (thongKe.containsKey(groupName)) {
-                    thongKe.put(groupName, thongKe.get(groupName) + (int) money);
-                } else {
-                    thongKe.put(groupName, (int) money);
+                // Get userId associated with this id_w
+                int userId = walletHelper.getUserIdFromWalletId(id_w);
+
+                // Check if the userId matches current user's id
+                if (userId == userHelper.getUserIdFromPreferences()) {
+                    String groupName = cursor.getString(cursor.getColumnIndex("group_name"));
+
+                    if (thongKe.containsKey(groupName)) {
+                        thongKe.put(groupName, thongKe.get(groupName) + (int) money);
+                    } else {
+                        thongKe.put(groupName, (int) money);
+                    }
                 }
             }
             cursor.close();

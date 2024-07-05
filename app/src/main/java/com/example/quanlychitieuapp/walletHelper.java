@@ -181,5 +181,28 @@ public class walletHelper {
         return totalMoney;
     }
 
+    public int getUserIdFromWalletId(int id_w) {
+        openDatabase();
+        int userId = -1;
+
+        Cursor cursor = database.query("wallet",
+                new String[]{"user_id"},
+                "id_w = ?",
+                new String[]{String.valueOf(id_w)},
+                null,
+                null,
+                null);
+
+        if (cursor != null && cursor.moveToFirst()) {
+            userId = cursor.getInt(cursor.getColumnIndex("user_id"));
+        }
+
+        if (cursor != null) {
+            cursor.close();
+        }
+        closeDatabase();
+        return userId;
+    }
+
 
 }
