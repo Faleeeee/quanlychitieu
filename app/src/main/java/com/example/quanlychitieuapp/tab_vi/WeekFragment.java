@@ -30,9 +30,9 @@ import java.util.Map;
 
 public class WeekFragment extends Fragment {
     private static final String ARG_WEEK_NUMBER = "week_number";
-    private static final String ARG_WALLET_ID = "wallet_id"; // Thêm key cho id ví được chọn
+    private static final String ARG_WALLET_ID = "wallet_id";
     private int weekNumber;
-    private int idWalletChose; // Thêm biến để lưu id ví được chọn
+    private int idWalletChose;
     private DatabaseHelper database;
     private ExpandableListView expandableListView;
 

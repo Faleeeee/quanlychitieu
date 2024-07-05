@@ -193,13 +193,18 @@ public class walletHelper {
                 null,
                 null);
 
-        if (cursor != null && cursor.moveToFirst()) {
-            userId = cursor.getInt(cursor.getColumnIndex("user_id"));
-        }
-
         if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                int columnIndex = cursor.getColumnIndex("user_id");
+                if (columnIndex != -1) {
+                    userId = cursor.getInt(columnIndex);
+                } else {
+
+                }
+            }
             cursor.close();
         }
+
         closeDatabase();
         return userId;
     }

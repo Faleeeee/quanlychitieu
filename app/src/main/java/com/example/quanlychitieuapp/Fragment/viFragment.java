@@ -40,7 +40,7 @@ public class viFragment extends Fragment {
         money = mView.findViewById(R.id.moneyWallet);
 
         // Khởi tạo walletData
-        walletData = new walletHelper(getContext()); // Thay context bằng context của bạn
+        walletData = new walletHelper(getContext());
 
         Calendar calendar = Calendar.getInstance();
         int currentWeek = calendar.get(Calendar.WEEK_OF_YEAR);

@@ -137,7 +137,7 @@ public class editGiaoDich extends AppCompatActivity {
     }
 
     private void setupListeners() {
-        display.setOnClickListener(this::clearDisplayOnFirstClick);
+//        display.setOnClickListener(this::clearDisplayOnFirstClick);
         display.addTextChangedListener(textWatcher);
 
         nhomGiaoDich.setOnClickListener(v -> startActivityForResult(new Intent(editGiaoDich.this, nhom.class), REQUEST_CODE));
@@ -163,11 +163,11 @@ public class editGiaoDich extends AppCompatActivity {
     }
 
 
-    private void clearDisplayOnFirstClick(View v) {
-        if (getString(R.string.calculator).equals(display.getText().toString())) {
-            display.setText("");
-        }
-    }
+//    private void clearDisplayOnFirstClick(View v) {
+//        if (getString(R.string.calculator).equals(display.getText().toString())) {
+//            display.setText("");
+//        }
+//    }
 
     private final TextWatcher textWatcher = new TextWatcher() {
         @Override
@@ -211,111 +211,111 @@ public class editGiaoDich extends AppCompatActivity {
         }
     }
 
-    private void updateText(String strToAdd) {
-        String oldStr = display.getText().toString();
-        int cursorPos = display.getSelectionStart();
-        String leftStr = oldStr.substring(0, cursorPos);
-        String rightStr = oldStr.substring(cursorPos);
+//    private void updateText(String strToAdd) {
+//        String oldStr = display.getText().toString();
+//        int cursorPos = display.getSelectionStart();
+//        String leftStr = oldStr.substring(0, cursorPos);
+//        String rightStr = oldStr.substring(cursorPos);
+//
+//        display.setText(String.format("%s%s%s", leftStr, strToAdd, rightStr));
+//        display.setSelection(cursorPos + 1);
+//    }
+//
+//    private boolean isThreeZeroBtnPressed(View view) {
+//        return view.getId() == R.id.btn000; // Kiểm tra xem id của view có phải là btnThreeZero không
+//    }
+//
+//    // Các phương thức xử lý các nút số và toán học
+//    public void zeroBtn(View view) {
+//        updateText("0");
+//    }
+//
+//    public void threeZeroBtn(View view) {
+//        updateText("000");
+//    }
+//
+//    public void dotBtn(View view) {
+//        updateText(".");
+//    }
+//
+//    public void oneBtn(View view) {
+//        updateText("1");
+//    }
+//
+//    public void twoBtn(View view) {
+//        updateText("2");
+//    }
+//
+//    public void threeBtn(View view) {
+//        updateText("3");
+//    }
+//
+//    public void fourBtn(View view) {
+//        updateText("4");
+//    }
+//
+//    public void fiveBtn(View view) {
+//        updateText("5");
+//    }
+//
+//    public void sixBtn(View view) {
+//        updateText("6");
+//    }
+//
+//    public void sevenBtn(View view) {
+//        updateText("7");
+//    }
+//
+//    public void eightBtn(View view) {
+//        updateText("8");
+//    }
+//
+//    public void nineBtn(View view) {
+//        updateText("9");
+//    }
+//
+//    public void addBtn(View view) {
+//        updateText("+");
+//    }
+//
+//    public void subtractBtn(View view) {
+//        updateText("-");
+//    }
+//
+//    public void multiplyBtn(View view) {
+//        updateText("×");
+//    }
+//
+//    public void divideBtn(View view) {
+//        updateText("/");
+//    }
+//
+//    public void deleteBtn(View view) {
+//        int cursorPos = display.getSelectionStart();
+//        int textLen = display.getText().length();
+//
+//        if (cursorPos != 0 && textLen != 0) {
+//            SpannableStringBuilder selection = (SpannableStringBuilder) display.getText();
+//            selection.replace(cursorPos - 1, cursorPos, "");
+//            display.setText(selection);
+//            display.setSelection(cursorPos - 1);
+//        }
+//    }
+//
+//    public void restartBtn(View view) {
+//        display.setText("");
+//    }
 
-        display.setText(String.format("%s%s%s", leftStr, strToAdd, rightStr));
-        display.setSelection(cursorPos + 1);
-    }
-
-    private boolean isThreeZeroBtnPressed(View view) {
-        return view.getId() == R.id.btn000; // Kiểm tra xem id của view có phải là btnThreeZero không
-    }
-
-    // Các phương thức xử lý các nút số và toán học
-    public void zeroBtn(View view) {
-        updateText("0");
-    }
-
-    public void threeZeroBtn(View view) {
-        updateText("000");
-    }
-
-    public void dotBtn(View view) {
-        updateText(".");
-    }
-
-    public void oneBtn(View view) {
-        updateText("1");
-    }
-
-    public void twoBtn(View view) {
-        updateText("2");
-    }
-
-    public void threeBtn(View view) {
-        updateText("3");
-    }
-
-    public void fourBtn(View view) {
-        updateText("4");
-    }
-
-    public void fiveBtn(View view) {
-        updateText("5");
-    }
-
-    public void sixBtn(View view) {
-        updateText("6");
-    }
-
-    public void sevenBtn(View view) {
-        updateText("7");
-    }
-
-    public void eightBtn(View view) {
-        updateText("8");
-    }
-
-    public void nineBtn(View view) {
-        updateText("9");
-    }
-
-    public void addBtn(View view) {
-        updateText("+");
-    }
-
-    public void subtractBtn(View view) {
-        updateText("-");
-    }
-
-    public void multiplyBtn(View view) {
-        updateText("×");
-    }
-
-    public void divideBtn(View view) {
-        updateText("/");
-    }
-
-    public void deleteBtn(View view) {
-        int cursorPos = display.getSelectionStart();
-        int textLen = display.getText().length();
-
-        if (cursorPos != 0 && textLen != 0) {
-            SpannableStringBuilder selection = (SpannableStringBuilder) display.getText();
-            selection.replace(cursorPos - 1, cursorPos, "");
-            display.setText(selection);
-            display.setSelection(cursorPos - 1);
-        }
-    }
-
-    public void restartBtn(View view) {
-        display.setText("");
-    }
-
-    public void equalBtn(View view) {
-        String userExp = display.getText().toString();
-        userExp = userExp.replaceAll("÷", "/");
-        userExp = userExp.replaceAll("×", "×");
-
-        Expression exp = new Expression(userExp);
-        String result = String.valueOf(exp.calculate());
-
-        display.setText(result);
-        display.setSelection(result.length());
-    }
+//    public void equalBtn(View view) {
+//        String userExp = display.getText().toString();
+//        userExp = userExp.replaceAll("÷", "/");
+//        userExp = userExp.replaceAll("×", "×");
+//
+//        Expression exp = new Expression(userExp);
+//        String result = String.valueOf(exp.calculate());
+//
+//        display.setText(result);
+//        display.setSelection(result.length());
+//    }
 
 }

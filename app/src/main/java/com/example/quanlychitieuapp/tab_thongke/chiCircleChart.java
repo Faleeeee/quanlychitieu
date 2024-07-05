@@ -143,28 +143,41 @@ public class chiCircleChart extends Fragment {
         if (database != null) {
             Cursor cursor = database.query("giaodich", null, "loai_giaodich = 'chi'", null, null, null, null);
 
-            while (cursor.moveToNext()) {
-                int id_w = cursor.getInt(cursor.getColumnIndex("id_wal"));
-                double money = cursor.getDouble(cursor.getColumnIndex("money"));
+            if (cursor != null) {
+                int indexIdWal = cursor.getColumnIndex("id_wal");
+                int indexMoney = cursor.getColumnIndex("money");
+                int indexGroupName = cursor.getColumnIndex("group_name");
 
-                // Get userId associated with this id_w
-                int userId = walletHelper.getUserIdFromWalletId(id_w);
+                if (indexIdWal == -1 || indexMoney == -1 || indexGroupName == -1) {
+                    // Log or handle the error appropriately
+                    cursor.close();
+                    throw new IllegalArgumentException("One or more column names do not exist in the table.");
+                }
 
-                // Check if the userId matches current user's id
-                if (userId == userHelper.getUserIdFromPreferences()) {
-                    String groupName = cursor.getString(cursor.getColumnIndex("group_name"));
+                while (cursor.moveToNext()) {
+                    int id_w = cursor.getInt(indexIdWal);
+                    double money = cursor.getDouble(indexMoney);
 
-                    if (thongKe.containsKey(groupName)) {
-                        thongKe.put(groupName, thongKe.get(groupName) + (int) money);
-                    } else {
-                        thongKe.put(groupName, (int) money);
+                    // Get userId associated with this id_w
+                    int userId = walletHelper.getUserIdFromWalletId(id_w);
+
+                    // Check if the userId matches current user's id
+                    if (userId == userHelper.getUserIdFromPreferences()) {
+                        String groupName = cursor.getString(indexGroupName);
+
+                        if (thongKe.containsKey(groupName)) {
+                            thongKe.put(groupName, thongKe.get(groupName) + (int) money);
+                        } else {
+                            thongKe.put(groupName, (int) money);
+                        }
                     }
                 }
+                cursor.close();
             }
-            cursor.close();
         }
 
         return thongKe;
     }
+
 
 }
