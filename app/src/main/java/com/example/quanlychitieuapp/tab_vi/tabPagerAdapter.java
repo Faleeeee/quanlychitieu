@@ -12,7 +12,7 @@ import java.util.Locale;
 
 public class tabPagerAdapter extends FragmentStatePagerAdapter {
     private final int numWeeks;
-    private final Calendar calendar = Calendar.getInstance();
+    private final Calendar calendar = Calendar.getInstance();// Đối tượng Calendar để thao tác với ngày tháng
     private final SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM", Locale.getDefault());
 
     public tabPagerAdapter(@NonNull FragmentManager fm, int behavior, int numWeeks) {
@@ -20,6 +20,7 @@ public class tabPagerAdapter extends FragmentStatePagerAdapter {
         this.numWeeks = numWeeks;
     }
 
+    // Trả về một Fragment cho mỗi trang (tuần)
     @NonNull
     @Override
     public Fragment getItem(int position) {

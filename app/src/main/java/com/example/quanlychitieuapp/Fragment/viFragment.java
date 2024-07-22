@@ -42,6 +42,7 @@ public class viFragment extends Fragment {
         // Khởi tạo walletData
         walletData = new walletHelper(getContext());
 
+        // Lấy tuần hiện tại trong năm
         Calendar calendar = Calendar.getInstance();
         int currentWeek = calendar.get(Calendar.WEEK_OF_YEAR);
 
